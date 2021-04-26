@@ -22,7 +22,7 @@ var player;
 var stars;
 var platforms;
 var cursors;
-
+var battle=0;
 var score = 0;
 var scoreText;
 
@@ -69,7 +69,7 @@ function create ()
 
 function update ()
 {
-    movement(cursors,player);
+    movement(cursors,player,battle);
     
 }
 function dropStar(spead,music,hp){
@@ -85,6 +85,7 @@ function dropStar(spead,music,hp){
             star1.disableBody(true, true);
             if(score>=hp){
                 music.mute=true;
+                battle=0;
             }
 
         });
@@ -97,7 +98,7 @@ function BattleStart (player, enemy)
 {
     var music = this.sound.add('theme');
 
-    
+    battle=1;
     for (let i = 1;i<=16 ; i++) { 
         var timedEvent1 =this.time.delayedCall(1000*i, dropStar,[ 200,music,40]);
         
