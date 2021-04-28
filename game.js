@@ -2,8 +2,8 @@ import  movement from 'http://127.0.0.1:8080/utils/movement.mjs';
 
 var config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: 1200,
+    height: 900,
     physics: {
         default: 'arcade',
         arcade: {
@@ -25,13 +25,15 @@ var cursors;
 var battle=0;
 var score = 0;
 var scoreText;
+var mHood;
 
 var game = new Phaser.Game(config);
 
 function preload ()
 {
     this.load.audio('theme', 'assets/60_bpm_sample.wav');
-    this.load.image('sky', 'assets/sky.png');
+    this.load.image('background', 'assets/temporary_background.png');
+    this.load.image('hood','assets/hood.png')
     this.load.image('ground', 'assets/platform.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
@@ -40,9 +42,12 @@ function preload ()
 
 function create ()
 {
-    var img = this.add.image(400, 300, 'sky');
+    var img = this.add.image(600, 450, 'background');
+    mHood = this.physics.add.staticGroup();
+    mHood.create(1050,450,'hood').refreshBody();
+
     platforms = this.physics.add.staticGroup();
-    platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+    platforms.create(1050, 881, 'ground').setScale(0.71).refreshBody();
     
     scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
     
@@ -62,6 +67,7 @@ function create ()
         
     });
 
+    this.physics.add.collider(player, mHood);
     this.physics.add.collider(player, platforms);
     this.physics.add.overlap(player, enemy, BattleStart, null, this);
     this.physics.add.overlap(platforms, stars, Star_hit_the_ground, null, this);
@@ -72,11 +78,11 @@ function update ()
     movement(cursors,player,battle);
     
 }
-function dropStar(spead,music,hp){
+function dropStar(speed,music,hp){
     if(score<hp){
       
-    var star1=stars.create(Phaser.Math.Between(50, 250), 0, 'star');
-    star1.setVelocityY(spead);
+    var star1=stars.create(Phaser.Math.Between(910, 1190), 258, 'star');
+    star1.setVelocityY(speed);
     star1.setInteractive();
     star1.on('pointerdown',function(){
             score += 10;
