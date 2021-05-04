@@ -66,7 +66,11 @@ function create ()
         setXY: { x: 350, y: 300, stepX: 20 },
         
     });
-
+    /////////////////////////
+    var enemy1= this.physics.add.sprite(800, 356, 'bomb');
+    enemy1.setData({ name: 'Red Gem Stone', level: 2, owner: 'Link', gold: 50 });
+    enemy.add(enemy1);
+    console.log(enemy1.getData('name'));
     this.physics.add.collider(player, mHood);
     this.physics.add.collider(player, platforms);
     this.physics.add.overlap(player, enemy, BattleStart, null, this);
@@ -102,6 +106,8 @@ function dropStar(speed,music,hp){
 
 function BattleStart (player, enemy)
 {
+    
+    console.log(enemy.data.list);
     var music = this.sound.add('theme');
 
     battle=1;
