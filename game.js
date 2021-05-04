@@ -66,7 +66,7 @@ function create ()
     enemy = this.physics.add.group();
     
     enemyCreator(1,250,250,this);
-    console.log(this);
+    console.log(game);
 
     this.physics.add.collider(player, mHood);
     this.physics.add.collider(player, platforms);
@@ -79,18 +79,19 @@ function update ()
     movement(cursors,player,battle);
     
 }
-function dropStar(speed,music,hp){
-    if(score<hp){
+function dropStar(speed,music,maxScore,enemy){
+    if(score<maxScore){
 
-    var star1=stars.create(Phaser.Math.Between(910, 1190), 258, 'star');
+    var star1=stars.create(Phaser.Math.Between(920, 1180), 258, 'star');
     star1.setVelocityY(speed);
     star1.setInteractive();
     star1.on('pointerdown',function(){
             score += 10;
             scoreText.setText('Score: ' + score);
-
+            enemy.data.list.hp = enemy.data.list.hp - 10; 
+            console.log(enemy.data.list.hp);
             star1.disableBody(true, true);
-            if(score>=hp){
+            if(score>=maxScore){
                 music.mute=true;
                 battle=0;
             }
@@ -104,15 +105,17 @@ function dropStar(speed,music,hp){
 function BattleStart (player, enemy)
 {
     
-    console.log(enemy.data.list);
-    var music = this.sound.add('theme');
+    console.log(enemy.data.list.hp);
+    var music = this.sound.add(enemy.data.list.music);
 
     battle=1;
     for (let i = 1;i<=16 ; i++) { 
-        var timedEvent1 =this.time.delayedCall(1000*i, dropStar,[ 200,music,40]);
+        var timedEvent1 =this.time.delayedCall(1000*i, dropStar,[ 200,music,40,enemy]);
         
         
     }
+
+    
     music.play({
     loop: true
     });
