@@ -39,7 +39,10 @@ function preload ()
     this.load.image('bomb', 'assets/bomb.png');
     this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
 }
-
+function enemyCreator(type,x,y,scene){
+    if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'bomb').setData({ hp: 50, music: 'theme', speed: 1000, green: 100, red: 100, black: 100 });
+    enemy.add(concreteEnemy);
+}
 function create ()
 {
     var img = this.add.image(600, 450, 'background');
@@ -60,17 +63,11 @@ function create ()
 
     stars = this.physics.add.group();
 
-    enemy = this.physics.add.group({
-        key: 'bomb',
-        repeat: 6,
-        setXY: { x: 350, y: 300, stepX: 20 },
-        
-    });
-    /////////////////////////
-    var enemy1= this.physics.add.sprite(800, 356, 'bomb');
-    enemy1.setData({ name: 'Red Gem Stone', level: 2, owner: 'Link', gold: 50 });
-    enemy.add(enemy1);
-    console.log(enemy1.getData('name'));
+    enemy = this.physics.add.group();
+    
+    enemyCreator(1,250,250,this);
+    console.log(this);
+
     this.physics.add.collider(player, mHood);
     this.physics.add.collider(player, platforms);
     this.physics.add.overlap(player, enemy, BattleStart, null, this);
