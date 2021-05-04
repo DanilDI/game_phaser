@@ -31,7 +31,8 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.audio('theme', 'assets/60_bpm_sample.wav');
+    this.load.audio('60bpm', 'assets/60_bpm_sample.wav');
+    this.load.audio('120bpm', 'assets/120_bpm_sample.wav');
     this.load.image('background', 'assets/temporary_background.png');
     this.load.image('hood','assets/hood.png')
     this.load.image('ground', 'assets/platform.png');
@@ -40,7 +41,8 @@ function preload ()
     this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
 }
 function enemyCreator(type,x,y,scene){
-    if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'bomb').setData({ hp: 50, music: 'theme', speed: 200, green: 100, red: 100, black: 100 });
+    if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'bomb').setData({ hp: 50, music: '60bpm', pause: 1000,speed:200, green: 100, red: 100, black: 100 });
+    if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'star').setData({ hp: 70, music: '120bpm', pause: 500,speed:250, green: 100, red: 100, black: 100 });
     enemy.add(concreteEnemy);
 }
 function create ()
@@ -66,6 +68,7 @@ function create ()
     enemy = this.physics.add.group();
     
     enemyCreator(1,250,250,this);
+    enemyCreator(2,400,400,this);
     console.log(game);
 
     this.physics.add.collider(player, mHood);
@@ -79,21 +82,26 @@ function update ()
     movement(cursors,player,battle);
     
 }
-function dropStar(music,enemy){
-    if(enemy.data.list.hp>0){
+function dropStar(music,enemyinfo){
+    if(enemyinfo.hp>0){
 
     var star1=stars.create(Phaser.Math.Between(920, 1180), 258, 'star');
-    star1.setVelocityY(enemy.data.list.speed);
+    star1.setVelocityY(enemyinfo.speed);
     star1.setInteractive();
     star1.on('pointerdown',function(){
             
             //scoreText.setText('Score: ' + score);
-            enemy.data.list.hp = enemy.data.list.hp - 10; 
-            console.log(enemy.data.list.hp);
+            enemyinfo.hp = enemyinfo.hp - 10; 
+            console.log(enemyinfo.hp);
             star1.disableBody(true, true);
-            if(enemy.data.list.hp<=0){
+            if(enemyinfo.hp<=0){
                 music.mute=true;
                 battle=0;
+                stars.children.iterate(function (child) {
+
+                    child.disableBody(true, true);
+        
+                });
             }
 
         });
@@ -101,24 +109,35 @@ function dropStar(music,enemy){
 
      
  }
-
-function BattleStart (player, enemy)
-{
+function Battle(enemyinfo,music,scene){
     
-    console.log(enemy.data.list.hp);
-    var music = this.sound.add(enemy.data.list.music);
-
+   
+    
+    
+    
     battle=1;
-    for (let i = 1;i<=16 ; i++) { 
-        var timedEvent1 =this.time.delayedCall(1000*i, dropStar,[music,enemy]);
+    for (let i = 1;i<=5 ; i++) { 
+        var timedEvent1 =scene.time.delayedCall(enemyinfo.pause*i, dropStar,[music,enemyinfo]);
         
         
     }
-
+    var timedEvent1 =scene.time.delayedCall(enemyinfo.pause*5.1,BattleContinue,[enemyinfo,music,scene] );
     
     music.play({
-    loop: true
+    loop: false
     });
+}
+function BattleContinue(enemyinfo,music,scene){
+    if(enemyinfo.hp>0) { Battle (enemyinfo,music,scene)};
+
+}
+function BattleStart (player, enemy)
+{
+    
+    var enemyinfo=enemy.data.list;
+    var music = this.sound.add(enemyinfo.music);
+    Battle(enemyinfo,music,this);
+    
     
     enemy.disableBody(true, true);
 }
