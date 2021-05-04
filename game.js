@@ -40,7 +40,7 @@ function preload ()
     this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
 }
 function enemyCreator(type,x,y,scene){
-    if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'bomb').setData({ hp: 50, music: 'theme', speed: 1000, green: 100, red: 100, black: 100 });
+    if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'bomb').setData({ hp: 50, music: 'theme', speed: 200, green: 100, red: 100, black: 100 });
     enemy.add(concreteEnemy);
 }
 function create ()
@@ -79,19 +79,19 @@ function update ()
     movement(cursors,player,battle);
     
 }
-function dropStar(speed,music,maxScore,enemy){
-    if(score<maxScore){
+function dropStar(music,enemy){
+    if(enemy.data.list.hp>0){
 
     var star1=stars.create(Phaser.Math.Between(920, 1180), 258, 'star');
-    star1.setVelocityY(speed);
+    star1.setVelocityY(enemy.data.list.speed);
     star1.setInteractive();
     star1.on('pointerdown',function(){
-            score += 10;
-            scoreText.setText('Score: ' + score);
+            
+            //scoreText.setText('Score: ' + score);
             enemy.data.list.hp = enemy.data.list.hp - 10; 
             console.log(enemy.data.list.hp);
             star1.disableBody(true, true);
-            if(score>=maxScore){
+            if(enemy.data.list.hp<=0){
                 music.mute=true;
                 battle=0;
             }
@@ -110,7 +110,7 @@ function BattleStart (player, enemy)
 
     battle=1;
     for (let i = 1;i<=16 ; i++) { 
-        var timedEvent1 =this.time.delayedCall(1000*i, dropStar,[ 200,music,40,enemy]);
+        var timedEvent1 =this.time.delayedCall(1000*i, dropStar,[music,enemy]);
         
         
     }
