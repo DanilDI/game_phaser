@@ -1,4 +1,4 @@
-import  movement from 'http://127.0.0.1:8080/utils/movement.mjs'; 
+import movement from './utils/movement.mjs';
 
 var config = {
     type: Phaser.AUTO,
@@ -80,7 +80,7 @@ function update ()
 }
 function dropStar(speed,music,hp){
     if(score<hp){
-      
+
     var star1=stars.create(Phaser.Math.Between(910, 1190), 258, 'star');
     star1.setVelocityY(speed);
     star1.setInteractive();

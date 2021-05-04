@@ -1,4 +1,5 @@
 export default function movement(cursors,player,battle){
+
     if(battle==0){
         if (cursors.left.isDown)
         {
