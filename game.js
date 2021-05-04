@@ -23,8 +23,8 @@ var stars;
 var platforms;
 var cursors;
 var battle=0;
-var score = 0;
-var scoreText;
+
+var EnemyHPText;
 var mHood;
 
 var game = new Phaser.Game(config);
@@ -54,7 +54,7 @@ function create ()
     platforms = this.physics.add.staticGroup();
     platforms.create(1050, 881, 'ground').setScale(0.71).refreshBody();
     
-    scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+    EnemyHPText = this.add.text(950, 16, 'Enemy HP:  0', { fontSize: '32px', fill: '#000' });
     
     player = this.physics.add.sprite(100, 450, 'dude');
     player.setBounce(0.2);
@@ -90,8 +90,9 @@ function dropStar(music,enemyinfo){
     star1.setInteractive();
     star1.on('pointerdown',function(){
             
-            //scoreText.setText('Score: ' + score);
-            enemyinfo.hp = enemyinfo.hp - 10; 
+            
+            enemyinfo.hp = enemyinfo.hp - 10;
+            EnemyHPText.setText('Enemy HP: ' + enemyinfo.hp);
             console.log(enemyinfo.hp);
             star1.disableBody(true, true);
             if(enemyinfo.hp<=0){
@@ -135,6 +136,7 @@ function BattleStart (player, enemy)
 {
     
     var enemyinfo=enemy.data.list;
+    EnemyHPText.setText('Enemy HP: ' + enemyinfo.hp);
     var music = this.sound.add(enemyinfo.music);
     Battle(enemyinfo,music,this);
     
