@@ -56,10 +56,10 @@ function enemyCreator(type,x,y,scene){
 }
 function create ()
 {
+    var img = this.add.image(600, 450, 'background');
 	const map = this.make.tilemap({key: 'map'})
 	const tileset = map.addTilesetImage('tileset_dungeon', 'tiles', 32, 32, 0, 0);
 	const layer1 = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
-    // var img = this.add.image(600, 450, 'background');
     mHood = this.physics.add.staticGroup();
     mHood.create(1050,450,'hood').refreshBody();
 
