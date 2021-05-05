@@ -193,6 +193,7 @@ function dropStar(music,enemyinfo,startype,keyA,keyD){
                     if(enemyinfo.hp<=0){
                         music.mute=true;
                         battle=0;
+                        
                         stars.children.iterate(function (child) {
 
                             child.disableBody(true, true);
@@ -231,6 +232,7 @@ function dropStar(music,enemyinfo,startype,keyA,keyD){
                     if(enemyinfo.hp<=0){
                         music.mute=true;
                         battle=0;
+                        
                         stars.children.iterate(function (child) {
 
                             child.disableBody(true, true);
@@ -267,6 +269,7 @@ function dropStar(music,enemyinfo,startype,keyA,keyD){
                     if(enemyinfo.hp<=0){
                         music.mute=true;
                         battle=0;
+                        
                         stars.children.iterate(function (child) {
 
                             child.disableBody(true, true);
