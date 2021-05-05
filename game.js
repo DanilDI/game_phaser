@@ -33,6 +33,8 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
+	this.load.image('tiles', 'assets/tileset_dungeon.png');
+	this.load.tilemapTiledJSON('map', 'assets/map1.json')
     this.load.audio('60bpm', 'assets/60_bpm_sample.wav');
     this.load.audio('120bpm', 'assets/120_bpm_sample.wav');
     this.load.audio('120_ADNDA', 'assets/120_ADNDA.wav');
@@ -54,7 +56,10 @@ function enemyCreator(type,x,y,scene){
 }
 function create ()
 {
-    var img = this.add.image(600, 450, 'background');
+	const map = this.make.tilemap({key: 'map'})
+	const tileset = map.addTilesetImage('tileset_dungeon', 'tiles', 32, 32, 0, 0);
+	const layer1 = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
+    // var img = this.add.image(600, 450, 'background');
     mHood = this.physics.add.staticGroup();
     mHood.create(1050,450,'hood').refreshBody();
 
