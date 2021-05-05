@@ -35,19 +35,22 @@ function preload ()
 {
 	this.load.image('tiles', 'assets/tileset_dungeon.png');
 	this.load.tilemapTiledJSON('map', 'assets/map1.json')
-    this.load.audio('60bpm', 'assets/60_bpm_sample.wav');
-    this.load.audio('120bpm', 'assets/120_bpm_sample.wav');
-    this.load.audio('120_ADNDA', 'assets/120_ADNDA.wav');
+    
+    this.load.audio('90_ADNDA', 'assets/90_ADNDA.wav');
     this.load.audio('120_DDDAAAND', 'assets/120_DDDAAAND.wav');
     this.load.audio('180_ADNDDANDDA', 'assets/180_ADNDDANDDA.wav');
+    this.load.audio('60_AAAADNDD', 'assets/60_AAAADNDD.wav');
+    this.load.audio('150_AADDA', 'assets/150_AADDA.wav');
+    
+
     this.load.image('background', 'assets/temporary_background.png');
     this.load.image('hood','assets/hood.png')
     this.load.image('ground', 'assets/platform.png');
-    this.load.image('star', 'assets/starA.png');
+
     this.load.image('star0', 'assets/starA.png');
     this.load.image('star1', 'assets/starD.png');
     this.load.image('star2', 'assets/starB.png');
-    this.load.image('bomb', 'assets/bomb.png');
+
     this.load.spritesheet('run_right', 'assets/run.png', { frameWidth: 184, frameHeight: 137 });
     this.load.spritesheet('idle', 'assets/idle.png', { frameWidth: 184, frameHeight: 137 });
     this.load.spritesheet('run_left', 'assets/run_left.png', { frameWidth: 184, frameHeight: 137 });
@@ -60,12 +63,12 @@ function preload ()
 }
 function enemyCreator(type,x,y,scene){
 
-    if(type==1){
-        var concreteEnemy= scene.physics.add.sprite(x, y, 'nightmare').setData({animation:'nightmare-idle', hp: 70, music: '120_ADNDA', speed:350, pattern: [30,540,1040,1535,2010],satrnumber: 5,pause:2500 ,attacks: [0,1,2,1,0]});
-        
-    }
-    if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'demon').setData({animation:'demon_idle', hp: 40, music: '180_ADNDDANDDA', speed:300, pattern: [28,210,365,540,710,855,1030,1190,1370,1530],satrnumber: 10,pause:2000 ,attacks: [0,1,2,1,1,0,2,1,1,0]});
-    if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'ghost').setData({animation:'ghost_idle', hp: 50, music: '120_DDDAAAND', speed:300, pattern: [35,535,1035,1510,1770,2020,2270,2510],satrnumber: 8,pause:3000 ,attacks: [1,1,1,0,0,0,2,1]});
+    if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'nightmare').setData({animation:'nightmare-idle', hp: 70, music: '90_ADNDA', speed:350, pattern: [10,350,675,835,1005],satrnumber: 5,pause:1400 ,attacks: [0,1,2,1,0]});
+ 
+    if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'demon').setData({animation:'demon-idle', hp: 40, music: '180_ADNDDANDDA', speed:300, pattern: [28,210,365,540,710,855,1030,1190,1370,1530],satrnumber: 10,pause:2000 ,attacks: [0,1,2,1,1,0,2,1,1,0]});
+    if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'ghost').setData({animation:'ghost-idle', hp: 50, music: '120_DDDAAAND', speed:300, pattern: [35,535,1035,1510,1770,2020,2270,2510],satrnumber: 8,pause:3000 ,attacks: [1,1,1,0,0,0,2,1]});
+    if(type==4) var concreteEnemy= scene.physics.add.sprite(x, y, 'hell-beast').setData({animation:'hell-beast-idle', hp: 80, music: '60_AAAADNDD', speed:300, pattern: [30,770,1270,1525,1780,2020,2215,2530],satrnumber: 8,pause:3000 ,attacks: [0,0,0,0,1,2,1,1]});
+    if(type==5) var concreteEnemy= scene.physics.add.sprite(x, y, 'hell-hound').setData({animation:'hell-hound-idle', hp: 60, music: '150_AADDA', speed:330, pattern: [10,110,215,515,810],satrnumber: 5,pause:1500 ,attacks: [0,0,1,1,0]});
     enemy.add(concreteEnemy);
 }
 function create ()
@@ -108,14 +111,14 @@ function create ()
     });
 
     this.anims.create({
-        key: 'demon_idle',
+        key: 'demon-idle',
         frames: this.anims.generateFrameNumbers('demon', { start: 0, end: 5 }),
         frameRate: 10,
         repeat: 1
     });
     //!!!!!!!!new!!!!!!!!!
     this.anims.create({
-        key: 'ghost_idle',
+        key: 'ghost-idle',
         frames: this.anims.generateFrameNumbers('ghost', { start: 0, end: 6 }),
         frameRate: 5,
         repeat: 1
@@ -148,7 +151,9 @@ function create ()
     
     enemyCreator(1,250,250,this);
     enemyCreator(2,200,650,this);
-    enemyCreator(3,300,650,this);
+    enemyCreator(3,400,650,this);
+    enemyCreator(4,600,650,this);
+    enemyCreator(5,400,400,this);
     console.log(game);
 
     this.physics.add.collider(player, mHood);
