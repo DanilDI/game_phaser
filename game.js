@@ -52,16 +52,20 @@ function preload ()
     this.load.spritesheet('idle', 'assets/idle.png', { frameWidth: 184, frameHeight: 137 });
     this.load.spritesheet('run_left', 'assets/run_left.png', { frameWidth: 184, frameHeight: 137 });
     this.load.spritesheet('demon', 'assets/demon-idle.png', { frameWidth: 160, frameHeight: 144 });
+    this.load.spritesheet('ghost', 'assets/ghost-idle.png', { frameWidth: 64, frameHeight: 80 });
+    this.load.spritesheet('hell-beast', 'assets/hell-beast-idle.png', { frameWidth: 55, frameHeight: 67 });
+    this.load.spritesheet('hell-hound', 'assets/hell-hound-idle.png', { frameWidth: 64, frameHeight: 32 });
+    this.load.spritesheet('nightmare', 'assets/nightmare-idle.png', { frameWidth: 128, frameHeight: 96 });
 
 }
 function enemyCreator(type,x,y,scene){
 
     if(type==1){
-        var concreteEnemy= scene.physics.add.sprite(x, y, 'demon').setData({animation:'demon_idle', hp: 70, music: '120_ADNDA', speed:350, pattern: [30,540,1040,1535,2010],satrnumber: 5,pause:2500 ,attacks: [0,1,2,1,0]});
+        var concreteEnemy= scene.physics.add.sprite(x, y, 'nightmare').setData({animation:'nightmare-idle', hp: 70, music: '120_ADNDA', speed:350, pattern: [30,540,1040,1535,2010],satrnumber: 5,pause:2500 ,attacks: [0,1,2,1,0]});
         
     }
-    if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'star').setData({animation:'demon_idle', hp: 40, music: '180_ADNDDANDDA', speed:300, pattern: [28,210,365,540,710,855,1030,1190,1370,1530],satrnumber: 10,pause:2000 ,attacks: [0,1,2,1,1,0,2,1,1,0]});
-    if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'bomb').setData({animation:'demon_idle', hp: 50, music: '120_DDDAAAND', speed:300, pattern: [35,535,1035,1510,1770,2020,2270,2510],satrnumber: 8,pause:3000 ,attacks: [1,1,1,0,0,0,2,1]});
+    if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'demon').setData({animation:'demon_idle', hp: 40, music: '180_ADNDDANDDA', speed:300, pattern: [28,210,365,540,710,855,1030,1190,1370,1530],satrnumber: 10,pause:2000 ,attacks: [0,1,2,1,1,0,2,1,1,0]});
+    if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'ghost').setData({animation:'ghost_idle', hp: 50, music: '120_DDDAAAND', speed:300, pattern: [35,535,1035,1510,1770,2020,2270,2510],satrnumber: 8,pause:3000 ,attacks: [1,1,1,0,0,0,2,1]});
     enemy.add(concreteEnemy);
 }
 function create ()
@@ -109,7 +113,32 @@ function create ()
         frameRate: 10,
         repeat: 1
     });
-    
+    //!!!!!!!!new!!!!!!!!!
+    this.anims.create({
+        key: 'ghost_idle',
+        frames: this.anims.generateFrameNumbers('ghost', { start: 0, end: 6 }),
+        frameRate: 5,
+        repeat: 1
+    });
+    this.anims.create({
+        key: 'hell-beast-idle',
+        frames: this.anims.generateFrameNumbers('hell-beast', { start: 0, end: 5 }),
+        frameRate: 7,
+        repeat: 1
+    });
+    this.anims.create({
+        key: 'hell-hound-idle',
+        frames: this.anims.generateFrameNumbers('hell-hound', { start: 0, end: 5 }),
+        frameRate: 4,
+        repeat: 1
+    });
+
+    this.anims.create({
+        key: 'nightmare-idle',
+        frames: this.anims.generateFrameNumbers('nightmare', { start: 0, end: 4 }),
+        frameRate: 5,
+        repeat: 1
+    });
     
     cursors = this.input.keyboard.createCursorKeys();
 
