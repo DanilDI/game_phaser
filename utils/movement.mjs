@@ -1,26 +1,29 @@
-export default function movement(cursors,player,battle,lose){
-
+export default function movement(cursors,player,battle,lose,focus){
+    var keyW = focus.input.keyboard.addKey('W'); 
+    var keyA = focus.input.keyboard.addKey('A');
+    var keyS = focus.input.keyboard.addKey('S'); 
+    var keyD = focus.input.keyboard.addKey('D');
     if(battle==0&&lose==0){
-        if (cursors.left.isDown)
+        if (keyA.isDown)
         {
           player.setVelocityX(-160);
           player.anims.play('left', true);
         
         }
-        else if (cursors.right.isDown)
+        else if (keyD.isDown)
         {
             player.setVelocityX(160);
             player.anims.play('right', true);
         
         }
-        else if (cursors.down.isDown)
+        else if (keyS.isDown)
         {
             player.setVelocityY(160);
             player.anims.play('left', true);
     
         
         }
-        else if (cursors.up.isDown)
+        else if (keyW.isDown)
         {
             player.setVelocityY(-160);
             player.anims.play('right', true);
