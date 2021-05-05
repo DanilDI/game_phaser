@@ -38,6 +38,7 @@ function preload ()
     this.load.audio('60bpm', 'assets/60_bpm_sample.wav');
     this.load.audio('120bpm', 'assets/120_bpm_sample.wav');
     this.load.audio('120_ADNDA', 'assets/120_ADNDA.wav');
+    this.load.audio('120_DDDAAAND', 'assets/120_DDDAAAND.wav');
     this.load.audio('180_ADNDDANDDA', 'assets/180_ADNDDANDDA.wav');
     this.load.image('background', 'assets/temporary_background.png');
     this.load.image('hood','assets/hood.png')
@@ -60,6 +61,7 @@ function enemyCreator(type,x,y,scene){
         
     }
     if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'star').setData({animation:'demon_idle', hp: 40, music: '180_ADNDDANDDA', speed:300, pattern: [28,210,365,540,710,855,1030,1190,1370,1530],satrnumber: 10,pause:2000 ,attacks: [0,1,2,1,1,0,2,1,1,0]});
+    if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'bomb').setData({animation:'demon_idle', hp: 50, music: '120_DDDAAAND', speed:300, pattern: [35,535,1035,1510,1770,2020,2270,2510],satrnumber: 8,pause:3000 ,attacks: [1,1,1,0,0,0,2,1]});
     enemy.add(concreteEnemy);
 }
 function create ()
@@ -117,6 +119,7 @@ function create ()
     
     enemyCreator(1,250,250,this);
     enemyCreator(2,200,650,this);
+    enemyCreator(3,300,650,this);
     console.log(game);
 
     this.physics.add.collider(player, mHood);
