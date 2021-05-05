@@ -38,6 +38,7 @@ function preload ()
     this.load.audio('60bpm', 'assets/60_bpm_sample.wav');
     this.load.audio('120bpm', 'assets/120_bpm_sample.wav');
     this.load.audio('120_ADNDA', 'assets/120_ADNDA.wav');
+    this.load.audio('180_ADNDDANDDA', 'assets/180_ADNDDANDDA.wav');
     this.load.image('background', 'assets/temporary_background.png');
     this.load.image('hood','assets/hood.png')
     this.load.image('ground', 'assets/platform.png');
@@ -49,9 +50,9 @@ function preload ()
     this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
 }
 function enemyCreator(type,x,y,scene){
-    //if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'bomb').setData({ hp: 50, music: '60bpm', pause: 1000,speed:200, green: 100, red: 100, black: 100 });
-    //if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'star').setData({ hp: 70, music: '120bpm', pause: 500,speed:250, green: 100, red: 100, black: 100 });
-    if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'bomb').setData({ hp: 70, music: '120_ADNDA', speed:350, pattern: [30,540,1040,1535,2010],pause:2500 ,attacks: [0,1,2,1,0]});
+
+    if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'bomb').setData({ hp: 70, music: '120_ADNDA', speed:350, pattern: [30,540,1040,1535,2010],satrnumber: 5,pause:2500 ,attacks: [0,1,2,1,0]});
+    if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'star').setData({ hp: 40, music: '180_ADNDDANDDA', speed:300, pattern: [28,210,365,540,710,855,1030,1190,1370,1530],satrnumber: 10,pause:2000 ,attacks: [0,1,2,1,1,0,2,1,1,0]});
     enemy.add(concreteEnemy);
 }
 function create ()
@@ -80,7 +81,7 @@ function create ()
     enemy = this.physics.add.group();
     
     enemyCreator(1,250,250,this);
-    
+    enemyCreator(2,200,650,this);
     console.log(game);
 
     this.physics.add.collider(player, mHood);
@@ -228,7 +229,7 @@ function Battle(enemyinfo,music,scene,keyA,keyD){
     
     battle=1;
     
-    for (let i = 0;i<5 ; i++) { 
+    for (let i = 0;i<enemyinfo.satrnumber ; i++) { 
         var timedEvent1 =scene.time.delayedCall(enemyinfo.pattern[i], dropStar,[music,enemyinfo,enemyinfo.attacks[i],keyA,keyD]);
         
         
