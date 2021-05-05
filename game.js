@@ -56,7 +56,7 @@ function preload ()
 function enemyCreator(type,x,y,scene){
 
     if(type==1){
-        var concreteEnemy= scene.physics.add.sprite(x, y, 'demon').setData({animation:'demon_idle', animhp: 70, music: '120_ADNDA', speed:350, pattern: [30,540,1040,1535,2010],satrnumber: 5,pause:2500 ,attacks: [0,1,2,1,0]});
+        var concreteEnemy= scene.physics.add.sprite(x, y, 'demon').setData({animation:'demon_idle', hp: 70, music: '120_ADNDA', speed:350, pattern: [30,540,1040,1535,2010],satrnumber: 5,pause:2500 ,attacks: [0,1,2,1,0]});
         
     }
     if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'star').setData({animation:'demon_idle', hp: 40, music: '180_ADNDDANDDA', speed:300, pattern: [28,210,365,540,710,855,1030,1190,1370,1530],satrnumber: 10,pause:2000 ,attacks: [0,1,2,1,1,0,2,1,1,0]});
