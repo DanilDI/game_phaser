@@ -1,6 +1,6 @@
-export default function movement(cursors,player,battle){
+export default function movement(cursors,player,battle,lose){
 
-    if(battle==0){
+    if(battle==0&&lose==0){
         if (cursors.left.isDown)
         {
           player.setVelocityX(-160);
