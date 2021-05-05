@@ -177,7 +177,7 @@ function update ()
     
 }
 function dropStar(music,enemyinfo,startype,keyA,keyD){
-    if(battle==1){
+    if(battle==1&&enemyinfo.hp>0){
         if(startype==0){
             var star1=stars.create(Phaser.Math.Between(920, 1180), 258, 'star0');
             star1.setData({ type: 0});
