@@ -47,7 +47,7 @@ var items;
 var hp_flask_small_Text;
 var hp_flask_large_Text;
 var dmg_boost_Text;
-var invinsible_Text;
+var invincible_Text;
 var parry_shield_Text;
 
 var items_button;
@@ -93,9 +93,19 @@ function preload ()
     this.load.spritesheet('huntress', 'assets/forest_anims/huntress-idle.png', { frameWidth: 150, frameHeight: 150 });
     this.load.spritesheet('cyclop', 'assets/forest_anims/cyclop-idle.png', { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('worm', 'assets/forest_anims/worm-idle.png', { frameWidth: 64, frameHeight: 64 });
-
-
+    //items
     this.load.image('invibcible_shield', 'assets/items/invibcible_shield.png');
+    this.load.image('blade_mail', 'assets/items/blade_mail.png');
+    this.load.image('dmg_boost', 'assets/items/dmg_boost.png');
+    this.load.image('s_heal', 'assets/items/s_heal.png');
+    this.load.image('l_heal', 'assets/items/l_heal.png');
+    //buttons
+    this.load.image('l_heal_button', 'assets/buttons/l_heal_button.png');
+    this.load.image('s_heal_button', 'assets/buttons/s_heal_button.png');
+    this.load.image('dmg_boost_button', 'assets/buttons/dmg_boost_button.png');
+    this.load.image('invincible_shield_button', 'assets/buttons/invincible_shield_button.png');
+    this.load.image('blade_mail_button', 'assets/buttons/blade_mail_button.png');
+
 
 }
 function enemyCreator(type,x,y,scene){
@@ -113,20 +123,20 @@ function enemyCreator(type,x,y,scene){
 }
 function itemCreator(type,x,y,scene){
 
-    if(type==1) var concreteItem= scene.physics.add.sprite(x, y, 'star0').setData({type: 1});
-    if(type==2) var concreteItem= scene.physics.add.sprite(x, y, 'star0').setData({type: 2});
-    if(type==3) var concreteItem= scene.physics.add.sprite(x, y, 'star0').setData({type: 3});
-    if(type==4) var concreteItem= scene.physics.add.sprite(x, y, 'star0').setData({type: 4});
-    if(type==5) var concreteItem= scene.physics.add.sprite(x, y, 'star0').setData({type: 5});
+    if(type==1) var concreteItem= scene.physics.add.sprite(x, y, 's_heal').setData({type: 1});
+    if(type==2) var concreteItem= scene.physics.add.sprite(x, y, 'l_heal').setData({type: 2});
+    if(type==3) var concreteItem= scene.physics.add.sprite(x, y, 'dmg_boost').setData({type: 3});
+    if(type==4) var concreteItem= scene.physics.add.sprite(x, y, 'invibcible_shield').setData({type: 4});
+    if(type==5) var concreteItem= scene.physics.add.sprite(x, y, 'blade_mail').setData({type: 5});
     items.add(concreteItem);
 }
-function itemButtoCreator(scene){
+function itemButtonCreator(scene){
     
-    items_button.create(930, 100, 'star0').setData({type: 1}).setInteractive();
-    items_button.create(990, 100, 'star0').setData({type: 2}).setInteractive();
-    items_button.create(1050, 100, 'star0').setData({type: 3}).setInteractive();
-    items_button.create(1110, 100, 'star0').setData({type: 4}).setInteractive();
-    items_button.create(1170, 100, 'star0').setData({type: 5}).setInteractive();
+    items_button.create(931, 120, 's_heal_button').setData({type: 1}).setInteractive();
+    items_button.create(990, 120, 'l_heal_button').setData({type: 2}).setInteractive();
+    items_button.create(1050, 120, 'dmg_boost_button').setData({type: 3}).setInteractive();
+    items_button.create(1110, 120, 'invincible_shield_button').setData({type: 4}).setInteractive();
+    items_button.create(1170, 120, 'blade_mail_button').setData({type: 5}).setInteractive();
 
     items_button.children.iterate(function (child) {
 
@@ -160,10 +170,10 @@ function itemButtoCreator(scene){
                     }
                 }
                 if(type==4){
-                    if(player.data.list.invinsible>0){
-                        player.data.list.invinsible-=1;
-                        player.data.list.invinsible_active=5;
-                        invinsible_Text.setText(player.data.list.invinsible+'|'+player.data.list.invinsible_active);
+                    if(player.data.list.invincible>0){
+                        player.data.list.invincible-=1;
+                        player.data.list.invincible_active=5;
+                        invincible_Text.setText(player.data.list.invincible+'|'+player.data.list.invincible_active);
                     }
                 }
                 if(type==5){
@@ -190,7 +200,7 @@ function create ()
     mHood = this.physics.add.staticGroup();
     mHood.create(1050,450,'hood').refreshBody();
     
-    var shield = this.add.image(600, 450, 'invibcible_shield');
+ 
     
     platforms = this.physics.add.staticGroup();
     platforms.create(1050, 881, 'ground').setScale(0.71).refreshBody();
@@ -202,13 +212,13 @@ function create ()
     hp_flask_small_Text = this.add.text(930, 150, '0', { fontSize: '32px', fill: '#000' });
     hp_flask_large_Text = this.add.text(980, 150, '0', { fontSize: '32px', fill: '#000' });
     dmg_boost_Text = this.add.text(1010, 150, '0|D', { fontSize: '32px', fill: '#000' });
-    invinsible_Text = this.add.text(1075, 150, '0|0', { fontSize: '32px', fill: '#000' });
+    invincible_Text = this.add.text(1075, 150, '0|0', { fontSize: '32px', fill: '#000' });
     parry_shield_Text = this.add.text(1133, 150, '0|D', { fontSize: '32px', fill: '#000' });
  
 
     //игрок
     player = this.physics.add.sprite(100, 450, 'dude');
-    player.setData({hp_flask_small: 0, hp_flask_large: 0, dmg_boost: 0, invinsible: 0, parry_shield: 0, dmg_boost_active: false,invinsible_active: 0, parry_shield_active: false})
+    player.setData({hp_flask_small: 0, hp_flask_large: 0, dmg_boost: 0, invincible: 0, parry_shield: 0, dmg_boost_active: false,invincible_active: 0, parry_shield_active: false})
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
 
@@ -243,7 +253,7 @@ function create ()
     itemCreator(3,400,800,this);
     itemCreator(4,600,800,this);
     itemCreator(5,700,800,this);
-    itemButtoCreator(this);
+    itemButtonCreator(this);
 
     //коллайдеры и оверлапы
     this.physics.add.collider(player, mHood);
@@ -448,8 +458,8 @@ function ItemPickup (player, items)
         else dmg_boost_Text.setText(player.data.list.dmg_boost+'|D');
     }
     if(items.data.list.type==4){
-        player.data.list.invinsible+=1;
-        invinsible_Text.setText(player.data.list.invinsible+'|'+player.data.list.invinsible_active);
+        player.data.list.invincible+=1;
+        invincible_Text.setText(player.data.list.invincible+'|'+player.data.list.invincible_active);
     }
     if(items.data.list.type==5){
         player.data.list.parry_shield+=1;
@@ -480,9 +490,9 @@ function Star_hit_the_ground (platforms, star)
 }
 
 function GetDamage(dmg){
-    if(player.data.list.invinsible_active>0){
-        player.data.list.invinsible_active-=1;
-        invinsible_Text.setText(player.data.list.invinsible+'|'+player.data.list.invinsible_active);
+    if(player.data.list.invincible_active>0){
+        player.data.list.invincible_active-=1;
+        invincible_Text.setText(player.data.list.invincible+'|'+player.data.list.invincible_active);
     }
     else{
         playerHP-=dmg;
