@@ -1,4 +1,5 @@
 import movement from './utils/movement.mjs';
+import createAnims from './utils/anims.mjs';
 
 var config = {
     type: Phaser.AUTO,
@@ -89,59 +90,7 @@ function create ()
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
     
-    this.anims.create({
-        key: 'left',
-        frames: this.anims.generateFrameNumbers('run_left', { start: 0, end: 9 }),
-        frameRate: 10,
-        repeat: -1
-    });
-
-    this.anims.create({
-        key: 'idle',
-        frames: this.anims.generateFrameNumbers('idle', { start: 0, end: 5 }),
-        frameRate: 10,
-        repeat: 1
-    });
-
-    this.anims.create({
-        key: 'right',
-        frames: this.anims.generateFrameNumbers('run_right', { start: 0, end: 9 }),
-        frameRate: 10,
-        repeat: -1
-    });
-
-    this.anims.create({
-        key: 'demon-idle',
-        frames: this.anims.generateFrameNumbers('demon', { start: 0, end: 5 }),
-        frameRate: 10,
-        repeat: 1
-    });
-    //!!!!!!!!new!!!!!!!!!
-    this.anims.create({
-        key: 'ghost-idle',
-        frames: this.anims.generateFrameNumbers('ghost', { start: 0, end: 6 }),
-        frameRate: 5,
-        repeat: 1
-    });
-    this.anims.create({
-        key: 'hell-beast-idle',
-        frames: this.anims.generateFrameNumbers('hell-beast', { start: 0, end: 5 }),
-        frameRate: 7,
-        repeat: 1
-    });
-    this.anims.create({
-        key: 'hell-hound-idle',
-        frames: this.anims.generateFrameNumbers('hell-hound', { start: 0, end: 5 }),
-        frameRate: 4,
-        repeat: 1
-    });
-
-    this.anims.create({
-        key: 'nightmare-idle',
-        frames: this.anims.generateFrameNumbers('nightmare', { start: 0, end: 4 }),
-        frameRate: 5,
-        repeat: 1
-    });
+    createAnims(this);
     
     cursors = this.input.keyboard.createCursorKeys();
 
