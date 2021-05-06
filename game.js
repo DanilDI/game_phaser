@@ -19,15 +19,23 @@ var config = {
     }
 };
 var enemy;
-var player;
+
 var stars;
 var platforms;
 var battle=0;
 var lose=0;
+
+var player;
 var EnemyHPText;
 var PlayerHPText;
 var playerHP=100;
 var playerMAXHP=100;
+var damage=10;
+var armour=0;//пока негде не юзаю
+
+
+
+
 var mHood;
 
 var game = new Phaser.Game(config);
@@ -238,6 +246,7 @@ function update ()
     
 }
 function dropStar(music,enemyinfo,startype,keyA,keyD){
+
     if(battle==1&&enemyinfo.hp>0){
         if(startype==0){
             var star1=stars.create(Phaser.Math.Between(920, 1180), 258, 'star0');
@@ -246,15 +255,17 @@ function dropStar(music,enemyinfo,startype,keyA,keyD){
             star1.setInteractive();
             star1.on('pointerdown',function(){
                     if(keyA.isDown||keyD.isDown) star1.disableBody(true, true);
-                    if(keyD.isDown) playerHP=playerHP-10;
-                    else if(keyA.isDown) enemyinfo.hp = enemyinfo.hp - 10;
-                    EnemyHPText.setText('Enemy HP: ' + enemyinfo.hp);
-                    PlayerHPText.setText('Your HP: ' + playerHP);
+                    if(keyD.isDown) GetDamage(10);
+                    else if(keyA.isDown) makeDamage(damage,enemyinfo)
+
                     
                     if(enemyinfo.hp<=0){
                         music.mute=true;
                         battle=0;
-                        
+                        player.data.list.parry_shield_active==false;
+                        player.data.list.dmg_boost_active==false;
+                        parry_shield_Text.setText(player.data.list.parry_shield+'|D');
+                        dmg_boost_Text.setText(player.data.list.dmg_boost+'|D');
                         stars.children.iterate(function (child) {
 
                             child.disableBody(true, true);
@@ -285,15 +296,18 @@ function dropStar(music,enemyinfo,startype,keyA,keyD){
 
             star1.on('pointerdown',function(){
                     if(keyA.isDown||keyD.isDown) star1.disableBody(true, true);
-                    if(keyA.isDown) playerHP=playerHP-10;
-                    
+                    if(keyA.isDown) GetDamage(10);
+                    if(keyD.isDown&&player.data.list.parry_shield_active==true) makeDamage(damage,enemyinfo);
                     EnemyHPText.setText('Enemy HP: ' + enemyinfo.hp);
-                    PlayerHPText.setText('Your HP: ' + playerHP);
+
                     
                     if(enemyinfo.hp<=0){
                         music.mute=true;
                         battle=0;
-                        
+                        player.data.list.parry_shield_active==false;
+                        player.data.list.dmg_boost_active==false;
+                        parry_shield_Text.setText(player.data.list.parry_shield+'|D');
+                        dmg_boost_Text.setText(player.data.list.dmg_boost+'|D');
                         stars.children.iterate(function (child) {
 
                             child.disableBody(true, true);
@@ -322,22 +336,12 @@ function dropStar(music,enemyinfo,startype,keyA,keyD){
             star1.setInteractive();
             star1.on('pointerdown',function(){
         
-                    playerHP=playerHP-10;
+                    GetDamage(10);
                     
-                    EnemyHPText.setText('Enemy HP: ' + enemyinfo.hp);
-                    PlayerHPText.setText('Your HP: ' + playerHP);
-                    star1.disableBody(true, true);
-                    if(enemyinfo.hp<=0){
-                        music.mute=true;
-                        battle=0;
-                        
-                        stars.children.iterate(function (child) {
+                   
 
-                            child.disableBody(true, true);
-    
-                        });
-        
-                    }
+                    star1.disableBody(true, true);
+
                     if(playerHP<=0){
                         music.mute=true;
                         battle=0;
@@ -389,6 +393,12 @@ function BattleStart (player, enemy)
 {
     var keyA = this.input.keyboard.addKey('A'); 
     var keyD = this.input.keyboard.addKey('D');
+
+
+    var damage_now=damage;
+    if (player.data.list.dmg_boost_active==true) damage_now*=2;
+
+
     var enemyinfo=enemy.data.list;
     EnemyHPText.setText('Enemy HP: ' + enemyinfo.hp);
     var music = this.sound.add(enemyinfo.music);
@@ -433,8 +443,7 @@ function ItemPickup (player, items)
 function Star_hit_the_ground (platforms, star)
 {
     if(star.data.list.type==1){
-        playerHP=playerHP-10;
-        PlayerHPText.setText('Your HP: ' + playerHP);
+        GetDamage(10)
         if(playerHP<=0){
             battle=0;
             stars.children.iterate(function (child) {
@@ -446,4 +455,20 @@ function Star_hit_the_ground (platforms, star)
         } 
     }
     star.disableBody(true, true);
+}
+
+function GetDamage(dmg){
+    if(player.data.list.invinsible_active>0){
+        player.data.list.invinsible_active-=1;
+        invinsible_Text.setText(player.data.list.invinsible+'|'+player.data.list.invinsible_active);
+    }
+    else{
+        playerHP-=dmg;
+        PlayerHPText.setText('Your HP: ' + playerHP);
+    }
+}
+function makeDamage(dmg,enemyinfo){
+    if(player.data.list.dmg_boost_active) dmg*=2
+    enemyinfo.hp-=dmg;
+    EnemyHPText.setText('Enemy HP: ' + enemyinfo.hp)
 }
