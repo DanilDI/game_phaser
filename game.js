@@ -52,14 +52,14 @@ function preload ()
     this.load.image('star1', 'assets/starD.png');
     this.load.image('star2', 'assets/starB.png');
 
-    this.load.spritesheet('run_right', 'assets/run.png', { frameWidth: 184, frameHeight: 137 });
-    this.load.spritesheet('idle', 'assets/idle.png', { frameWidth: 184, frameHeight: 137 });
-    this.load.spritesheet('run_left', 'assets/run_left.png', { frameWidth: 184, frameHeight: 137 });
-    this.load.spritesheet('demon', 'assets/demon-idle.png', { frameWidth: 160, frameHeight: 144 });
-    this.load.spritesheet('ghost', 'assets/ghost-idle.png', { frameWidth: 64, frameHeight: 80 });
-    this.load.spritesheet('hell-beast', 'assets/hell-beast-idle.png', { frameWidth: 55, frameHeight: 67 });
-    this.load.spritesheet('hell-hound', 'assets/hell-hound-idle.png', { frameWidth: 64, frameHeight: 32 });
-    this.load.spritesheet('nightmare', 'assets/nightmare-idle.png', { frameWidth: 128, frameHeight: 96 });
+    this.load.spritesheet('run_right', 'assets/main_char_anims/run.png', { frameWidth: 184, frameHeight: 137 });
+    this.load.spritesheet('idle', 'assets/main_char_anims/idle.png', { frameWidth: 184, frameHeight: 137 });
+    this.load.spritesheet('run_left', 'assets/main_char_anims/run_left.png', { frameWidth: 184, frameHeight: 137 });
+    this.load.spritesheet('demon', 'assets/hell_anims/demon-idle.png', { frameWidth: 160, frameHeight: 144 });
+    this.load.spritesheet('ghost', 'assets/hell_anims/ghost-idle.png', { frameWidth: 64, frameHeight: 80 });
+    this.load.spritesheet('hell-beast', 'assets/hell_anims/hell-beast-idle.png', { frameWidth: 55, frameHeight: 67 });
+    this.load.spritesheet('hell-hound', 'assets/hell_anims/hell-hound-idle.png', { frameWidth: 64, frameHeight: 32 });
+    this.load.spritesheet('nightmare', 'assets/hell_anims/nightmare-idle.png', { frameWidth: 128, frameHeight: 96 });
 
 }
 function enemyCreator(type,x,y,scene){

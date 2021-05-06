@@ -1,4 +1,5 @@
 export default function createAnims(focus){
+    //main character 
     focus.anims.create({
         key: 'left',
         frames: focus.anims.generateFrameNumbers('run_left', { start: 0, end: 9 }),
@@ -19,7 +20,8 @@ export default function createAnims(focus){
         frameRate: 10,
         repeat: -1
     });
-    
+
+    //hell
     focus.anims.create({
         key: 'demon-idle',
         frames: focus.anims.generateFrameNumbers('demon', { start: 0, end: 5 }),
@@ -52,4 +54,6 @@ export default function createAnims(focus){
         frameRate: 5,
         repeat: 1
     });
+
+    //dungeon
 }
