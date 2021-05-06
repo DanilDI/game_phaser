@@ -294,8 +294,8 @@ function dropStar(music,enemyinfo,startype,keyA,keyD){
                     if(enemyinfo.hp<=0){
                         music.mute=true;
                         battle=0;
-                        player.data.list.parry_shield_active==false;
-                        player.data.list.dmg_boost_active==false;
+                        player.data.list.parry_shield_active=false;
+                        player.data.list.dmg_boost_active=false;
                         parry_shield_Text.setText(player.data.list.parry_shield+'|D');
                         dmg_boost_Text.setText(player.data.list.dmg_boost+'|D');
                         stars.children.iterate(function (child) {
@@ -336,8 +336,8 @@ function dropStar(music,enemyinfo,startype,keyA,keyD){
                     if(enemyinfo.hp<=0){
                         music.mute=true;
                         battle=0;
-                        player.data.list.parry_shield_active==false;
-                        player.data.list.dmg_boost_active==false;
+                        player.data.list.parry_shield_active=false;
+                        player.data.list.dmg_boost_active=false;
                         parry_shield_Text.setText(player.data.list.parry_shield+'|D');
                         dmg_boost_Text.setText(player.data.list.dmg_boost+'|D');
                         stars.children.iterate(function (child) {
@@ -425,11 +425,6 @@ function BattleStart (player, enemy)
 {
     var keyA = this.input.keyboard.addKey('A'); 
     var keyD = this.input.keyboard.addKey('D');
-
-
-    var damage_now=damage;
-    if (player.data.list.dmg_boost_active==true) damage_now*=2;
-
 
     var enemyinfo=enemy.data.list;
     EnemyHPText.setText('Enemy HP: ' + enemyinfo.hp);
