@@ -1,4 +1,4 @@
-export default function movement(cursors,player,battle,lose,focus){
+export default function movement(player,battle,lose,focus){
     var keyW = focus.input.keyboard.addKey('W'); 
     var keyA = focus.input.keyboard.addKey('A');
     var keyS = focus.input.keyboard.addKey('S'); 
