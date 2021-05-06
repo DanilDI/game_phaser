@@ -491,11 +491,11 @@ function GetDamage(dmg){
     }
     else{
         playerHP-=dmg;
-        PlayerHPText.setText('Your HP: ' + playerHP);
+        PlayerHPText.setText('Your HP:  ' + playerHP);
     }
 }
 function makeDamage(dmg,enemyinfo){
     if(player.data.list.dmg_boost_active) dmg*=2
     enemyinfo.hp-=dmg;
-    EnemyHPText.setText('Enemy HP: ' + enemyinfo.hp)
+    EnemyHPText.setText('Enemy HP:  ' + enemyinfo.hp)
 }
