@@ -22,14 +22,13 @@ var enemy;
 var player;
 var stars;
 var platforms;
-var cursors;
 var battle=0;
 var lose=0;
 var EnemyHPText;
 var PlayerHPText;
 var playerHP=100;
 var mHood;
-
+var items;
 var game = new Phaser.Game(config);
 
 function preload ()
@@ -74,37 +73,51 @@ function enemyCreator(type,x,y,scene){
 }
 function create ()
 {
+    ///карта и окружение
     var img = this.add.image(600, 450, 'background');
 	const map = this.make.tilemap({key: 'map'})
 	const tileset = map.addTilesetImage('tileset_dungeon', 'tiles', 32, 32, 0, 0);
 	const layer1 = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
+
+
+    //худ и платформа для звёзд
     mHood = this.physics.add.staticGroup();
     mHood.create(1050,450,'hood').refreshBody();
-
+    
     platforms = this.physics.add.staticGroup();
     platforms.create(1050, 881, 'ground').setScale(0.71).refreshBody();
     
+    //текст
     EnemyHPText = this.add.text(930, 16, 'Enemy HP:  0', { fontSize: '32px', fill: '#000' });
     PlayerHPText = this.add.text(930, 50, 'Your HP:  100', { fontSize: '32px', fill: '#000' });
+
+    //игрок
     player = this.physics.add.sprite(100, 450, 'dude');
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
     
+    //создание анимаций
     createAnims(this);
     
-    cursors = this.input.keyboard.createCursorKeys();
-
+    
+    //создание физической группы для звёзд
     stars = this.physics.add.group();
 
+    //создание физической группы для противников
     enemy = this.physics.add.group();
     
+
+    //создание физической группы для предметов
+    items = this.physics.add.group();
+
+    //черновая отрисовкак противников
     enemyCreator(1,250,250,this);
     enemyCreator(2,200,650,this);
     enemyCreator(3,400,650,this);
     enemyCreator(4,600,650,this);
     enemyCreator(5,400,400,this);
-    console.log(game);
 
+    //коллайдеры и оверлапы
     this.physics.add.collider(player, mHood);
     this.physics.add.collider(player, platforms);
     this.physics.add.overlap(player, enemy, BattleStart, null, this);
@@ -113,7 +126,7 @@ function create ()
 
 function update ()
 {
-    movement(cursors,player,battle,lose,this);
+    movement(player,battle,lose,this);
     if(lose==1){
         PlayerHPText.setText('GAME OVER' );
         
