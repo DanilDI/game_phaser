@@ -25,20 +25,23 @@ var platforms;
 
 var battle=0;
 var lose=0;
-
+var lvlUP=0;
 var player;
 var EnemyHPText;
 var PlayerHPText;
 var playerHP=100;
 var playerMAXHP=100;
 var damage=10;
+var damageText;
 var armour=0;
-
+var armorText;
 var player_exp=0;
 var expText
 var lvlUPexp=100;
 var lvlUPexpText
 var mHood;
+
+
 
 var game = new Phaser.Game(config);
 
@@ -117,7 +120,7 @@ function preload ()
 }
 function enemyCreator(type,x,y,scene){
 
-    if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'nightmare').setData({exp: 20,animation:'nightmare-idle', hp: 70, music: '90_ADNDA', speed:350, pattern: [10,350,675,835,1005],satrnumber: 5,pause:1400 ,attacks: [0,1,2,1,0]});
+    if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'nightmare').setData({exp: 100,animation:'nightmare-idle', hp: 70, music: '90_ADNDA', speed:350, pattern: [10,350,675,835,1005],satrnumber: 5,pause:1400 ,attacks: [0,1,2,1,0]});
  
     if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'demon').setData({exp: 20,animation:'demon-idle', hp: 40, music: '180_ADNDDANDDA', speed:300, pattern: [28,210,365,540,710,855,1030,1190,1370,1530],satrnumber: 10,pause:2000 ,attacks: [0,1,2,1,1,0,2,1,1,0]});
     if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'ghost').setData({exp: 20,animation:'ghost-idle', hp: 50, music: '120_DDDAAAND', speed:300, pattern: [35,535,1035,1510,1770,2020,2270,2510],satrnumber: 8,pause:3000 ,attacks: [1,1,1,0,0,0,2,1]});
@@ -157,7 +160,7 @@ function itemButtonCreator(scene){
                         player.data.list.hp_flask_small-=1;
                         playerHP+=20;
                         if(playerHP>playerMAXHP) playerHP=playerMAXHP;
-                        PlayerHPText.setText('Your HP:  '+playerHP);
+                        PlayerHPText.setText('Your HP:  ' + playerHP+'/'+playerMAXHP);
                         hp_flask_small_Text.setText(player.data.list.hp_flask_small);
                     }
                 }    
@@ -166,7 +169,7 @@ function itemButtonCreator(scene){
                         player.data.list.hp_flask_large-=1;
                         playerHP+=50;
                         if(playerHP>playerMAXHP) playerHP=playerMAXHP;
-                        PlayerHPText.setText('Your HP:  '+playerHP);
+                        PlayerHPText.setText('Your HP:  ' + playerHP+'/'+playerMAXHP);
                         hp_flask_large_Text.setText(player.data.list.hp_flask_large);
                     }
                 }
@@ -214,17 +217,22 @@ function create ()
     platforms.create(1050, 881, 'ground').setScale(0.71).refreshBody();
     
     //текст
-    EnemyHPText = this.add.text(930, 16, 'Enemy HP:  0', { fontSize: '30px', fill: '#000' });
-    PlayerHPText = this.add.text(930, 50, 'Your HP:  100', { fontSize: '30px', fill: '#000' });
-    expText=this.add.text(910, 185, 'Your EXP:  0', { fontSize: '20px', fill: '#000' });
+    EnemyHPText = this.add.text(920, 10, 'Enemy HP:  0', { fontSize: '20px', fill: '#000' });
+    PlayerHPText = this.add.text(920, 44, 'Your HP:  100/100', { fontSize: '20px', fill: '#000' });
+    expText=this.add.text(910, 185, 'EXP:  0', { fontSize: '20px', fill: '#000' });
     lvlUPexpText =this.add.text(910, 210, 'EXP to level UP:  100', { fontSize: '20px', fill: '#000' });
+
+    damageText=this.add.text(920, 70, 'dmg: 10', { fontSize: '20px', fill: '#000' });
+
+    armorText=this.add.text(1030, 70, 'arm: 0', { fontSize: '20px', fill: '#000' });
+
 
     hp_flask_small_Text = this.add.text(920, 150, '0', { fontSize: '26px', fill: '#000' });
     hp_flask_large_Text = this.add.text(980, 150, '0', { fontSize: '26px', fill: '#000' });
     dmg_boost_Text = this.add.text(1024, 150, '0|D', { fontSize: '26px', fill: '#000' });
     invincible_Text = this.add.text(1084, 150, '0|0', { fontSize: '26px', fill: '#000' });
     parry_shield_Text = this.add.text(1143, 150, '0|D', { fontSize: '26px', fill: '#000' });
- 
+    
 
     //игрок
     player = this.physics.add.sprite(100, 450, 'dude');
@@ -246,6 +254,9 @@ function create ()
     //создание физической группы для предметов
     items = this.physics.add.group();
     items_button = this.physics.add.group();
+
+    //создание физической группы для lvlup кнопок
+    lvl_UP_button= this.physics.add.group();
 
     //черновая отрисовкак противников
     enemyCreator(1,250,250,this);
@@ -275,7 +286,7 @@ function create ()
 
 function update ()
 {
-    movement(player,battle,lose,this);
+    movement(player,battle,lose,lvlUP,this);
     if(lose==1){
         PlayerHPText.setText('GAME OVER' );
         
@@ -429,7 +440,7 @@ function GetDamage(dmg){
     }
     else{
         playerHP-=(dmg-armour);
-        PlayerHPText.setText('Your HP:  ' + playerHP);
+        PlayerHPText.setText('Your HP:  ' + playerHP+'/'+playerMAXHP);
     }
     if(playerHP<=0){
                         
@@ -464,12 +475,48 @@ function makeDamage(dmg,enemyinfo){
 }
 function GainEXP(exp){
     player_exp+=exp;
-    expText.setText('Your EXP:  '+player_exp);
+    expText.setText('EXP:  '+player_exp);
     if(player_exp>=lvlUPexp){
         createlvlUPbuttun();
     }
 }
 
 function createlvlUPbuttun(){
+    lvlUP=1;
+    lvl_UP_button.create(1050, 500, 's_heal_button').setData({type: 1}).setInteractive();
+    lvl_UP_button.create(1050, 600, 'l_heal_button').setData({type: 2}).setInteractive();
+    lvl_UP_button.create(1050, 700, 'dmg_boost_button').setData({type: 3}).setInteractive();
 
+
+    lvl_UP_button.children.iterate(function (child) {
+
+
+        child.on('pointerdown',function(){
+            var type=child.data.list.type;
+            if(type==1){
+                playerMAXHP+=10;
+                playerHP+=10;
+                PlayerHPText.setText('Your HP:  ' + playerHP+'/'+playerMAXHP);
+            }
+            if(type==2){
+                damage+=2;
+                damageText.setText('dmg: '+damage)
+            }
+            if(type==3){
+                armour+=1;
+                damageText.setText('arm: '+armour)
+            }
+            player_exp-=lvlUPexp;
+            lvlUPexp+=20;
+            expText.setText('EXP:  '+player_exp);
+            lvlUPexpText.setText('EXP to level UP:  '+lvlUPexp)
+            lvlUP=0;
+
+            lvl_UP_button.children.iterate(function (child) {
+
+                child.disableBody(true, true);
+    
+            });
+        });
+    });
 }

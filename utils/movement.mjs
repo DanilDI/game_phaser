@@ -1,9 +1,9 @@
-export default function movement(player,battle,lose,focus){
+export default function movement(player,battle,lose,lvlUP,focus){
     var keyW = focus.input.keyboard.addKey('W'); 
     var keyA = focus.input.keyboard.addKey('A');
     var keyS = focus.input.keyboard.addKey('S'); 
     var keyD = focus.input.keyboard.addKey('D');
-    if(battle==0&&lose==0){
+    if(battle==0&&lose==0&&lvlUP==0){
         if (keyA.isDown)
         {
           player.setVelocityX(-160);
