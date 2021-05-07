@@ -58,11 +58,7 @@ function preload ()
 	this.load.image('tiles', 'assets/tileset_dungeon.png');
 	this.load.tilemapTiledJSON('map', 'assets/map1.json')
     
-    this.load.audio('90_ADNDA', 'assets/90_ADNDA.wav');
-    this.load.audio('120_DDDAAAND', 'assets/120_DDDAAAND.wav');
-    this.load.audio('180_ADNDDANDDA', 'assets/180_ADNDDANDDA.wav');
-    this.load.audio('60_AAAADNDD', 'assets/60_AAAADNDD.wav');
-    this.load.audio('150_AADDA', 'assets/150_AADDA.wav');
+
     
 
     this.load.image('background', 'assets/temporary_background.png');
@@ -82,6 +78,12 @@ function preload ()
     this.load.spritesheet('hell-beast', 'assets/hell_anims/hell-beast-idle.png', { frameWidth: 55, frameHeight: 67 });
     this.load.spritesheet('hell-hound', 'assets/hell_anims/hell-hound-idle.png', { frameWidth: 64, frameHeight: 32 });
     this.load.spritesheet('nightmare', 'assets/hell_anims/nightmare-idle.png', { frameWidth: 128, frameHeight: 96 });
+
+    this.load.audio('90_ADNDA', 'assets/90_ADNDA.wav');
+    this.load.audio('120_DDDAAAND', 'assets/120_DDDAAAND.wav');
+    this.load.audio('180_ADNDDANDDA', 'assets/180_ADNDDANDDA.wav');
+    this.load.audio('60_AAAADNDD', 'assets/60_AAAADNDD.wav');
+    this.load.audio('150_AADDA', 'assets/150_AADDA.wav');
     //dungeon
     this.load.spritesheet('skeleton', 'assets/dungeon_anims/skeleton-idle.png', { frameWidth: 150, frameHeight: 150 });
     this.load.spritesheet('goblin', 'assets/dungeon_anims/goblin-idle.png', { frameWidth: 150, frameHeight: 150 });
@@ -93,6 +95,10 @@ function preload ()
     this.load.spritesheet('huntress', 'assets/forest_anims/huntress-idle.png', { frameWidth: 150, frameHeight: 150 });
     this.load.spritesheet('cyclop', 'assets/forest_anims/cyclop-idle.png', { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('worm', 'assets/forest_anims/worm-idle.png', { frameWidth: 64, frameHeight: 64 });
+
+    this.load.audio('120_ADNNDA', 'assets/120_ADNNDA.wav');
+    this.load.audio('120_AANNANNANDD', 'assets/120_AANNANNANDD.wav');
+
     //items
     this.load.image('invibcible_shield', 'assets/items/invibcible_shield.png');
     this.load.image('blade_mail', 'assets/items/blade_mail.png');
@@ -117,8 +123,9 @@ function enemyCreator(type,x,y,scene){
     if(type==4) var concreteEnemy= scene.physics.add.sprite(x, y, 'hell-beast').setData({animation:'hell-beast-idle', hp: 80, music: '60_AAAADNDD', speed:300, pattern: [30,770,1270,1525,1780,2020,2215,2530],satrnumber: 8,pause:3000 ,attacks: [0,0,0,0,1,2,1,1]});
     if(type==5) var concreteEnemy= scene.physics.add.sprite(x, y, 'hell-hound').setData({animation:'hell-hound-idle', hp: 60, music: '150_AADDA', speed:330, pattern: [10,110,215,515,810],satrnumber: 5,pause:1500 ,attacks: [0,0,1,1,0]});
     
-    if(type==6) var concreteEnemy= scene.physics.add.sprite(x, y, 'worm').setData({animation:'worm-idle', hp: 60, music: '150_AADDA', speed:330, pattern: [10,110,215,515,810],satrnumber: 5,pause:1500 ,attacks: [0,0,1,1,0]});
-    //just 4 test ^
+    if(type==6) var concreteEnemy= scene.physics.add.sprite(x, y, 'worm').setData({animation:'worm-idle', hp: 70, music: '120_ADNNDA', speed:300, pattern: [9,255,510,755,1105,1255],satrnumber: 6,pause:1700 ,attacks: [0,1,2,2,1,0]});
+    if(type==7) var concreteEnemy= scene.physics.add.sprite(x, y, 'huntress').setData({animation:'huntress-idle', hp: 70, music: '120_AANNANNANDD', speed:300, pattern: [3,10,250,370,495,628,870,990,1125,1250,1385],satrnumber: 11,pause:1800 ,attacks: [0,0,2,2,0,2,2,0,2,1,1]});
+    
     enemy.add(concreteEnemy);
 }
 function itemCreator(type,x,y,scene){
@@ -243,8 +250,8 @@ function create ()
     enemyCreator(3,400,650,this);
     enemyCreator(4,600,650,this);
     enemyCreator(5,400,400,this);
-
-    enemyCreator(6,400,100,this);//test
+    enemyCreator(6,400,100,this);
+    enemyCreator(7,500,100,this);
 
 
     //черновая отрисовкак прeдметов
