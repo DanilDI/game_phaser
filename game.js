@@ -297,35 +297,9 @@ function dropStar(music,enemyinfo,startype,keyA,keyD){
                     if(keyD.isDown) GetDamage(10);
                     else if(keyA.isDown) makeDamage(damage,enemyinfo)
 
-                    
-                    if(enemyinfo.hp<=0){
-                        music.mute=true;
-                        battle=0;
-                        player.data.list.parry_shield_active=false;
-                        player.data.list.dmg_boost_active=false;
-                        parry_shield_Text.setText(player.data.list.parry_shield+'|D');
-                        dmg_boost_Text.setText(player.data.list.dmg_boost+'|D');
-                        stars.children.iterate(function (child) {
-
-                            child.disableBody(true, true);
-        
-                        });
-            
-                    }
-                    if(playerHP<=0){
-                        music.mute=true;
-                        battle=0;
-                        stars.children.iterate(function (child) {
-
-                            child.disableBody(true, true);
-        
-                        });
-                        lose=1;
-                    }
-                
-
         });
     }
+
         if(startype==1){
             var star1=stars.create(Phaser.Math.Between(920, 1180), 258, 'star1');
             star1.setData({ type: 1});
@@ -336,64 +310,18 @@ function dropStar(music,enemyinfo,startype,keyA,keyD){
             star1.on('pointerdown',function(){
                     if(keyA.isDown||keyD.isDown) star1.disableBody(true, true);
                     if(keyA.isDown) GetDamage(10);
-                    if(keyD.isDown&&player.data.list.parry_shield_active==true) makeDamage(damage,enemyinfo);
-                    EnemyHPText.setText('Enemy HP: ' + enemyinfo.hp);
-
-                    
-                    if(enemyinfo.hp<=0){
-                        music.mute=true;
-                        battle=0;
-                        player.data.list.parry_shield_active=false;
-                        player.data.list.dmg_boost_active=false;
-                        parry_shield_Text.setText(player.data.list.parry_shield+'|D');
-                        dmg_boost_Text.setText(player.data.list.dmg_boost+'|D');
-                        stars.children.iterate(function (child) {
-
-                            child.disableBody(true, true);
-    
-                        });
-        
-                    }
-                    if(playerHP<=0){
-                        music.mute=true;
-                        battle=0;
-                        stars.children.iterate(function (child) {
-
-                            child.disableBody(true, true);
-    
-                        });
-                        lose=1;      
-                    }
-            
-
+                    if(keyD.isDown&&player.data.list.parry_shield_active==true) makeDamage(damage,enemyinfo);       
             });
         }
+
         if(startype==2){
             var star1=stars.create(Phaser.Math.Between(920, 1180), 258, 'star2');
             star1.setData({ type: 2});
             star1.setVelocityY(enemyinfo.speed);
             star1.setInteractive();
             star1.on('pointerdown',function(){
-        
-                    GetDamage(10);
-                    
-                   
-
-                    star1.disableBody(true, true);
-
-                    if(playerHP<=0){
-                        music.mute=true;
-                        battle=0;
-                        stars.children.iterate(function (child) {
-
-                            child.disableBody(true, true);
-    
-                        });
-                        lose=1;
-        
-                    }
-            
-
+                    GetDamage(10);    
+                    star1.disableBody(true, true);     
             });
         }
 
@@ -406,11 +334,7 @@ function dropStar(music,enemyinfo,startype,keyA,keyD){
      
 }
 function Battle(enemyinfo,music,scene,keyA,keyD){
-    
-   
-    
-    
-    
+     
     battle=1;
     
     for (let i = 0;i<enemyinfo.satrnumber ; i++) { 
@@ -424,17 +348,21 @@ function Battle(enemyinfo,music,scene,keyA,keyD){
     loop: false
     });
 }
+
 function BattleContinue(enemyinfo,music,scene,keyA,keyD){
     if(battle==1) { Battle (enemyinfo,music,scene,keyA,keyD)};
 
 }
+
 function BattleStart (player, enemy)
 {
+    
     var keyA = this.input.keyboard.addKey('A'); 
     var keyD = this.input.keyboard.addKey('D');
 
-    var enemyinfo=enemy.data.list;
-    EnemyHPText.setText('Enemy HP: ' + enemyinfo.hp);
+
+    
+    EnemyHPText.setText('Enemy HP:  ' + enemyinfo.hp);
     var music = this.sound.add(enemyinfo.music);
     Battle(enemyinfo,music,this,keyA,keyD);
     
@@ -500,9 +428,34 @@ function GetDamage(dmg){
         playerHP-=dmg;
         PlayerHPText.setText('Your HP:  ' + playerHP);
     }
+    if(playerHP<=0){
+                        
+        battle=0;
+        stars.children.iterate(function (child) {
+
+            child.disableBody(true, true);
+
+        });
+        lose=1;
+
+    }
 }
 function makeDamage(dmg,enemyinfo){
     if(player.data.list.dmg_boost_active) dmg*=2
     enemyinfo.hp-=dmg;
     EnemyHPText.setText('Enemy HP:  ' + enemyinfo.hp)
+    if(enemyinfo.hp<=0){
+                        
+        battle=0;
+        player.data.list.parry_shield_active=false;
+        player.data.list.dmg_boost_active=false;
+        parry_shield_Text.setText(player.data.list.parry_shield+'|D');
+        dmg_boost_Text.setText(player.data.list.dmg_boost+'|D');
+        stars.children.iterate(function (child) {
+
+            child.disableBody(true, true);
+
+        });
+
+    }
 }
