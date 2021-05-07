@@ -9,7 +9,7 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 0 },
-            debug: false
+            debug: true
         }
     },
     scene: {
@@ -40,6 +40,7 @@ var expText
 var lvlUPexp=100;
 var lvlUPexpText
 var mHood;
+var wall;
 
 
 
@@ -59,11 +60,13 @@ var lvl_UP_button;
 
 function preload ()
 {
-	this.load.image('tiles', 'assets/tileset_dungeon.png');
-	this.load.tilemapTiledJSON('map', 'assets/map1.json')
-    
+	this.load.image('tiles', 'assets/map/tileset_dungeon.png');
+	this.load.tilemapTiledJSON('map', 'assets/map/map1.json');
+    this.load.image('longStraight', 'assets/map/long_wall_straight.png');
+	this.load.image('longWide', 'assets/map/long_wall_wide.png');
+	this.load.image('shortWide', 'assets/map/short_wall_wide.png');
+	this.load.image('shortStraight', 'assets/map/short_wall_straight.png');
 
-    
 
     this.load.image('background', 'assets/temporary_background.png');
     this.load.image('hood','assets/hood.png')
@@ -132,6 +135,91 @@ function enemyCreator(type,x,y,scene){
     
     enemy.add(concreteEnemy);
 }
+
+function wallCreator(type)
+{
+	if(type == 1)
+	{
+		wall.create(290, 55, 'shortStraight');
+		wall.create(290, 255, 'shortStraight');
+		wall.create(155, 290, 'longWide');
+		wall.create(590, 55, 'shortStraight');
+		wall.create(590, 255, 'shortStraight');
+		wall.create(455, 290, 'longWide');
+		wall.create(640, 290, 'shortWide');
+		wall.create(840, 290, 'shortWide');
+
+		wall.create(290, 340, 'shortStraight');
+		wall.create(290, 555, 'shortStraight');
+		wall.create(40, 590, 'shortWide');
+		wall.create(240, 590, 'shortWide');
+		wall.create(590, 455, 'longStraight');
+		wall.create(455, 590, 'longWide');
+		wall.create(640, 590, 'shortWide');
+		wall.create(840, 590, 'shortWide');
+
+
+		wall.create(290, 640, 'shortStraight');
+		wall.create(290, 840, 'shortStraight');
+
+		wall.create(590, 640, 'shortStraight');
+		wall.create(590, 840, 'shortStraight');
+	}
+
+	if(type == 2)
+	{
+		wall.create(290, 155, 'longStraight');
+		wall.create(40, 290, 'shortWide');
+		wall.create(240, 290, 'shortWide');
+		wall.create(590, 55, 'shortStraight');
+		wall.create(590, 255, 'shortStraight');
+		wall.create(340, 290, 'shortWide');
+		wall.create(540, 290, 'shortWide');
+		wall.create(755, 290, 'longWide');
+
+		wall.create(290, 340, 'shortStraight');
+		wall.create(290, 555, 'shortStraight');
+		wall.create(40, 590, 'shortWide');
+		wall.create(240, 590, 'shortWide');
+		wall.create(590, 455, 'longStraight');
+		wall.create(455, 590, 'longWide');
+		wall.create(640, 590, 'shortWide');
+		wall.create(840, 590, 'shortWide');
+
+		wall.create(290, 640, 'shortStraight');
+		wall.create(290, 840, 'shortStraight');
+
+		wall.create(590, 640, 'shortStraight');
+		wall.create(590, 840, 'shortStraight');
+
+	}
+	if(type == 3)
+	{
+		wall.create(155, 290, 'longWide');
+		wall.create(290, 55, 'shortStraight');
+		wall.create(290, 255, 'shortStraight');
+		wall.create(590, 55, 'shortStraight');
+		wall.create(590, 255, 'shortStraight');
+		wall.create(340, 290, 'shortWide');
+		wall.create(540, 290, 'shortWide');
+		wall.create(755, 290, 'longWide');
+
+		wall.create(290, 455, 'longStraight');
+		wall.create(40, 590, 'shortWide');
+		wall.create(240, 590, 'shortWide');
+		wall.create(590, 340, 'shortStraight');
+		wall.create(590, 555, 'shortStraight');
+		wall.create(455, 590, 'longWide');
+		wall.create(640, 590, 'shortWide');
+		wall.create(840, 590, 'shortWide');
+
+		wall.create(290, 640, 'shortStraight');
+		wall.create(290, 840, 'shortStraight');
+		wall.create(590, 640, 'shortStraight');
+		wall.create(590, 840, 'shortStraight');
+	}
+}
+
 function itemCreator(type,x,y,scene){
 
     if(type==1) var concreteItem= scene.physics.add.sprite(x, y, 's_heal').setData({type: 1});
@@ -211,7 +299,7 @@ function create ()
     mHood = this.physics.add.staticGroup();
     mHood.create(1050,450,'hood').refreshBody();
     
- 
+ 	wall = this.physics.add.staticGroup();
     
     platforms = this.physics.add.staticGroup();
     platforms.create(1050, 881, 'ground').setScale(0.71).refreshBody();
@@ -238,6 +326,7 @@ function create ()
     player = this.physics.add.sprite(100, 450, 'dude');
     player.setData({hp_flask_small: 0, hp_flask_large: 0, dmg_boost: 0, invincible: 0, parry_shield: 0, dmg_boost_active: false,invincible_active: 0, parry_shield_active: false})
     player.setBounce(0.2);
+    player.setSize(50,70,true);
     player.setCollideWorldBounds(true);
 
     //создание анимаций
@@ -258,6 +347,7 @@ function create ()
     //создание физической группы для lvlup кнопок
     lvl_UP_button= this.physics.add.group();
 
+    wallCreator(1);
     //черновая отрисовкак противников
     enemyCreator(1,250,250,this);
     enemyCreator(2,200,650,this);
@@ -277,6 +367,7 @@ function create ()
     itemButtonCreator(this);
 
     //коллайдеры и оверлапы
+	this.physics.add.collider(player, wall);
     this.physics.add.collider(player, mHood);
     this.physics.add.collider(player, platforms);
     this.physics.add.overlap(player, enemy, BattleStart, null, this);
