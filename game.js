@@ -213,14 +213,14 @@ function create ()
     platforms.create(1050, 881, 'ground').setScale(0.71).refreshBody();
     
     //текст
-    EnemyHPText = this.add.text(930, 16, 'Enemy HP:  0', { fontSize: '32px', fill: '#000' });
-    PlayerHPText = this.add.text(930, 50, 'Your HP:  100', { fontSize: '32px', fill: '#000' });
+    EnemyHPText = this.add.text(930, 16, 'Enemy HP:  0', { fontSize: '30px', fill: '#000' });
+    PlayerHPText = this.add.text(930, 50, 'Your HP:  100', { fontSize: '30px', fill: '#000' });
 
-    hp_flask_small_Text = this.add.text(930, 150, '0', { fontSize: '32px', fill: '#000' });
-    hp_flask_large_Text = this.add.text(980, 150, '0', { fontSize: '32px', fill: '#000' });
-    dmg_boost_Text = this.add.text(1010, 150, '0|D', { fontSize: '32px', fill: '#000' });
-    invincible_Text = this.add.text(1075, 150, '0|0', { fontSize: '32px', fill: '#000' });
-    parry_shield_Text = this.add.text(1133, 150, '0|D', { fontSize: '32px', fill: '#000' });
+    hp_flask_small_Text = this.add.text(920, 150, '0', { fontSize: '26px', fill: '#000' });
+    hp_flask_large_Text = this.add.text(980, 150, '0', { fontSize: '26px', fill: '#000' });
+    dmg_boost_Text = this.add.text(1024, 150, '0|D', { fontSize: '26px', fill: '#000' });
+    invincible_Text = this.add.text(1084, 150, '0|0', { fontSize: '26px', fill: '#000' });
+    parry_shield_Text = this.add.text(1143, 150, '0|D', { fontSize: '26px', fill: '#000' });
  
 
     //игрок
