@@ -170,7 +170,7 @@ function create ()
 
 
 	//игрок
-	player = this.physics.add.sprite(100, 450, 'dude');
+	player = this.physics.add.sprite(100, 500, 'dude');
 	player.setData({hp_flask_small: 0, hp_flask_large: 0, dmg_boost: 0, invincible: 0, parry_shield: 0, dmg_boost_active: false,invincible_active: 0, parry_shield_active: false})
 	player.setBounce(0.2);
 	player.setSize(50,70,true);
@@ -194,19 +194,26 @@ function create ()
 	//создание физической группы для lvlup кнопок
 	lvl_UP_button= this.physics.add.group();
 
-	wallCreator(9,wall);
-	//черновая отрисовкак противников
-	enemyCreator(1,250,250,this,enemy);
-	enemyCreator(2,200,650,this,enemy);
-
 	
-	enemyCreator(11,600,650,this,enemy);
-	enemyCreator(12,400,400,this,enemy);
-	enemyCreator(13,400,100,this,enemy);
-	enemyCreator(14,500,100,this,enemy);
-	enemyCreator(15,400,650,this,enemy);
+	//черновая отрисовкак противников
 
+	enemyCreator(1,1,100,650,this);
+	enemyCreator(1,2,300,650,this);
+	enemyCreator(1,3,500,650,this);
+	enemyCreator(1,4,700,650,this);
+	enemyCreator(1,5,880,650,this);
+	
+	enemyCreator(2,1,100,350,this);
+	enemyCreator(2,2,300,350,this);
+	enemyCreator(2,3,500,350,this);
+	enemyCreator(2,4,700,350,this);
+	enemyCreator(2,5,880,350,this);
 
+	enemyCreator(3,1,100,150,this);
+	enemyCreator(3,2,300,150,this);
+	enemyCreator(3,3,500,150,this);
+	enemyCreator(3,4,700,150,this);
+	enemyCreator(3,5,880,150,this);
 	//черновая отрисовкак прeдметов
 	itemCreator(1,100,800,this,items);
 	itemCreator(2,200,800,this,items);
@@ -258,7 +265,7 @@ function dropStar(music,enemyinfo,startype,keyA,keyD){
 
 		if(startype==1){
 			var star1=stars.create(Phaser.Math.Between(920, 1180), 258, 'star1');
-			star1.setData({ type: 1});
+			star1.setData({ type: 1,dmg:enemyinfo.damage});
 			star1.setVelocityY(enemyinfo.speed);
 			star1.setInteractive();
 
@@ -361,16 +368,8 @@ function ItemPickup (player, items)
 function Star_hit_the_ground (platforms, star)
 {
 	if(star.data.list.type==1){
-		GetDamage(10)
-		if(playerHP<=0){
-			battle=0;
-			stars.children.iterate(function (child) {
-
-				child.disableBody(true, true);
-
-			});
-			lose=1;
-		}
+		GetDamage(star.data.list.dmg)
+		
 	}
 	star.disableBody(true, true);
 }
@@ -441,12 +440,12 @@ function createlvlUPbuttun(){
 				PlayerHPText.setText('Your HP:  ' + playerHP+'/'+playerMAXHP);
 			}
 			if(type==2){
-				damage+=2;
+				damage+=4;
 				damageText.setText('dmg: '+damage)
 			}
 			if(type==3){
 				armour+=1;
-				damageText.setText('arm: '+armour)
+				armorText.setText('arm: '+armour)
 			}
 			player_exp-=lvlUPexp;
 			lvlUPexp+=20;
