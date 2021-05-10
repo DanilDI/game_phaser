@@ -102,6 +102,8 @@ function preload ()
 	this.load.audio('180_NNDDAND', 'assets/180_NNDDAND.wav');
 	this.load.audio('180_ANDDDAAN', 'assets/180_ANDDDAAN.wav');
 	this.load.audio('120_ADNDNAD', 'assets/120_ADNDNAD.wav');
+	this.load.audio('120_DADDAADDD', 'assets/120_DADDAADDD.wav');
+	this.load.audio('90_DDADDNAN', 'assets/90_DDADDNAN.wav');
 
 	//forest
 	this.load.spritesheet('mushroom', 'assets/forest_anims/mushroom-idle.png', { frameWidth: 150, frameHeight: 150 });
@@ -146,16 +148,16 @@ function enemyCreator(lvl,type,x,y,scene){
 		if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'eye').setData({damage: 12,exp: 30,animation:'eye-idle', hp: 40, music: '180_NNDDAND', speed:370, pattern: [0,165,330,510,665,830,990],satrnumber: 7,pause:1300 ,attacks: [2,2,1,1,0,2,1]});
 		if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'bat').setData({damage: 10,exp: 30,animation:'bat-idle', hp: 50, music: '180_ANDDDAAN', speed:320, pattern: [3,170,335,515,680,840,1005,1170],satrnumber: 11,pause:1500 ,attacks: [0,2,1,1,1,0,0,2]});
 		if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'goblin').setData({damage: 14,exp: 30,animation:'goblin-idle', hp: 70, music: '120_ADNDNAD', speed:380, pattern: [10,260,515,765,890,1015,1140],satrnumber: 7,pause:1600 ,attacks: [0,1,2,1,2,0,1]});
-		if(type==4) var concreteEnemy= scene.physics.add.sprite(x, y, 'zombie').setData({damage: 8,exp: 40,animation:'zombie-idle', hp: 70, music: '', speed:280, pattern: [],satrnumber: 10,pause:1500 ,attacks: []});
-		if(type==5) var concreteEnemy= scene.physics.add.sprite(x, y, 'skeleton').setData({damage: 12,exp: 40,animation:'skeleton-idle', hp: 70, music: '', speed:250, pattern: [],satrnumber: 10,pause:2100 ,attacks: []});
+		if(type==4) var concreteEnemy= scene.physics.add.sprite(x, y, 'zombie').setData({damage: 10,exp: 40,animation:'zombie-idle', hp: 70, music: '120_DADDAADDD', speed:280, pattern: [30,270,410,535,770,895,1040,1160,1280],satrnumber: 9,pause:1700 ,attacks: [1,0,1,1,0,0,1,1,1]});
+		if(type==5) var concreteEnemy= scene.physics.add.sprite(x, y, 'skeleton').setData({damage: 12,exp: 40,animation:'skeleton-idle', hp: 60, music: '90_DDADDNAN', speed:300, pattern: [22,190,340,510,685,845,1005,1175],satrnumber: 8,pause:1550 ,attacks: [1,1,0,1,1,2,0,2]});
 	}
 	//ад
 	if (lvl==3){
-		if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'ghost').setData({damage: 15,exp: 40,animation:'ghost-idle', hp: 50, music: '120_DDDAAAND', speed:300, pattern: [35,535,1035,1510,1770,2020,2270,2510],satrnumber: 8,pause:3000 ,attacks: [1,1,1,0,0,0,2,1]});
-		if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'hell-beast').setData({damage: 13,exp: 40,animation:'hell-beast-idle', hp: 80, music: '60_AAAADNDD', speed:350, pattern: [30,770,1270,1525,1780,2020,2215,2530],satrnumber: 8,pause:3000 ,attacks: [0,0,0,0,1,2,1,1]});
-		if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'hell-hound').setData({damage: 13,exp: 40,animation:'hell-hound-idle', hp: 60, music: '150_AADDA', speed:330, pattern: [10,110,215,515,810],satrnumber: 5,pause:1500 ,attacks: [0,0,1,1,0]});
-		if(type==4) var concreteEnemy= scene.physics.add.sprite(x, y, 'nightmare').setData({damage: 18,exp: 50,animation:'nightmare-idle', hp: 120, music: '90_ADNDA', speed:370, pattern: [10,350,675,835,1005],satrnumber: 5,pause:1400 ,attacks: [0,1,2,1,0]});
-		if(type==5) var concreteEnemy= scene.physics.add.sprite(x, y, 'demon').setData({damage: 20,exp: 50,animation:'demon-idle', hp: 50, music: '180_ADNDDANDDA', speed:300, pattern: [28,210,365,540,710,855,1030,1190,1370,1530],satrnumber: 10,pause:2000 ,attacks: [0,1,2,1,1,0,2,1,1,0]});
+		if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'ghost').setData({damage: 18,exp: 40,animation:'ghost-idle', hp: 75, music: '120_DDDAAAND', speed:350, pattern: [35,535,1035,1510,1770,2020,2270,2510],satrnumber: 8,pause:3000 ,attacks: [1,1,1,0,0,0,2,1]});
+		if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'hell-beast').setData({damage: 16,exp: 40,animation:'hell-beast-idle', hp: 100, music: '60_AAAADNDD', speed:410, pattern: [30,770,1270,1525,1780,2020,2215,2530],satrnumber: 8,pause:3000 ,attacks: [0,0,0,0,1,2,1,1]});
+		if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'hell-hound').setData({damage: 16,exp: 40,animation:'hell-hound-idle', hp: 80, music: '150_AADDA', speed:400, pattern: [10,110,215,515,810],satrnumber: 5,pause:1500 ,attacks: [0,0,1,1,0]});
+		if(type==4) var concreteEnemy= scene.physics.add.sprite(x, y, 'nightmare').setData({damage: 20,exp: 50,animation:'nightmare-idle', hp: 120, music: '90_ADNDA', speed:380, pattern: [10,350,675,835,1005],satrnumber: 5,pause:1400 ,attacks: [0,1,2,1,0]});
+		if(type==5) var concreteEnemy= scene.physics.add.sprite(x, y, 'demon').setData({damage: 22,exp: 50,animation:'demon-idle', hp: 50, music: '180_ADNDDANDDA', speed:330, pattern: [28,210,365,540,710,855,1030,1190,1370,1530],satrnumber: 10,pause:2000 ,attacks: [0,1,2,1,1,0,2,1,1,0]});
 	}
 	enemy.add(concreteEnemy);
 }
@@ -537,6 +539,7 @@ function create ()
 	enemyCreator(1,4,700,650,this);
 	enemyCreator(1,5,880,650,this);
 	
+	createlvlUPbuttun()
 	enemyCreator(2,1,100,350,this);
 	enemyCreator(2,2,300,350,this);
 	enemyCreator(2,3,500,350,this);
@@ -767,16 +770,16 @@ function createlvlUPbuttun(){
 		child.on('pointerdown',function(){
 			var type=child.data.list.type;
 			if(type==1){
-				playerMAXHP+=10;
-				playerHP+=10;
+				playerMAXHP+=15;
+				playerHP+=15;
 				PlayerHPText.setText('Your HP:  ' + playerHP+'/'+playerMAXHP);
 			}
 			if(type==2){
-				damage+=4;
+				damage+=3;
 				damageText.setText('dmg: '+damage)
 			}
 			if(type==3){
-				armour+=1;
+				armour+=2;
 				armorText.setText('arm: '+armour)
 			}
 			player_exp-=lvlUPexp;
