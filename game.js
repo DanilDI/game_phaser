@@ -194,26 +194,38 @@ function create ()
 	//создание физической группы для lvlup кнопок
 	lvl_UP_button= this.physics.add.group();
 
-	
+	wallCreator(9,wall);
 	//черновая отрисовкак противников
+	// enemyCreator(1,250,250,this,enemy);
+	// enemyCreator(2,200,650,this,enemy);
 
-	enemyCreator(1,1,100,650,this);
-	enemyCreator(1,2,300,650,this);
-	enemyCreator(1,3,500,650,this);
-	enemyCreator(1,4,700,650,this);
-	enemyCreator(1,5,880,650,this);
 	
-	enemyCreator(2,1,100,350,this);
-	enemyCreator(2,2,300,350,this);
-	enemyCreator(2,3,500,350,this);
-	enemyCreator(2,4,700,350,this);
-	enemyCreator(2,5,880,350,this);
+	// enemyCreator(11,600,650,this,enemy);
+	// enemyCreator(12,400,400,this,enemy);
+	// enemyCreator(13,400,100,this,enemy);
+	// enemyCreator(14,500,100,this,enemy);
+	// enemyCreator(15,400,650,this,enemy);
 
-	enemyCreator(3,1,100,150,this);
-	enemyCreator(3,2,300,150,this);
-	enemyCreator(3,3,500,150,this);
-	enemyCreator(3,4,700,150,this);
-	enemyCreator(3,5,880,150,this);
+	
+	enemyCreator(1,1,100,650,this,enemy);
+	enemyCreator(1,2,300,650,this,enemy);
+	enemyCreator(1,3,500,650,this,enemy);
+	enemyCreator(1,4,700,650,this,enemy);
+	enemyCreator(1,5,880,650,this,enemy);
+	
+	enemyCreator(2,1,100,350,this,enemy);
+	enemyCreator(2,2,300,350,this,enemy);
+	enemyCreator(2,3,500,350,this,enemy);
+	enemyCreator(2,4,700,350,this,enemy);
+	enemyCreator(2,5,880,350,this,enemy);
+
+	enemyCreator(3,1,100,150,this,enemy);
+	enemyCreator(3,2,300,150,this,enemy);
+	enemyCreator(3,3,500,150,this,enemy);
+	enemyCreator(3,4,700,150,this,enemy);
+	enemyCreator(3,5,880,150,this,enemy);
+
+
 	//черновая отрисовкак прeдметов
 	itemCreator(1,100,800,this,items);
 	itemCreator(2,200,800,this,items);
@@ -368,8 +380,8 @@ function ItemPickup (player, items)
 function Star_hit_the_ground (platforms, star)
 {
 	if(star.data.list.type==1){
-		GetDamage(star.data.list.dmg)
-		
+		GetDamage(star.data.list.dmg);
+
 	}
 	star.disableBody(true, true);
 }
@@ -435,16 +447,16 @@ function createlvlUPbuttun(){
 		child.on('pointerdown',function(){
 			var type=child.data.list.type;
 			if(type==1){
-				playerMAXHP+=10;
-				playerHP+=10;
+				playerMAXHP+=15;
+				playerHP+=15;
 				PlayerHPText.setText('Your HP:  ' + playerHP+'/'+playerMAXHP);
 			}
 			if(type==2){
-				damage+=4;
+				damage+=3;
 				damageText.setText('dmg: '+damage)
 			}
 			if(type==3){
-				armour+=1;
+				armour+=2;
 				armorText.setText('arm: '+armour)
 			}
 			player_exp-=lvlUPexp;

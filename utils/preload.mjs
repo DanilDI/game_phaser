@@ -37,6 +37,13 @@ export default function loadAssets(focus)
 	focus.load.spritesheet('eye', 'assets/dungeon_anims/eye-idle.png', { frameWidth: 150, frameHeight: 150 });
 	focus.load.spritesheet('zombie', 'assets/dungeon_anims/zombie-idle.png', { frameWidth: 64, frameHeight: 64 });
 	focus.load.spritesheet('bat', 'assets/dungeon_anims/bat-idle.png', { frameWidth: 16, frameHeight: 24 }); //setScale(1.5)
+
+	focus.load.audio('180_NNDDAND', 'assets/180_NNDDAND.wav');
+	focus.load.audio('180_ANDDDAAN', 'assets/180_ANDDDAAN.wav');
+	focus.load.audio('120_ADNDNAD', 'assets/120_ADNDNAD.wav');
+	focus.load.audio('120_DADDAADDD', 'assets/120_DADDAADDD.wav');
+	focus.load.audio('90_DDADDNAN', 'assets/90_DDADDNAN.wav');
+	
 	//forest
 	focus.load.spritesheet('mushroom', 'assets/forest_anims/mushroom-idle.png', { frameWidth: 150, frameHeight: 150 });
 	focus.load.spritesheet('huntress', 'assets/forest_anims/huntress-idle.png', { frameWidth: 150, frameHeight: 100 });
@@ -46,6 +53,9 @@ export default function loadAssets(focus)
 
 	focus.load.audio('120_ADNNDA', 'assets/120_ADNNDA.wav');
 	focus.load.audio('120_AANNANNANDD', 'assets/120_AANNANNANDD.wav');
+	focus.load.audio('120_AADDAANDDD', 'assets/120_AADDAANDDD.wav'); 
+	focus.load.audio('90_ANDDDNNDAD', 'assets/90_ANDDDNNDAD.wav');
+
 
 	//items
 	focus.load.image('invibcible_shield', 'assets/items/invibcible_shield.png');
