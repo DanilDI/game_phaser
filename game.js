@@ -97,6 +97,12 @@ function preload ()
 	this.load.spritesheet('eye', 'assets/dungeon_anims/eye-idle.png', { frameWidth: 150, frameHeight: 150 });
 	this.load.spritesheet('zombie', 'assets/dungeon_anims/zombie-idle.png', { frameWidth: 64, frameHeight: 64 });
 	this.load.spritesheet('bat', 'assets/dungeon_anims/bat-idle.png', { frameWidth: 16, frameHeight: 24 }); //setScale(1.5)
+
+	
+	this.load.audio('180_NNDDAND', 'assets/180_NNDDAND.wav');
+	this.load.audio('180_ANDDDAAN', 'assets/180_ANDDDAAN.wav');
+	this.load.audio('120_ADNDNAD', 'assets/120_ADNDNAD.wav');
+
 	//forest
 	this.load.spritesheet('mushroom', 'assets/forest_anims/mushroom-idle.png', { frameWidth: 150, frameHeight: 150 });
 	this.load.spritesheet('huntress', 'assets/forest_anims/huntress-idle.png', { frameWidth: 150, frameHeight: 150 });
@@ -105,6 +111,8 @@ function preload ()
 
 	this.load.audio('120_ADNNDA', 'assets/120_ADNNDA.wav');
 	this.load.audio('120_AANNANNANDD', 'assets/120_AANNANNANDD.wav');
+	this.load.audio('120_AADDAANDDD', 'assets/120_AADDAANDDD.wav'); 
+	this.load.audio('90_ANDDDNNDAD', 'assets/90_ANDDDNNDAD.wav');
 
 	//items
 	this.load.image('invibcible_shield', 'assets/items/invibcible_shield.png');
@@ -121,23 +129,34 @@ function preload ()
 
 
 }
-function enemyCreator(type,x,y,scene){
+function enemyCreator(lvl,type,x,y,scene){
 
 
 	//лес
-	if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'worm').setData({damage: 10,exp: 20,animation:'worm-idle', hp: 70, music: '120_ADNNDA', speed:300, pattern: [9,255,510,755,1105,1255],satrnumber: 6,pause:1700 ,attacks: [0,1,2,2,1,0]});
-	if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'huntress').setData({damage: 12,exp: 20,animation:'huntress-idle', hp: 70, music: '120_AANNANNANDD', speed:300, pattern: [3,10,250,370,495,628,870,990,1125,1250,1385],satrnumber: 11,pause:1800 ,attacks: [0,0,2,2,0,2,2,0,2,1,1]});
-
+	if (lvl==1){
+		if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'worm').setData({damage: 8,exp: 20,animation:'worm-idle', hp: 70, music: '120_ADNNDA', speed:370, pattern: [9,255,510,755,1105,1255],satrnumber: 6,pause:1700 ,attacks: [0,1,2,2,1,0]});
+		if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'huntress').setData({damage: 10,exp: 20,animation:'huntress-idle', hp: 70, music: '120_AANNANNANDD', speed:320, pattern: [3,10,250,370,495,628,870,990,1125,1250,1385],satrnumber: 11,pause:1800 ,attacks: [0,0,2,2,0,2,2,0,2,1,1]});
+	/*временно*/ 	if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'huntress').setData({damage: 10,exp: 20,animation:'huntress-idle', hp: 70, music: '120_AANNANNANDD', speed:320, pattern: [3,10,250,370,495,628,870,990,1125,1250,1385],satrnumber: 11,pause:1800 ,attacks: [0,0,2,2,0,2,2,0,2,1,1]});
+		if(type==4) var concreteEnemy= scene.physics.add.sprite(x, y, 'mushroom').setData({damage: 8,exp: 30,animation:'mushroom-idle', hp: 70, music: '120_AADDAANDDD', speed:280, pattern: [10,147,278,400,510,635,760,890,1010,1150],satrnumber: 10,pause:1500 ,attacks: [0,0,1,1,0,0,2,1,1,1]});
+		if(type==5) var concreteEnemy= scene.physics.add.sprite(x, y, 'cyclop').setData({damage: 12,exp: 30,animation:'cyclop-idle', hp: 70, music: '90_ANDDDNNDAD', speed:250, pattern: [3,180,515,680,860,1025,1185,1350,1515,1690],satrnumber: 10,pause:2100 ,attacks: [0,2,1,1,1,2,2,1,0,1]});
+	}	
 
 	//подземелье
-
+	if (lvl==2){
+		if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'eye').setData({damage: 12,exp: 30,animation:'eye-idle', hp: 40, music: '180_NNDDAND', speed:370, pattern: [0,165,330,510,665,830,990],satrnumber: 7,pause:1300 ,attacks: [2,2,1,1,0,2,1]});
+		if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'bat').setData({damage: 10,exp: 30,animation:'bat-idle', hp: 50, music: '180_ANDDDAAN', speed:320, pattern: [3,170,335,515,680,840,1005,1170],satrnumber: 11,pause:1500 ,attacks: [0,2,1,1,1,0,0,2]});
+		if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'goblin').setData({damage: 14,exp: 30,animation:'goblin-idle', hp: 70, music: '120_ADNDNAD', speed:380, pattern: [10,260,515,765,890,1015,1140],satrnumber: 7,pause:1600 ,attacks: [0,1,2,1,2,0,1]});
+		if(type==4) var concreteEnemy= scene.physics.add.sprite(x, y, 'zombie').setData({damage: 8,exp: 40,animation:'zombie-idle', hp: 70, music: '', speed:280, pattern: [],satrnumber: 10,pause:1500 ,attacks: []});
+		if(type==5) var concreteEnemy= scene.physics.add.sprite(x, y, 'skeleton').setData({damage: 12,exp: 40,animation:'skeleton-idle', hp: 70, music: '', speed:250, pattern: [],satrnumber: 10,pause:2100 ,attacks: []});
+	}
 	//ад
-	
-	if(type==11) var concreteEnemy= scene.physics.add.sprite(x, y, 'ghost').setData({damage: 15,exp: 20,animation:'ghost-idle', hp: 50, music: '120_DDDAAAND', speed:300, pattern: [35,535,1035,1510,1770,2020,2270,2510],satrnumber: 8,pause:3000 ,attacks: [1,1,1,0,0,0,2,1]});
-	if(type==12) var concreteEnemy= scene.physics.add.sprite(x, y, 'hell-beast').setData({damage: 13,exp: 20,animation:'hell-beast-idle', hp: 80, music: '60_AAAADNDD', speed:300, pattern: [30,770,1270,1525,1780,2020,2215,2530],satrnumber: 8,pause:3000 ,attacks: [0,0,0,0,1,2,1,1]});
-	if(type==13) var concreteEnemy= scene.physics.add.sprite(x, y, 'hell-hound').setData({damage: 13,exp: 20,animation:'hell-hound-idle', hp: 60, music: '150_AADDA', speed:330, pattern: [10,110,215,515,810],satrnumber: 5,pause:1500 ,attacks: [0,0,1,1,0]});
-	if(type==14) var concreteEnemy= scene.physics.add.sprite(x, y, 'nightmare').setData({damage: 18,exp: 100,animation:'nightmare-idle', hp: 70, music: '90_ADNDA', speed:350, pattern: [10,350,675,835,1005],satrnumber: 5,pause:1400 ,attacks: [0,1,2,1,0]});
-	if(type==15) var concreteEnemy= scene.physics.add.sprite(x, y, 'demon').setData({damage: 20,exp: 20,animation:'demon-idle', hp: 40, music: '180_ADNDDANDDA', speed:300, pattern: [28,210,365,540,710,855,1030,1190,1370,1530],satrnumber: 10,pause:2000 ,attacks: [0,1,2,1,1,0,2,1,1,0]});
+	if (lvl==3){
+		if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'ghost').setData({damage: 15,exp: 40,animation:'ghost-idle', hp: 50, music: '120_DDDAAAND', speed:300, pattern: [35,535,1035,1510,1770,2020,2270,2510],satrnumber: 8,pause:3000 ,attacks: [1,1,1,0,0,0,2,1]});
+		if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'hell-beast').setData({damage: 13,exp: 40,animation:'hell-beast-idle', hp: 80, music: '60_AAAADNDD', speed:350, pattern: [30,770,1270,1525,1780,2020,2215,2530],satrnumber: 8,pause:3000 ,attacks: [0,0,0,0,1,2,1,1]});
+		if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'hell-hound').setData({damage: 13,exp: 40,animation:'hell-hound-idle', hp: 60, music: '150_AADDA', speed:330, pattern: [10,110,215,515,810],satrnumber: 5,pause:1500 ,attacks: [0,0,1,1,0]});
+		if(type==4) var concreteEnemy= scene.physics.add.sprite(x, y, 'nightmare').setData({damage: 18,exp: 50,animation:'nightmare-idle', hp: 120, music: '90_ADNDA', speed:370, pattern: [10,350,675,835,1005],satrnumber: 5,pause:1400 ,attacks: [0,1,2,1,0]});
+		if(type==5) var concreteEnemy= scene.physics.add.sprite(x, y, 'demon').setData({damage: 20,exp: 50,animation:'demon-idle', hp: 50, music: '180_ADNDDANDDA', speed:300, pattern: [28,210,365,540,710,855,1030,1190,1370,1530],satrnumber: 10,pause:2000 ,attacks: [0,1,2,1,1,0,2,1,1,0]});
+	}
 	enemy.add(concreteEnemy);
 }
 
@@ -485,7 +504,7 @@ function create ()
 
 
 	//игрок
-	player = this.physics.add.sprite(100, 450, 'dude');
+	player = this.physics.add.sprite(100, 500, 'dude');
 	player.setData({hp_flask_small: 0, hp_flask_large: 0, dmg_boost: 0, invincible: 0, parry_shield: 0, dmg_boost_active: false,invincible_active: 0, parry_shield_active: false})
 	player.setBounce(0.2);
 	player.setSize(50,70,true);
@@ -509,19 +528,26 @@ function create ()
 	//создание физической группы для lvlup кнопок
 	lvl_UP_button= this.physics.add.group();
 
-	wallCreator(9);
-	//черновая отрисовкак противников
-	enemyCreator(1,250,250,this);
-	enemyCreator(2,200,650,this);
-
 	
-	enemyCreator(11,600,650,this);
-	enemyCreator(12,400,400,this);
-	enemyCreator(13,400,100,this);
-	enemyCreator(14,500,100,this);
-	enemyCreator(15,400,650,this);
+	//черновая отрисовкак противников
 
+	enemyCreator(1,1,100,650,this);
+	enemyCreator(1,2,300,650,this);
+	enemyCreator(1,3,500,650,this);
+	enemyCreator(1,4,700,650,this);
+	enemyCreator(1,5,880,650,this);
+	
+	enemyCreator(2,1,100,350,this);
+	enemyCreator(2,2,300,350,this);
+	enemyCreator(2,3,500,350,this);
+	enemyCreator(2,4,700,350,this);
+	enemyCreator(2,5,880,350,this);
 
+	enemyCreator(3,1,100,150,this);
+	enemyCreator(3,2,300,150,this);
+	enemyCreator(3,3,500,150,this);
+	enemyCreator(3,4,700,150,this);
+	enemyCreator(3,5,880,150,this);
 	//черновая отрисовкак прeдметов
 	itemCreator(1,100,800,this);
 	itemCreator(2,200,800,this);
@@ -571,7 +597,7 @@ function dropStar(music,enemyinfo,startype,keyA,keyD){
 
 		if(startype==1){
 			var star1=stars.create(Phaser.Math.Between(920, 1180), 258, 'star1');
-			star1.setData({ type: 1});
+			star1.setData({ type: 1,dmg:enemyinfo.damage});
 			star1.setVelocityY(enemyinfo.speed);
 			star1.setInteractive();
 
@@ -674,16 +700,8 @@ function ItemPickup (player, items)
 function Star_hit_the_ground (platforms, star)
 {
 	if(star.data.list.type==1){
-		GetDamage(10)
-		if(playerHP<=0){
-			battle=0;
-			stars.children.iterate(function (child) {
-
-				child.disableBody(true, true);
-
-			});
-			lose=1;
-		}
+		GetDamage(star.data.list.dmg)
+		
 	}
 	star.disableBody(true, true);
 }
@@ -754,12 +772,12 @@ function createlvlUPbuttun(){
 				PlayerHPText.setText('Your HP:  ' + playerHP+'/'+playerMAXHP);
 			}
 			if(type==2){
-				damage+=2;
+				damage+=4;
 				damageText.setText('dmg: '+damage)
 			}
 			if(type==3){
 				armour+=1;
-				damageText.setText('arm: '+armour)
+				armorText.setText('arm: '+armour)
 			}
 			player_exp-=lvlUPexp;
 			lvlUPexp+=20;
