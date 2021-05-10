@@ -1,5 +1,9 @@
 import movement from './utils/movement.mjs';
 import createAnims from './utils/anims.mjs';
+import loadAssets from './utils/preload.mjs';
+import {enemyCreator, wallCreator, itemCreator} from './utils/mapController.mjs';
+//import start_battle from './utils/battleController.mjs';
+
 
 var config = {
 	type: Phaser.AUTO,
@@ -58,335 +62,16 @@ var parry_shield_Text;
 var items_button;
 var lvl_UP_button;
 
+
+
+
 function preload ()
 {
-	this.load.image('tiles', 'assets/map/tileset_dungeon.png');
-	this.load.tilemapTiledJSON('map', 'assets/map/map1.json');
-	this.load.image('longStraight', 'assets/map/long_wall_straight.png');
-	this.load.image('longWide', 'assets/map/long_wall_wide.png');
-	this.load.image('shortWide', 'assets/map/short_wall_wide.png');
-	this.load.image('shortStraight', 'assets/map/short_wall_straight.png');
-
-
-	this.load.image('background', 'assets/temporary_background.png');
-	this.load.image('hood','assets/hood.png')
-	this.load.image('ground', 'assets/platform.png');
-
-	this.load.image('star0', 'assets/starA.png');
-	this.load.image('star1', 'assets/starD.png');
-	this.load.image('star2', 'assets/starB.png');
-
-	this.load.spritesheet('run_right', 'assets/main_char_anims/run.png', { frameWidth: 184, frameHeight: 137 });
-	this.load.spritesheet('idle', 'assets/main_char_anims/idle.png', { frameWidth: 184, frameHeight: 137 });
-	this.load.spritesheet('run_left', 'assets/main_char_anims/run_left.png', { frameWidth: 184, frameHeight: 137 });
-	//hell
-	this.load.spritesheet('demon', 'assets/hell_anims/demon-idle.png', { frameWidth: 160, frameHeight: 144 });
-	this.load.spritesheet('ghost', 'assets/hell_anims/ghost-idle.png', { frameWidth: 64, frameHeight: 80 });
-	this.load.spritesheet('hell-beast', 'assets/hell_anims/hell-beast-idle.png', { frameWidth: 55, frameHeight: 67 });
-	this.load.spritesheet('hell-hound', 'assets/hell_anims/hell-hound-idle.png', { frameWidth: 64, frameHeight: 32 });
-	this.load.spritesheet('nightmare', 'assets/hell_anims/nightmare-idle.png', { frameWidth: 128, frameHeight: 96 });
-
-	this.load.audio('90_ADNDA', 'assets/90_ADNDA.wav');
-	this.load.audio('120_DDDAAAND', 'assets/120_DDDAAAND.wav');
-	this.load.audio('180_ADNDDANDDA', 'assets/180_ADNDDANDDA.wav');
-	this.load.audio('60_AAAADNDD', 'assets/60_AAAADNDD.wav');
-	this.load.audio('150_AADDA', 'assets/150_AADDA.wav');
-	//dungeon
-	this.load.spritesheet('skeleton', 'assets/dungeon_anims/skeleton-idle.png', { frameWidth: 150, frameHeight: 150 });
-	this.load.spritesheet('goblin', 'assets/dungeon_anims/goblin-idle.png', { frameWidth: 150, frameHeight: 150 });
-	this.load.spritesheet('eye', 'assets/dungeon_anims/eye-idle.png', { frameWidth: 150, frameHeight: 150 });
-	this.load.spritesheet('zombie', 'assets/dungeon_anims/zombie-idle.png', { frameWidth: 64, frameHeight: 64 });
-	this.load.spritesheet('bat', 'assets/dungeon_anims/bat-idle.png', { frameWidth: 16, frameHeight: 24 }); //setScale(1.5)
-	//forest
-	this.load.spritesheet('mushroom', 'assets/forest_anims/mushroom-idle.png', { frameWidth: 150, frameHeight: 150 });
-	this.load.spritesheet('huntress', 'assets/forest_anims/huntress-idle.png', { frameWidth: 150, frameHeight: 150 });
-	this.load.spritesheet('cyclop', 'assets/forest_anims/cyclop-idle.png', { frameWidth: 64, frameHeight: 64 });
-	this.load.spritesheet('worm', 'assets/forest_anims/worm-idle.png', { frameWidth: 64, frameHeight: 64 });
-
-	this.load.audio('120_ADNNDA', 'assets/120_ADNNDA.wav');
-	this.load.audio('120_AANNANNANDD', 'assets/120_AANNANNANDD.wav');
-
-	//items
-	this.load.image('invibcible_shield', 'assets/items/invibcible_shield.png');
-	this.load.image('blade_mail', 'assets/items/blade_mail.png');
-	this.load.image('dmg_boost', 'assets/items/dmg_boost.png');
-	this.load.image('s_heal', 'assets/items/s_heal.png');
-	this.load.image('l_heal', 'assets/items/l_heal.png');
-	//buttons
-	this.load.image('l_heal_button', 'assets/buttons/l_heal_button.png');
-	this.load.image('s_heal_button', 'assets/buttons/s_heal_button.png');
-	this.load.image('dmg_boost_button', 'assets/buttons/dmg_boost_button.png');
-	this.load.image('invincible_shield_button', 'assets/buttons/invincible_shield_button.png');
-	this.load.image('blade_mail_button', 'assets/buttons/blade_mail_button.png');
-
+    loadAssets(this);
 
 }
-function enemyCreator(type,x,y,scene){
 
 
-	//лес
-	if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'worm').setData({damage: 10,exp: 20,animation:'worm-idle', hp: 70, music: '120_ADNNDA', speed:300, pattern: [9,255,510,755,1105,1255],satrnumber: 6,pause:1700 ,attacks: [0,1,2,2,1,0]});
-	if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'huntress').setData({damage: 12,exp: 20,animation:'huntress-idle', hp: 70, music: '120_AANNANNANDD', speed:300, pattern: [3,10,250,370,495,628,870,990,1125,1250,1385],satrnumber: 11,pause:1800 ,attacks: [0,0,2,2,0,2,2,0,2,1,1]});
-
-
-	//подземелье
-
-	//ад
-	
-	if(type==11) var concreteEnemy= scene.physics.add.sprite(x, y, 'ghost').setData({damage: 15,exp: 20,animation:'ghost-idle', hp: 50, music: '120_DDDAAAND', speed:300, pattern: [35,535,1035,1510,1770,2020,2270,2510],satrnumber: 8,pause:3000 ,attacks: [1,1,1,0,0,0,2,1]});
-	if(type==12) var concreteEnemy= scene.physics.add.sprite(x, y, 'hell-beast').setData({damage: 13,exp: 20,animation:'hell-beast-idle', hp: 80, music: '60_AAAADNDD', speed:300, pattern: [30,770,1270,1525,1780,2020,2215,2530],satrnumber: 8,pause:3000 ,attacks: [0,0,0,0,1,2,1,1]});
-	if(type==13) var concreteEnemy= scene.physics.add.sprite(x, y, 'hell-hound').setData({damage: 13,exp: 20,animation:'hell-hound-idle', hp: 60, music: '150_AADDA', speed:330, pattern: [10,110,215,515,810],satrnumber: 5,pause:1500 ,attacks: [0,0,1,1,0]});
-	if(type==14) var concreteEnemy= scene.physics.add.sprite(x, y, 'nightmare').setData({damage: 18,exp: 100,animation:'nightmare-idle', hp: 70, music: '90_ADNDA', speed:350, pattern: [10,350,675,835,1005],satrnumber: 5,pause:1400 ,attacks: [0,1,2,1,0]});
-	if(type==15) var concreteEnemy= scene.physics.add.sprite(x, y, 'demon').setData({damage: 20,exp: 20,animation:'demon-idle', hp: 40, music: '180_ADNDDANDDA', speed:300, pattern: [28,210,365,540,710,855,1030,1190,1370,1530],satrnumber: 10,pause:2000 ,attacks: [0,1,2,1,1,0,2,1,1,0]});
-	enemy.add(concreteEnemy);
-}
-
-function wallCreator(type)
-{
-	if(type == 1)
-	{
-		wall.create(290, 55, 'shortStraight');
-		wall.create(290, 255, 'shortStraight');
-		wall.create(155, 290, 'longWide');
-		wall.create(590, 55, 'shortStraight');
-		wall.create(590, 255, 'shortStraight');
-		wall.create(455, 290, 'longWide');
-		wall.create(640, 290, 'shortWide');
-		wall.create(840, 290, 'shortWide');
-
-		wall.create(290, 340, 'shortStraight');
-		wall.create(290, 555, 'shortStraight');
-		wall.create(40, 590, 'shortWide');
-		wall.create(240, 590, 'shortWide');
-		wall.create(590, 455, 'longStraight');
-		wall.create(455, 590, 'longWide');
-		wall.create(640, 590, 'shortWide');
-		wall.create(840, 590, 'shortWide');
-
-
-		wall.create(290, 640, 'shortStraight');
-		wall.create(290, 840, 'shortStraight');
-
-		wall.create(590, 640, 'shortStraight');
-		wall.create(590, 840, 'shortStraight');
-	}
-
-	if(type == 2)
-	{
-		wall.create(290, 155, 'longStraight');
-		wall.create(40, 290, 'shortWide');
-		wall.create(240, 290, 'shortWide');
-		wall.create(590, 55, 'shortStraight');
-		wall.create(590, 255, 'shortStraight');
-		wall.create(340, 290, 'shortWide');
-		wall.create(540, 290, 'shortWide');
-		wall.create(755, 290, 'longWide');
-
-		wall.create(290, 340, 'shortStraight');
-		wall.create(290, 555, 'shortStraight');
-		wall.create(40, 590, 'shortWide');
-		wall.create(240, 590, 'shortWide');
-		wall.create(590, 455, 'longStraight');
-		wall.create(455, 590, 'longWide');
-		wall.create(640, 590, 'shortWide');
-		wall.create(840, 590, 'shortWide');
-
-		wall.create(290, 640, 'shortStraight');
-		wall.create(290, 840, 'shortStraight');
-
-		wall.create(590, 640, 'shortStraight');
-		wall.create(590, 840, 'shortStraight');
-
-	}
-	if(type == 3)
-	{
-		wall.create(155, 290, 'longWide');
-		wall.create(290, 55, 'shortStraight');
-		wall.create(290, 255, 'shortStraight');
-		wall.create(590, 55, 'shortStraight');
-		wall.create(590, 255, 'shortStraight');
-		wall.create(340, 290, 'shortWide');
-		wall.create(540, 290, 'shortWide');
-		wall.create(755, 290, 'longWide');
-
-		wall.create(290, 455, 'longStraight');
-		wall.create(40, 590, 'shortWide');
-		wall.create(240, 590, 'shortWide');
-		wall.create(590, 340, 'shortStraight');
-		wall.create(590, 555, 'shortStraight');
-		wall.create(455, 590, 'longWide');
-		wall.create(640, 590, 'shortWide');
-		wall.create(840, 590, 'shortWide');
-
-		wall.create(290, 640, 'shortStraight');
-		wall.create(290, 840, 'shortStraight');
-		wall.create(590, 640, 'shortStraight');
-		wall.create(590, 840, 'shortStraight');
-	}
-	if(type == 4)
-	{
-		wall.create(155, 290, 'longWide');
-		wall.create(290, 55, 'shortStraight');
-		wall.create(290, 255, 'shortStraight');
-		wall.create(455, 290, 'longWide');
-		wall.create(590, 55, 'shortStraight');
-		wall.create(590, 255, 'shortStraight');
-		wall.create(640, 290, 'shortWide');
-		wall.create(840, 290, 'shortWide');
-
-		wall.create(290, 340, 'shortStraight');
-		wall.create(290, 555, 'shortStraight');
-		wall.create(40, 590, 'shortWide');
-		wall.create(240, 590, 'shortWide');
-		wall.create(340, 590, 'shortWide');
-		wall.create(540, 590, 'shortWide');
-		wall.create(590, 455, 'longStraight');
-		wall.create(640, 590, 'shortWide');
-		wall.create(840, 590, 'shortWide');
-
-		wall.create(290, 755, 'longStraight');
-		wall.create(590, 640, 'shortStraight');
-		wall.create(590, 840, 'shortStraight');
-	}
-	if(type == 5)
-	{
-		wall.create(155, 290, 'longWide');
-		wall.create(290, 55, 'shortStraight');
-		wall.create(290, 255, 'shortStraight');
-		wall.create(590, 55, 'shortStraight');
-		wall.create(590, 255, 'shortStraight');
-		wall.create(340, 290, 'shortWide');
-		wall.create(540, 290, 'shortWide');
-		wall.create(755, 290, 'longWide');
-
-		wall.create(290, 340, 'shortStraight');
-		wall.create(290, 555, 'shortStraight');
-		wall.create(40, 590, 'shortWide');
-		wall.create(240, 590, 'shortWide');
-		wall.create(590, 455, 'longStraight');
-		wall.create(455, 590, 'longWide');
-		wall.create(640, 590, 'shortWide');
-		wall.create(840, 590, 'shortWide');
-
-		wall.create(290, 640, 'shortStraight');
-		wall.create(290, 840, 'shortStraight');
-
-		wall.create(590, 640, 'shortStraight');
-		wall.create(590, 840, 'shortStraight');
-	}
-	if( type == 6)
-	{
-		wall.create(290, 155, 'longStraight');
-		wall.create(40, 290, 'shortWide');
-		wall.create(240, 290, 'shortWide');
-		wall.create(590, 55, 'shortStraight');
-		wall.create(590, 255, 'shortStraight');
-		wall.create(340, 290, 'shortWide');
-		wall.create(540, 290, 'shortWide');
-		wall.create(755, 290, 'longWide');
-
-		wall.create(290, 455, 'longStraight');
-		wall.create(40, 590, 'shortWide');
-		wall.create(240, 590, 'shortWide');
-		wall.create(455, 590, 'longWide');
-		wall.create(590, 340, 'shortStraight');
-		wall.create(590, 555, 'shortStraight');
-		wall.create(640, 590, 'shortWide');
-		wall.create(840, 590, 'shortWide');
-
-		wall.create(290, 640, 'shortStraight');
-		wall.create(290, 840, 'shortStraight');
-		wall.create(590, 640, 'shortStraight');
-		wall.create(590, 840, 'shortStraight');
-	}
-	if( type == 7 ){
-		wall.create(290, 55, 'shortStraight');
-		wall.create(290, 255, 'shortStraight');
-		wall.create(40, 290, 'shortWide');
-		wall.create(240, 290, 'shortWide');
-		wall.create(590, 155, 'longStraight');
-		wall.create(340, 290, 'shortWide');
-		wall.create(540, 290, 'shortWide');
-		wall.create(640, 290, 'shortWide');
-		wall.create(840, 290, 'shortWide');
-
-		wall.create(290, 455, 'longStraight');
-		wall.create(40, 590, 'shortWide');
-		wall.create(240, 590, 'shortWide');
-		wall.create(590, 455, 'longStraight');
-		wall.create(455, 590, 'longWide');
-		wall.create(640, 590, 'shortWide');
-		wall.create(840, 590, 'shortWide');
-
-		wall.create(290, 640, 'shortStraight');
-		wall.create(290, 840, 'shortStraight');
-		wall.create(590, 640, 'shortStraight');
-		wall.create(590, 840, 'shortStraight');
-	}
-	if(type == 8)
-	{
-		wall.create(290, 155, 'longStraight');
-		wall.create(40, 290, 'shortWide');
-		wall.create(240, 290, 'shortWide');
-		wall.create(590, 55, 'shortStraight');
-		wall.create(590, 255, 'shortStraight');
-		wall.create(340, 290, 'shortWide');
-		wall.create(540, 290, 'shortWide');
-		wall.create(640, 290, 'shortWide');
-		wall.create(840, 290, 'shortWide');
-
-		wall.create(290, 340, 'shortStraight');
-		wall.create(290, 555, 'shortStraight');
-		wall.create(40, 590, 'shortWide');
-		wall.create(240, 590, 'shortWide');
-		wall.create(590, 455, 'longStraight');
-		wall.create(455, 590, 'longWide');
-		wall.create(640, 590, 'shortWide');
-		wall.create(840, 590, 'shortWide');
-
-		wall.create(290, 640, 'shortStraight');
-		wall.create(290, 840, 'shortStraight');
-		wall.create(590, 755, 'longStraight');
-	}
-	if(type == 9)
-	{
-		wall.create(290, 155, 'longStraight');
-		wall.create(40, 290, 'shortWide');
-		wall.create(240, 290, 'shortWide');
-		wall.create(590, 155, 'longStraight');
-		wall.create(340, 290, 'shortWide');
-		wall.create(540, 290, 'shortWide');
-
-		wall.create(640, 290, 'shortWide');
-		wall.create(840, 290, 'shortWide');
-
-		wall.create(290, 340, 'shortStraight');
-		wall.create(290, 555, 'shortStraight');
-		wall.create(40, 590, 'shortWide');
-		wall.create(240, 590, 'shortWide');
-
-		wall.create(590, 340, 'shortStraight');
-		wall.create(590, 555, 'shortStraight');
-		wall.create(340, 590, 'shortWide');
-		wall.create(540, 590, 'shortWide');
-
-		wall.create(640, 590, 'shortWide');
-		wall.create(840, 590, 'shortWide');
-
-		wall.create(290, 755, 'longStraight');
-		wall.create(590, 755, 'longStraight');
-	}
-}
-
-function itemCreator(type,x,y,scene){
-
-	if(type==1) var concreteItem= scene.physics.add.sprite(x, y, 's_heal').setData({type: 1});
-	if(type==2) var concreteItem= scene.physics.add.sprite(x, y, 'l_heal').setData({type: 2});
-	if(type==3) var concreteItem= scene.physics.add.sprite(x, y, 'dmg_boost').setData({type: 3});
-	if(type==4) var concreteItem= scene.physics.add.sprite(x, y, 'blade_mail').setData({type: 4});
-	if(type==5) var concreteItem= scene.physics.add.sprite(x, y, 'invibcible_shield').setData({type: 5});
-	items.add(concreteItem);
-}
 function itemButtonCreator(scene){
 
 	items_button.create(931, 120, 's_heal_button').setData({type: 1}).setInteractive();
@@ -509,32 +194,33 @@ function create ()
 	//создание физической группы для lvlup кнопок
 	lvl_UP_button= this.physics.add.group();
 
-	wallCreator(9);
+	wallCreator(9,wall);
 	//черновая отрисовкак противников
-	enemyCreator(1,250,250,this);
-	enemyCreator(2,200,650,this);
+	enemyCreator(1,250,250,this,enemy);
+	enemyCreator(2,200,650,this,enemy);
 
 	
-	enemyCreator(11,600,650,this);
-	enemyCreator(12,400,400,this);
-	enemyCreator(13,400,100,this);
-	enemyCreator(14,500,100,this);
-	enemyCreator(15,400,650,this);
+	enemyCreator(11,600,650,this,enemy);
+	enemyCreator(12,400,400,this,enemy);
+	enemyCreator(13,400,100,this,enemy);
+	enemyCreator(14,500,100,this,enemy);
+	enemyCreator(15,400,650,this,enemy);
 
 
 	//черновая отрисовкак прeдметов
-	itemCreator(1,100,800,this);
-	itemCreator(2,200,800,this);
-	itemCreator(3,400,800,this);
-	itemCreator(4,600,800,this);
-	itemCreator(5,700,800,this);
+	itemCreator(1,100,800,this,items);
+	itemCreator(2,200,800,this,items);
+	itemCreator(3,400,800,this,items);
+	itemCreator(4,600,800,this,items);
+	itemCreator(5,700,800,this,items);
 	itemButtonCreator(this);
-
+    var param = 1;
 	//коллайдеры и оверлапы
 	this.physics.add.collider(player, wall);
 	this.physics.add.collider(player, mHood);
 	this.physics.add.collider(player, platforms);
-	this.physics.add.overlap(player, enemy, BattleStart, null, this);
+	this.physics.add.overlap(player, enemy, BattleStart, null, this);   
+	
 	this.physics.add.overlap(player, items, ItemPickup, null, this);
 	this.physics.add.overlap(platforms, stars, Star_hit_the_ground, null, this);
 }
@@ -553,6 +239,7 @@ function update ()
 	});
 
 }
+//////////////
 function dropStar(music,enemyinfo,startype,keyA,keyD){
 
 	if(battle==1&&enemyinfo.hp>0){
@@ -625,7 +312,7 @@ function BattleContinue(enemyinfo,music,scene,keyA,keyD){
 
 function BattleStart (player, enemy)
 {
-
+    
 	var keyA = this.input.keyboard.addKey('A');
 	var keyD = this.input.keyboard.addKey('D');
 
@@ -638,7 +325,7 @@ function BattleStart (player, enemy)
 
 	enemy.disableBody(true, true);
 }
-
+////////////////
 function ItemPickup (player, items)
 {
 

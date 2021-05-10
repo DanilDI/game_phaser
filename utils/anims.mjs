@@ -121,5 +121,12 @@ export default function createAnims(focus){
     });
     
 
+    focus.anims.create({
+        key: 'tree-idle',
+        frames: focus.anims.generateFrameNumbers('tree', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: 1
+    });
+
 
 }
