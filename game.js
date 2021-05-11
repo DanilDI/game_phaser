@@ -458,7 +458,7 @@ function createlvlUPbuttun(){
 				armorText.setText('arm: '+armour)
 			}
 			player_exp-=lvlUPexp;
-			lvlUPexp+=20;
+			lvlUPexp+=30;
 			expText.setText('EXP:  '+player_exp);
 			lvlUPexpText.setText('EXP to level UP:  '+lvlUPexp)
 			lvlUP=0;
@@ -489,7 +489,8 @@ function stage_end(player, stage_ender){
 }
 
 function create_stage(stage,scene){
-	var walltype=4; //временно
+	var walltype=5; //временно
+	var walltype=Phaser.Math.Between(1, 5);
 	stage++;
 	wallCreator(walltype,wall);
 	if(walltype==1){
@@ -598,6 +599,41 @@ function create_stage(stage,scene){
 
 		if(Phaser.Math.Between(1, 2)==1) itemCreator(1,380,250,scene,items)
 		else itemCreator(1,250,360,scene,items);
+
+		
+		
+	}
+	if(walltype==5){
+		if (stage==1) stage_ender.create(750, 450, '1_stage_end').setData({type: 1});
+		if (stage==2) stage_ender.create(750, 450, '2_stage_end').setData({type: 2});
+		if (stage==3) stage_ender.create(750, 450, '3_stage_end').setData({type: 3});
+		player.setPosition(450,150);
+
+		enemyCreator(stage,Phaser.Math.Between(1, 3),300,150,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(1, 3),300,450,scene,enemy);
+		
+
+		
+		enemyCreator(stage,Phaser.Math.Between(4, 5),600,150,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(4, 5),600,750,scene,enemy);
+		
+
+		if(Phaser.Math.Between(1, 2)==1) enemyCreator(stage,Phaser.Math.Between(1, 5),150,590,scene,enemy);
+		else enemyCreator(stage,Phaser.Math.Between(1, 5),300,730,scene,enemy);
+
+
+		enemyCreator(stage,Phaser.Math.Between(1, 5),750,600,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(1, 5),500,500,scene,enemy);
+
+
+
+		itemCreator(Phaser.Math.Between(2, 4),750,150,scene,items);
+		
+		itemCreator(Phaser.Math.Between(1, 5),100,400,scene,items);
+		itemCreator(1,150,150,scene,items);
+
+		if(Phaser.Math.Between(1, 2)==1) itemCreator(Phaser.Math.Between(3, 4),800,800,scene,items)
+		else itemCreator(Phaser.Math.Between(3, 4),500,800,scene,items);
 
 		
 		
