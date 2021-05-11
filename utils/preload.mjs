@@ -71,4 +71,10 @@ export default function loadAssets(focus)
 	focus.load.image('blade_mail_button', 'assets/buttons/blade_mail_button.png');
 
 
+
+	//stage end
+	focus.load.image('1_stage_end', 'assets/1.png');
+	focus.load.image('2_stage_end', 'assets/2.png');
+	focus.load.image('3_stage_end', 'assets/3.png');
+
 }
