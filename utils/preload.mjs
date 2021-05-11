@@ -55,7 +55,7 @@ export default function loadAssets(focus)
 	focus.load.audio('120_AANNANNANDD', 'assets/120_AANNANNANDD.wav');
 	focus.load.audio('120_AADDAANDDD', 'assets/120_AADDAANDDD.wav'); 
 	focus.load.audio('90_ANDDDNNDAD', 'assets/90_ANDDDNNDAD.wav');
-
+	focus.load.audio('120_AAAANNDDDD', 'assets/120_AAAANNDDDD.wav');
 
 	//items
 	focus.load.image('invibcible_shield', 'assets/items/invibcible_shield.png');

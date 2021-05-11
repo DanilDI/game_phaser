@@ -4,8 +4,8 @@ export function enemyCreator(lvl,type,x,y,scene,enemy){
 	//лес
 	if (lvl==1){
 		if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'worm').setData({damage: 8,exp: 20,animation:'worm-idle', hp: 70, music: '120_ADNNDA', speed:370, pattern: [9,255,510,755,1105,1255],satrnumber: 6,pause:1700 ,attacks: [0,1,2,2,1,0]});
-		if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'huntress').setData({damage: 10,exp: 20,animation:'huntress-idle', hp: 70, music: '120_AANNANNANDD', speed:320, pattern: [3,10,250,370,495,628,870,990,1125,1250,1385],satrnumber: 11,pause:1800 ,attacks: [0,0,2,2,0,2,2,0,2,1,1]});
-	/*временно*/ 	if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'huntress').setData({damage: 10,exp: 20,animation:'huntress-idle', hp: 70, music: '120_AANNANNANDD', speed:320, pattern: [3,10,250,370,495,628,870,990,1125,1250,1385],satrnumber: 11,pause:1800 ,attacks: [0,0,2,2,0,2,2,0,2,1,1]});
+		if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'huntress').setData({damage: 10,exp: 20,animation:'huntress-idle', hp: 70, music: '120_AANNANNANDD', speed:360, pattern: [3,10,250,370,495,628,870,990,1125,1250,1385],satrnumber: 11,pause:1800 ,attacks: [0,0,2,2,0,2,2,0,2,1,1]});
+		if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'tree').setData({damage: 5,exp: 20,animation:'tree-idle', hp: 100, music: '120_AAAANNDDDD', speed:340, pattern: [0,250,500,750,1000,1250,1500,1625,1750,1825],satrnumber: 10,pause:2000 ,attacks: [0,0,0,0,2,2,1,1,1,1]});
 		if(type==4) var concreteEnemy= scene.physics.add.sprite(x, y, 'mushroom').setData({damage: 8,exp: 30,animation:'mushroom-idle', hp: 70, music: '120_AADDAANDDD', speed:280, pattern: [10,147,278,400,510,635,760,890,1010,1150],satrnumber: 10,pause:1500 ,attacks: [0,0,1,1,0,0,2,1,1,1]});
 		if(type==5) var concreteEnemy= scene.physics.add.sprite(x, y, 'cyclop').setData({damage: 12,exp: 30,animation:'cyclop-idle', hp: 70, music: '90_ANDDDNNDAD', speed:250, pattern: [3,180,515,680,860,1025,1185,1350,1515,1690],satrnumber: 10,pause:2100 ,attacks: [0,2,1,1,1,2,2,1,0,1]});
 	}	
