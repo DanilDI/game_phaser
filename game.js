@@ -65,6 +65,8 @@ var lvl_UP_button;
 
 
 
+
+
 function preload ()
 {
     loadAssets(this);
@@ -134,21 +136,7 @@ function itemButtonCreator(scene){
 }
 function create ()
 {
-	///карта и окружение
-	// var img = this.add.image(600, 450, 'background_dungeon');
-	// let map = this.make.tilemap({key: 'map_dungeon'})
-	// let tileset = map.addTilesetImage('Dungeon tileset', 'tiles_dungeon', 16, 16, 0, 0);
-	// let layer1 = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
-
-	// var img = this.add.image(600, 450, 'background_forest');
-	// let map = this.make.tilemap({key: 'map_forest'})
-	// let tileset = map.addTilesetImage('dark_forest', 'tiles_forest', 32, 32, 0, 0);
-	// let layer1 = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
-
-	var img = this.add.image(600, 450, 'background_hell');
-	let map = this.make.tilemap({key: 'map_hell'})
-	let tileset = map.addTilesetImage('tiles_tiny_sample_2', 'tiles_hell', 32, 32, 0, 0);
-	let layer1 = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
+	
 
 
 
@@ -210,34 +198,7 @@ function create ()
 	stage_ender=this.physics.add.group();
 	//черновая отрисовкак противников
 
-	/*
-	enemyCreator(1,1,100,650,this,enemy);
-	enemyCreator(1,2,300,650,this,enemy);
-	enemyCreator(1,3,500,650,this,enemy);
-	enemyCreator(1,4,700,650,this,enemy);
-	enemyCreator(1,5,880,650,this,enemy);
-	
-	enemyCreator(2,1,100,350,this,enemy);
-	enemyCreator(2,2,300,350,this,enemy);
-	enemyCreator(2,3,500,350,this,enemy);
-	enemyCreator(2,4,700,350,this,enemy);
-	enemyCreator(2,5,880,350,this,enemy);
 
-	enemyCreator(3,1,100,150,this,enemy);
-	enemyCreator(3,2,300,150,this,enemy);
-	enemyCreator(3,3,500,150,this,enemy);
-	enemyCreator(3,4,700,150,this,enemy);
-	enemyCreator(3,5,880,150,this,enemy);
-
-
-	//черновая отрисовкак прeдметов
-	itemCreator(1,100,800,this,items);
-	itemCreator(2,200,800,this,items);
-	itemCreator(3,400,800,this,items);
-	itemCreator(4,600,800,this,items);
-	itemCreator(5,700,800,this,items);
-	
-    */
 	itemButtonCreator(this);
 	create_stage(0,this);
 	//коллайдеры и оверлапы
@@ -501,9 +462,36 @@ function stage_end(player, stage_ender){
 }
 
 function create_stage(stage,scene){
-	var walltype=5; //временно
-	var walltype=Phaser.Math.Between(1, 5);
+	var walltype=6; //временно
+	//var walltype=Phaser.Math.Between(1, 5);
 	stage++;
+	if(stage==1){
+		var img = scene.add.image(600, 450, 'background_forest');
+		img.setDepth(-1);
+		let map = scene.make.tilemap({key: 'map_forest'})
+
+		let tileset = map.addTilesetImage('dark_forest', 'tiles_forest', 32, 32, 0, 0);
+		let layer1 = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
+		layer1.setDepth(-1);
+	}
+	if(stage==2){
+		var img = scene.add.image(600, 450, 'background_dungeon');
+		img.setDepth(-1);
+		let map = scene.make.tilemap({key: 'map_dungeon'})
+		let tileset = map.addTilesetImage('Dungeon tileset', 'tiles_dungeon', 16, 16, 0, 0);
+		let layer1 = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
+		layer1.setDepth(-1);
+
+	}
+	if(stage==3){
+	
+		var img = scene.add.image(600, 450, 'background_hell');
+		img.setDepth(-1);
+		let map = scene.make.tilemap({key: 'map_hell'})
+		let tileset = map.addTilesetImage('tiles_tiny_sample_2', 'tiles_hell', 32, 32, 0, 0);
+		let layer1 = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
+		layer1.setDepth(-1);
+	}
 	wallCreator(walltype,wall);
 	if(walltype==1){
 		if (stage==1) stage_ender.create(80, 80, '1_stage_end').setData({type: 1});
