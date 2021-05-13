@@ -1,29 +1,11 @@
 export function enemyCreator(lvl,type,x,y,scene,enemy){
 	
-
-
-	// //лес
-	// if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'worm').setData({damage: 10,exp: 20,animation:'worm-idle', hp: 70, music: '120_ADNNDA', speed:300, pattern: [9,255,510,755,1105,1255],satrnumber: 6,pause:1700 ,attacks: [0,1,2,2,1,0]});
-	// if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'huntress').setData({damage: 12,exp: 20,animation:'huntress-idle', hp: 70, music: '120_AANNANNANDD', speed:300, pattern: [3,10,250,370,495,628,870,990,1125,1250,1385],satrnumber: 11,pause:1800 ,attacks: [0,0,2,2,0,2,2,0,2,1,1]});
-
-
-	// //подземелье
-
-	// //ад
-	
-	// if(type==11) var concreteEnemy= scene.physics.add.sprite(x, y, 'ghost').setData({damage: 15,exp: 20,animation:'ghost-idle', hp: 50, music: '120_DDDAAAND', speed:300, pattern: [35,535,1035,1510,1770,2020,2270,2510],satrnumber: 8,pause:3000 ,attacks: [1,1,1,0,0,0,2,1]});
-	// if(type==12) var concreteEnemy= scene.physics.add.sprite(x, y, 'hell-beast').setData({damage: 13,exp: 20,animation:'hell-beast-idle', hp: 80, music: '60_AAAADNDD', speed:300, pattern: [30,770,1270,1525,1780,2020,2215,2530],satrnumber: 8,pause:3000 ,attacks: [0,0,0,0,1,2,1,1]});
-	// if(type==13) var concreteEnemy= scene.physics.add.sprite(x, y, 'hell-hound').setData({damage: 13,exp: 20,animation:'hell-hound-idle', hp: 60, music: '150_AADDA', speed:330, pattern: [10,110,215,515,810],satrnumber: 5,pause:1500 ,attacks: [0,0,1,1,0]});
-	// if(type==14) var concreteEnemy= scene.physics.add.sprite(x, y, 'nightmare').setData({damage: 18,exp: 100,animation:'nightmare-idle', hp: 70, music: '90_ADNDA', speed:350, pattern: [10,350,675,835,1005],satrnumber: 5,pause:1400 ,attacks: [0,1,2,1,0]});
-	// if(type==15) var concreteEnemy= scene.physics.add.sprite(x, y, 'demon').setData({damage: 20,exp: 20,animation:'demon-idle', hp: 40, music: '180_ADNDDANDDA', speed:300, pattern: [28,210,365,540,710,855,1030,1190,1370,1530],satrnumber: 10,pause:2000 ,attacks: [0,1,2,1,1,0,2,1,1,0]});
-	// enemy.add(concreteEnemy);
-
 	
 	//лес
 	if (lvl==1){
 		if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'worm').setData({damage: 8,exp: 20,animation:'worm-idle', hp: 70, music: '120_ADNNDA', speed:370, pattern: [9,255,510,755,1105,1255],satrnumber: 6,pause:1700 ,attacks: [0,1,2,2,1,0]});
-		if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'huntress').setData({damage: 10,exp: 20,animation:'huntress-idle', hp: 70, music: '120_AANNANNANDD', speed:320, pattern: [3,10,250,370,495,628,870,990,1125,1250,1385],satrnumber: 11,pause:1800 ,attacks: [0,0,2,2,0,2,2,0,2,1,1]});
-	/*временно*/ 	if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'huntress').setData({damage: 10,exp: 20,animation:'huntress-idle', hp: 70, music: '120_AANNANNANDD', speed:320, pattern: [3,10,250,370,495,628,870,990,1125,1250,1385],satrnumber: 11,pause:1800 ,attacks: [0,0,2,2,0,2,2,0,2,1,1]});
+		if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'huntress').setData({damage: 10,exp: 20,animation:'huntress-idle', hp: 70, music: '120_AANNANNANDD', speed:360, pattern: [3,10,250,370,495,628,870,990,1125,1250,1385],satrnumber: 11,pause:1800 ,attacks: [0,0,2,2,0,2,2,0,2,1,1]});
+		if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'tree').setData({damage: 5,exp: 20,animation:'tree-idle', hp: 100, music: '120_AAAANNDDDD', speed:340, pattern: [0,250,500,750,1000,1250,1500,1625,1750,1825],satrnumber: 10,pause:2000 ,attacks: [0,0,0,0,2,2,1,1,1,1]});
 		if(type==4) var concreteEnemy= scene.physics.add.sprite(x, y, 'mushroom').setData({damage: 8,exp: 30,animation:'mushroom-idle', hp: 70, music: '120_AADDAANDDD', speed:280, pattern: [10,147,278,400,510,635,760,890,1010,1150],satrnumber: 10,pause:1500 ,attacks: [0,0,1,1,0,0,2,1,1,1]});
 		if(type==5) var concreteEnemy= scene.physics.add.sprite(x, y, 'cyclop').setData({damage: 12,exp: 30,animation:'cyclop-idle', hp: 70, music: '90_ANDDDNNDAD', speed:250, pattern: [3,180,515,680,860,1025,1185,1350,1515,1690],satrnumber: 10,pause:2100 ,attacks: [0,2,1,1,1,2,2,1,0,1]});
 	}	
