@@ -462,7 +462,7 @@ function stage_end(player, stage_ender){
 }
 
 function create_stage(stage,scene){
-	var walltype=3; //временно
+	var walltype=7; //временно
 	//var walltype=Phaser.Math.Between(1, 5);
 	stage++;
 	if(stage==1){
@@ -641,9 +641,9 @@ function create_stage(stage,scene){
 		
 	}
 	if(walltype==6){
-		if (stage==1) stage_ender.create(750, 750, '1_stage_end').setData({type: 1});
-		if (stage==2) stage_ender.create(750, 750, '2_stage_end').setData({type: 2});
-		if (stage==3) stage_ender.create(750, 750, '3_stage_end').setData({type: 3});
+		if (stage==1) stage_ender.create(750, 150, '1_stage_end').setData({type: 1});
+		if (stage==2) stage_ender.create(750, 150, '2_stage_end').setData({type: 2});
+		if (stage==3) stage_ender.create(750, 150, '3_stage_end').setData({type: 3});
 		player.setPosition(450,750);
 
 		enemyCreator(stage,Phaser.Math.Between(1, 3),300,730,scene,enemy);
@@ -673,6 +673,37 @@ function create_stage(stage,scene){
 		itemCreator(5,100,150,scene,items);
 		if(Phaser.Math.Between(1, 2)==1) itemCreator(1,850,850,scene,items)
 		else itemCreator(1,850,350,scene,items);
+
+		
+		
+	}
+	if(walltype==7){
+		if (stage==1) stage_ender.create(450, 450, '1_stage_end').setData({type: 1});
+		if (stage==2) stage_ender.create(450, 450, '2_stage_end').setData({type: 2});
+		if (stage==3) stage_ender.create(450, 450, '3_stage_end').setData({type: 3});
+		player.setPosition(150,750);
+
+		enemyCreator(stage,Phaser.Math.Between(1, 3),150,300,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(1, 3),150,600,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(1, 3),600,730,scene,enemy);
+
+		
+		enemyCreator(stage,Phaser.Math.Between(4, 5),450,300,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(4, 5),750,300,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(4, 5),750,600,scene,enemy);
+		
+
+		enemyCreator(stage,Phaser.Math.Between(1, 5),300,130,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(1, 5),450,820,scene,enemy);
+
+
+
+		itemCreator(1,850,850,scene,items);
+		
+		itemCreator(1,150,450,scene,items);
+		itemCreator(2,750,150,scene,items);
+		itemCreator(Phaser.Math.Between(3, 5),750,450,scene,items);
+		
 
 		
 		
