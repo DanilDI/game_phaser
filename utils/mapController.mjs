@@ -264,6 +264,10 @@ export function wallCreatorHell(type,wall)
 		wall.create(290, 755, 'longStraight');
 		wall.create(590, 755, 'longStraight');
 	}
+	wall.create(15, 450, 'borderLongHell');
+	wall.create(885, 450, 'borderLongHell');
+	wall.create(450, 15, 'borderWideHell');
+	wall.create(450, 885, 'borderWideHell');
 }
 
 export function wallCreatorForest(type,wall)
@@ -501,6 +505,10 @@ export function wallCreatorForest(type,wall)
 		wall.create(290, 755, 'longStraightForest');
 		wall.create(590, 755, 'longStraightForest');
 	}
+	wall.create(15, 450, 'borderLongForest');
+	wall.create(885, 450, 'borderLongForest');
+	wall.create(450, 15, 'borderWideForest');
+	wall.create(450, 885, 'borderWideForest');
 }
 
 export function wallCreatorDungeon(type,wall)
@@ -738,6 +746,10 @@ export function wallCreatorDungeon(type,wall)
 		wall.create(290, 755, 'longStraightDungeon');
 		wall.create(590, 755, 'longStraightDungeon');
 	}
+	wall.create(15, 450, 'borderLongDungeon');
+	wall.create(885, 450, 'borderLongDungeon');
+	wall.create(450, 15, 'borderWideDungeon');
+	wall.create(450, 885, 'borderWideDungeon');
 }
 
 export function itemCreator(type,x,y,scene,items){
