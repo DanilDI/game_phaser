@@ -1,7 +1,7 @@
 import movement from './utils/movement.mjs';
 import createAnims from './utils/anims.mjs';
 import loadAssets from './utils/preload.mjs';
-import {enemyCreator, wallCreator, itemCreator} from './utils/mapController.mjs';
+import {enemyCreator,wallCreatorForest, wallCreatorDungeon,wallCreatorHell, itemCreator} from './utils/mapController.mjs';
 
 
 
@@ -462,7 +462,7 @@ function stage_end(player, stage_ender){
 }
 
 function create_stage(stage,scene){
-	var walltype=6; //временно
+	var walltype=3; //временно
 	//var walltype=Phaser.Math.Between(1, 5);
 	stage++;
 	if(stage==1){
@@ -473,6 +473,7 @@ function create_stage(stage,scene){
 		let tileset = map.addTilesetImage('dark_forest', 'tiles_forest', 32, 32, 0, 0);
 		let layer1 = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
 		layer1.setDepth(-1);
+		wallCreatorForest(walltype,wall);
 	}
 	if(stage==2){
 		var img = scene.add.image(600, 450, 'background_dungeon');
@@ -481,7 +482,7 @@ function create_stage(stage,scene){
 		let tileset = map.addTilesetImage('Dungeon tileset', 'tiles_dungeon', 16, 16, 0, 0);
 		let layer1 = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
 		layer1.setDepth(-1);
-
+		wallCreatorDungeon(walltype,wall);
 	}
 	if(stage==3){
 	
@@ -491,8 +492,9 @@ function create_stage(stage,scene){
 		let tileset = map.addTilesetImage('tiles_tiny_sample_2', 'tiles_hell', 32, 32, 0, 0);
 		let layer1 = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
 		layer1.setDepth(-1);
+		wallCreatorHell(walltype,wall);
 	}
-	wallCreator(walltype,wall);
+	
 	if(walltype==1){
 		if (stage==1) stage_ender.create(80, 80, '1_stage_end').setData({type: 1});
 		if (stage==2) stage_ender.create(80, 80, '2_stage_end').setData({type: 2});
@@ -634,6 +636,43 @@ function create_stage(stage,scene){
 
 		if(Phaser.Math.Between(1, 2)==1) itemCreator(Phaser.Math.Between(3, 4),800,800,scene,items)
 		else itemCreator(Phaser.Math.Between(3, 4),500,800,scene,items);
+
+		
+		
+	}
+	if(walltype==6){
+		if (stage==1) stage_ender.create(750, 750, '1_stage_end').setData({type: 1});
+		if (stage==2) stage_ender.create(750, 750, '2_stage_end').setData({type: 2});
+		if (stage==3) stage_ender.create(750, 750, '3_stage_end').setData({type: 3});
+		player.setPosition(450,750);
+
+		enemyCreator(stage,Phaser.Math.Between(1, 3),300,730,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(1, 3),600,730,scene,enemy);
+		
+
+		
+		enemyCreator(stage,Phaser.Math.Between(4, 5),150,300,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(4, 5),450,300,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(4, 5),600,130,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(4, 5),600,430,scene,enemy);
+
+		if(Phaser.Math.Between(1, 2)==1) enemyCreator(stage,Phaser.Math.Between(1, 5),400,150,scene,enemy);
+		else enemyCreator(stage,Phaser.Math.Between(1, 5),400,450,scene,enemy);
+
+
+		enemyCreator(stage,Phaser.Math.Between(1, 5),150,600,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(1, 5),750,600,scene,enemy);
+
+
+
+		itemCreator(1,250,650,scene,items);
+		
+		itemCreator(Phaser.Math.Between(3, 4),550,50,scene,items);
+		itemCreator(Phaser.Math.Between(3, 4),250,350,scene,items);
+		itemCreator(Phaser.Math.Between(2, 4),200,150,scene,items);
+		itemCreator(5,100,150,scene,items);
+		if(Phaser.Math.Between(1, 2)==1) itemCreator(1,850,850,scene,items)
+		else itemCreator(1,850,350,scene,items);
 
 		
 		
