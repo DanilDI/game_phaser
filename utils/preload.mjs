@@ -17,6 +17,16 @@ export default function loadAssets(focus)
 	focus.load.image('shortWide', 'assets/map/short_wall_wide.png');
 	focus.load.image('shortStraight', 'assets/map/short_wall_straight.png');
 
+	focus.load.image('longStraightForest', 'assets/map/long_wall_straight_forest.png');
+	focus.load.image('longWideForest', 'assets/map/long_wall_wide_forest.png');
+	focus.load.image('shortWideForest', 'assets/map/short_wall_wide_forest.png');
+	focus.load.image('shortStraightForest', 'assets/map/short_wall_straight_forest.png');
+
+	focus.load.image('longStraightDungeon', 'assets/map/long_wall_straight_dungeon.png');
+	focus.load.image('longWideDungeon', 'assets/map/long_wall_wide_dungeon.png');
+	focus.load.image('shortWideDungeon', 'assets/map/short_wall_wide_dungeon.png');
+	focus.load.image('shortStraightDungeon', 'assets/map/short_wall_straight_dungeon.png');
+
 
 
 	focus.load.image('hood','assets/hood.png')

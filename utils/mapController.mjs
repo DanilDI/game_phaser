@@ -29,7 +29,7 @@ export function enemyCreator(lvl,type,x,y,scene,enemy){
 	enemy.add(concreteEnemy);
 }
 
-export function wallCreator(type,wall)
+export function wallCreatorHell(type,wall)
 {
 	if(type == 1)
 	{
@@ -263,6 +263,480 @@ export function wallCreator(type,wall)
 
 		wall.create(290, 755, 'longStraight');
 		wall.create(590, 755, 'longStraight');
+	}
+}
+
+export function wallCreatorForest(type,wall)
+{
+	if(type == 1)
+	{
+		wall.create(290, 55, 'shortStraightForest');
+		wall.create(290, 255, 'shortStraightForest');
+		wall.create(155, 290, 'longWideForest');
+		wall.create(590, 55, 'shortStraightForest');
+		wall.create(590, 255, 'shortStraightForest');
+		wall.create(455, 290, 'longWideForest');
+		wall.create(640, 290, 'shortWideForest');
+		wall.create(840, 290, 'shortWideForest');
+
+		wall.create(290, 340, 'shortStraightForest');
+		wall.create(290, 555, 'shortStraightForest');
+		wall.create(40, 590, 'shortWideForest');
+		wall.create(240, 590, 'shortWideForest');
+		wall.create(590, 455, 'longStraightForest');
+		wall.create(455, 590, 'longWideForest');
+		wall.create(640, 590, 'shortWideForest');
+		wall.create(840, 590, 'shortWideForest');
+
+
+		wall.create(290, 640, 'shortStraightForest');
+		wall.create(290, 840, 'shortStraightForest');
+
+		wall.create(590, 640, 'shortStraightForest');
+		wall.create(590, 840, 'shortStraightForest');
+	}
+
+	if(type == 2)
+	{
+		wall.create(290, 155, 'longStraightForest');
+		wall.create(40, 290, 'shortWideForest');
+		wall.create(240, 290, 'shortWideForest');
+		wall.create(590, 55, 'shortStraightForest');
+		wall.create(590, 255, 'shortStraightForest');
+		wall.create(340, 290, 'shortWideForest');
+		wall.create(540, 290, 'shortWideForest');
+		wall.create(755, 290, 'longWideForest');
+
+		wall.create(290, 340, 'shortStraightForest');
+		wall.create(290, 555, 'shortStraightForest');
+		wall.create(40, 590, 'shortWideForest');
+		wall.create(240, 590, 'shortWideForest');
+		wall.create(590, 455, 'longStraightForest');
+		wall.create(455, 590, 'longWideForest');
+		wall.create(640, 590, 'shortWideForest');
+		wall.create(840, 590, 'shortWideForest');
+
+		wall.create(290, 640, 'shortStraightForest');
+		wall.create(290, 840, 'shortStraightForest');
+
+		wall.create(590, 640, 'shortStraightForest');
+		wall.create(590, 840, 'shortStraightForest');
+
+	}
+	if(type == 3)
+	{
+		wall.create(155, 290, 'longWideForest');
+		wall.create(290, 55, 'shortStraightForest');
+		wall.create(290, 255, 'shortStraightForest');
+		wall.create(590, 55, 'shortStraightForest');
+		wall.create(590, 255, 'shortStraightForest');
+		wall.create(340, 290, 'shortWideForest');
+		wall.create(540, 290, 'shortWideForest');
+		wall.create(755, 290, 'longWideForest');
+
+		wall.create(290, 455, 'longStraightForest');
+		wall.create(40, 590, 'shortWideForest');
+		wall.create(240, 590, 'shortWideForest');
+		wall.create(590, 340, 'shortStraightForest');
+		wall.create(590, 555, 'shortStraightForest');
+		wall.create(455, 590, 'longWideForest');
+		wall.create(640, 590, 'shortWideForest');
+		wall.create(840, 590, 'shortWideForest');
+
+		wall.create(290, 640, 'shortStraightForest');
+		wall.create(290, 840, 'shortStraightForest');
+		wall.create(590, 640, 'shortStraightForest');
+		wall.create(590, 840, 'shortStraightForest');
+	}
+	if(type == 4)
+	{
+		wall.create(155, 290, 'longWideForest');
+		wall.create(290, 55, 'shortStraightForest');
+		wall.create(290, 255, 'shortStraightForest');
+		wall.create(455, 290, 'longWideForest');
+		wall.create(590, 55, 'shortStraightForest');
+		wall.create(590, 255, 'shortStraightForest');
+		wall.create(640, 290, 'shortWideForest');
+		wall.create(840, 290, 'shortWideForest');
+
+		wall.create(290, 340, 'shortStraightForest');
+		wall.create(290, 555, 'shortStraightForest');
+		wall.create(40, 590, 'shortWideForest');
+		wall.create(240, 590, 'shortWideForest');
+		wall.create(340, 590, 'shortWideForest');
+		wall.create(540, 590, 'shortWideForest');
+		wall.create(590, 455, 'longStraightForest');
+		wall.create(640, 590, 'shortWideForest');
+		wall.create(840, 590, 'shortWideForest');
+
+		wall.create(290, 755, 'longStraightForest');
+		wall.create(590, 640, 'shortStraightForest');
+		wall.create(590, 840, 'shortStraightForest');
+	}
+	if(type == 5)
+	{
+		wall.create(155, 290, 'longWideForest');
+		wall.create(290, 55, 'shortStraightForest');
+		wall.create(290, 255, 'shortStraightForest');
+		wall.create(590, 55, 'shortStraightForest');
+		wall.create(590, 255, 'shortStraightForest');
+		wall.create(340, 290, 'shortWideForest');
+		wall.create(540, 290, 'shortWideForest');
+		wall.create(755, 290, 'longWideForest');
+
+		wall.create(290, 340, 'shortStraightForest');
+		wall.create(290, 555, 'shortStraightForest');
+		wall.create(40, 590, 'shortWideForest');
+		wall.create(240, 590, 'shortWideForest');
+		wall.create(590, 455, 'longStraightForest');
+		wall.create(455, 590, 'longWideForest');
+		wall.create(640, 590, 'shortWideForest');
+		wall.create(840, 590, 'shortWideForest');
+
+		wall.create(290, 640, 'shortStraightForest');
+		wall.create(290, 840, 'shortStraightForest');
+
+		wall.create(590, 640, 'shortStraightForest');
+		wall.create(590, 840, 'shortStraightForest');
+	}
+	if( type == 6)
+	{
+		wall.create(290, 155, 'longStraightForest');
+		wall.create(40, 290, 'shortWideForest');
+		wall.create(240, 290, 'shortWideForest');
+		wall.create(590, 55, 'shortStraightForest');
+		wall.create(590, 255, 'shortStraightForest');
+		wall.create(340, 290, 'shortWideForest');
+		wall.create(540, 290, 'shortWideForest');
+		wall.create(755, 290, 'longWideForest');
+
+		wall.create(290, 455, 'longStraightForest');
+		wall.create(40, 590, 'shortWideForest');
+		wall.create(240, 590, 'shortWideForest');
+		wall.create(455, 590, 'longWideForest');
+		wall.create(590, 340, 'shortStraightForest');
+		wall.create(590, 555, 'shortStraightForest');
+		wall.create(640, 590, 'shortWideForest');
+		wall.create(840, 590, 'shortWideForest');
+
+		wall.create(290, 640, 'shortStraightForest');
+		wall.create(290, 840, 'shortStraightForest');
+		wall.create(590, 640, 'shortStraightForest');
+		wall.create(590, 840, 'shortStraightForest');
+	}
+	if( type == 7 ){
+		wall.create(290, 55, 'shortStraightForest');
+		wall.create(290, 255, 'shortStraightForest');
+		wall.create(40, 290, 'shortWideForest');
+		wall.create(240, 290, 'shortWideForest');
+		wall.create(590, 155, 'longStraightForest');
+		wall.create(340, 290, 'shortWideForest');
+		wall.create(540, 290, 'shortWideForest');
+		wall.create(640, 290, 'shortWideForest');
+		wall.create(840, 290, 'shortWideForest');
+
+		wall.create(290, 455, 'longStraightForest');
+		wall.create(40, 590, 'shortWideForest');
+		wall.create(240, 590, 'shortWideForest');
+		wall.create(590, 455, 'longStraightForest');
+		wall.create(455, 590, 'longWideForest');
+		wall.create(640, 590, 'shortWideForest');
+		wall.create(840, 590, 'shortWideForest');
+
+		wall.create(290, 640, 'shortStraightForest');
+		wall.create(290, 840, 'shortStraightForest');
+		wall.create(590, 640, 'shortStraightForest');
+		wall.create(590, 840, 'shortStraightForest');
+	}
+	if(type == 8)
+	{
+		wall.create(290, 155, 'longStraightForest');
+		wall.create(40, 290, 'shortWideForest');
+		wall.create(240, 290, 'shortWideForest');
+		wall.create(590, 55, 'shortStraightForest');
+		wall.create(590, 255, 'shortStraightForest');
+		wall.create(340, 290, 'shortWideForest');
+		wall.create(540, 290, 'shortWideForest');
+		wall.create(640, 290, 'shortWideForest');
+		wall.create(840, 290, 'shortWideForest');
+
+		wall.create(290, 340, 'shortStraightForest');
+		wall.create(290, 555, 'shortStraightForest');
+		wall.create(40, 590, 'shortWideForest');
+		wall.create(240, 590, 'shortWideForest');
+		wall.create(590, 455, 'longStraightForest');
+		wall.create(455, 590, 'longWideForest');
+		wall.create(640, 590, 'shortWideForest');
+		wall.create(840, 590, 'shortWideForest');
+
+		wall.create(290, 640, 'shortStraightForest');
+		wall.create(290, 840, 'shortStraightForest');
+		wall.create(590, 755, 'longStraightForest');
+	}
+	if(type == 9)
+	{
+		wall.create(290, 155, 'longStraightForest');
+		wall.create(40, 290, 'shortWideForest');
+		wall.create(240, 290, 'shortWideForest');
+		wall.create(590, 155, 'longStraightForest');
+		wall.create(340, 290, 'shortWideForest');
+		wall.create(540, 290, 'shortWideForest');
+
+		wall.create(640, 290, 'shortWideForest');
+		wall.create(840, 290, 'shortWideForest');
+
+		wall.create(290, 340, 'shortStraightForest');
+		wall.create(290, 555, 'shortStraightForest');
+		wall.create(40, 590, 'shortWideForest');
+		wall.create(240, 590, 'shortWideForest');
+
+		wall.create(590, 340, 'shortStraightForest');
+		wall.create(590, 555, 'shortStraightForest');
+		wall.create(340, 590, 'shortWideForest');
+		wall.create(540, 590, 'shortWideForest');
+
+		wall.create(640, 590, 'shortWideForest');
+		wall.create(840, 590, 'shortWideForest');
+
+		wall.create(290, 755, 'longStraightForest');
+		wall.create(590, 755, 'longStraightForest');
+	}
+}
+
+export function wallCreatorDungeon(type,wall)
+{
+	if(type == 1)
+	{
+		wall.create(290, 55, 'shortStraightDungeon');
+		wall.create(290, 255, 'shortStraightDungeon');
+		wall.create(155, 290, 'longWideDungeon');
+		wall.create(590, 55, 'shortStraightDungeon');
+		wall.create(590, 255, 'shortStraightDungeon');
+		wall.create(455, 290, 'longWideDungeon');
+		wall.create(640, 290, 'shortWideDungeon');
+		wall.create(840, 290, 'shortWideDungeon');
+
+		wall.create(290, 340, 'shortStraightDungeon');
+		wall.create(290, 555, 'shortStraightDungeon');
+		wall.create(40, 590, 'shortWideDungeon');
+		wall.create(240, 590, 'shortWideDungeon');
+		wall.create(590, 455, 'longStraightDungeon');
+		wall.create(455, 590, 'longWideDungeon');
+		wall.create(640, 590, 'shortWideDungeon');
+		wall.create(840, 590, 'shortWideDungeon');
+
+
+		wall.create(290, 640, 'shortStraightDungeon');
+		wall.create(290, 840, 'shortStraightDungeon');
+
+		wall.create(590, 640, 'shortStraightDungeon');
+		wall.create(590, 840, 'shortStraightDungeon');
+	}
+
+	if(type == 2)
+	{
+		wall.create(290, 155, 'longStraightDungeon');
+		wall.create(40, 290, 'shortWideDungeon');
+		wall.create(240, 290, 'shortWideDungeon');
+		wall.create(590, 55, 'shortStraightDungeon');
+		wall.create(590, 255, 'shortStraightDungeon');
+		wall.create(340, 290, 'shortWideDungeon');
+		wall.create(540, 290, 'shortWideDungeon');
+		wall.create(755, 290, 'longWideDungeon');
+
+		wall.create(290, 340, 'shortStraightDungeon');
+		wall.create(290, 555, 'shortStraightDungeon');
+		wall.create(40, 590, 'shortWideDungeon');
+		wall.create(240, 590, 'shortWideDungeon');
+		wall.create(590, 455, 'longStraightDungeon');
+		wall.create(455, 590, 'longWideDungeon');
+		wall.create(640, 590, 'shortWideDungeon');
+		wall.create(840, 590, 'shortWideDungeon');
+
+		wall.create(290, 640, 'shortStraightDungeon');
+		wall.create(290, 840, 'shortStraightDungeon');
+
+		wall.create(590, 640, 'shortStraightDungeon');
+		wall.create(590, 840, 'shortStraightDungeon');
+
+	}
+	if(type == 3)
+	{
+		wall.create(155, 290, 'longWideDungeon');
+		wall.create(290, 55, 'shortStraightDungeon');
+		wall.create(290, 255, 'shortStraightDungeon');
+		wall.create(590, 55, 'shortStraightDungeon');
+		wall.create(590, 255, 'shortStraightDungeon');
+		wall.create(340, 290, 'shortWideDungeon');
+		wall.create(540, 290, 'shortWideDungeon');
+		wall.create(755, 290, 'longWideDungeon');
+
+		wall.create(290, 455, 'longStraightDungeon');
+		wall.create(40, 590, 'shortWideDungeon');
+		wall.create(240, 590, 'shortWideDungeon');
+		wall.create(590, 340, 'shortStraightDungeon');
+		wall.create(590, 555, 'shortStraightDungeon');
+		wall.create(455, 590, 'longWideDungeon');
+		wall.create(640, 590, 'shortWideDungeon');
+		wall.create(840, 590, 'shortWideDungeon');
+
+		wall.create(290, 640, 'shortStraightDungeon');
+		wall.create(290, 840, 'shortStraightDungeon');
+		wall.create(590, 640, 'shortStraightDungeon');
+		wall.create(590, 840, 'shortStraightDungeon');
+	}
+	if(type == 4)
+	{
+		wall.create(155, 290, 'longWideDungeon');
+		wall.create(290, 55, 'shortStraightDungeon');
+		wall.create(290, 255, 'shortStraightDungeon');
+		wall.create(455, 290, 'longWideDungeon');
+		wall.create(590, 55, 'shortStraightDungeon');
+		wall.create(590, 255, 'shortStraightDungeon');
+		wall.create(640, 290, 'shortWideDungeon');
+		wall.create(840, 290, 'shortWideDungeon');
+
+		wall.create(290, 340, 'shortStraightDungeon');
+		wall.create(290, 555, 'shortStraightDungeon');
+		wall.create(40, 590, 'shortWideDungeon');
+		wall.create(240, 590, 'shortWideDungeon');
+		wall.create(340, 590, 'shortWideDungeon');
+		wall.create(540, 590, 'shortWideDungeon');
+		wall.create(590, 455, 'longStraightDungeon');
+		wall.create(640, 590, 'shortWideDungeon');
+		wall.create(840, 590, 'shortWideDungeon');
+
+		wall.create(290, 755, 'longStraightDungeon');
+		wall.create(590, 640, 'shortStraightDungeon');
+		wall.create(590, 840, 'shortStraightDungeon');
+	}
+	if(type == 5)
+	{
+		wall.create(155, 290, 'longWideDungeon');
+		wall.create(290, 55, 'shortStraightDungeon');
+		wall.create(290, 255, 'shortStraightDungeon');
+		wall.create(590, 55, 'shortStraightDungeon');
+		wall.create(590, 255, 'shortStraightDungeon');
+		wall.create(340, 290, 'shortWideDungeon');
+		wall.create(540, 290, 'shortWideDungeon');
+		wall.create(755, 290, 'longWideDungeon');
+
+		wall.create(290, 340, 'shortStraightDungeon');
+		wall.create(290, 555, 'shortStraightDungeon');
+		wall.create(40, 590, 'shortWideDungeon');
+		wall.create(240, 590, 'shortWideDungeon');
+		wall.create(590, 455, 'longStraightDungeon');
+		wall.create(455, 590, 'longWideDungeon');
+		wall.create(640, 590, 'shortWideDungeon');
+		wall.create(840, 590, 'shortWideDungeon');
+
+		wall.create(290, 640, 'shortStraightDungeon');
+		wall.create(290, 840, 'shortStraightDungeon');
+
+		wall.create(590, 640, 'shortStraightDungeon');
+		wall.create(590, 840, 'shortStraightDungeon');
+	}
+	if( type == 6)
+	{
+		wall.create(290, 155, 'longStraightDungeon');
+		wall.create(40, 290, 'shortWideDungeon');
+		wall.create(240, 290, 'shortWideDungeon');
+		wall.create(590, 55, 'shortStraightDungeon');
+		wall.create(590, 255, 'shortStraightDungeon');
+		wall.create(340, 290, 'shortWideDungeon');
+		wall.create(540, 290, 'shortWideDungeon');
+		wall.create(755, 290, 'longWideDungeon');
+
+		wall.create(290, 455, 'longStraightDungeon');
+		wall.create(40, 590, 'shortWideDungeon');
+		wall.create(240, 590, 'shortWideDungeon');
+		wall.create(455, 590, 'longWideDungeon');
+		wall.create(590, 340, 'shortStraightDungeon');
+		wall.create(590, 555, 'shortStraightDungeon');
+		wall.create(640, 590, 'shortWideDungeon');
+		wall.create(840, 590, 'shortWideDungeon');
+
+		wall.create(290, 640, 'shortStraightDungeon');
+		wall.create(290, 840, 'shortStraightDungeon');
+		wall.create(590, 640, 'shortStraightDungeon');
+		wall.create(590, 840, 'shortStraightDungeon');
+	}
+	if( type == 7 ){
+		wall.create(290, 55, 'shortStraightDungeon');
+		wall.create(290, 255, 'shortStraightDungeon');
+		wall.create(40, 290, 'shortWideDungeon');
+		wall.create(240, 290, 'shortWideDungeon');
+		wall.create(590, 155, 'longStraightDungeon');
+		wall.create(340, 290, 'shortWideDungeon');
+		wall.create(540, 290, 'shortWideDungeon');
+		wall.create(640, 290, 'shortWideDungeon');
+		wall.create(840, 290, 'shortWideDungeon');
+
+		wall.create(290, 455, 'longStraightDungeon');
+		wall.create(40, 590, 'shortWideDungeon');
+		wall.create(240, 590, 'shortWideDungeon');
+		wall.create(590, 455, 'longStraightDungeon');
+		wall.create(455, 590, 'longWideDungeon');
+		wall.create(640, 590, 'shortWideDungeon');
+		wall.create(840, 590, 'shortWideDungeon');
+
+		wall.create(290, 640, 'shortStraightDungeon');
+		wall.create(290, 840, 'shortStraightDungeon');
+		wall.create(590, 640, 'shortStraightDungeon');
+		wall.create(590, 840, 'shortStraightDungeon');
+	}
+	if(type == 8)
+	{
+		wall.create(290, 155, 'longStraightDungeon');
+		wall.create(40, 290, 'shortWideDungeon');
+		wall.create(240, 290, 'shortWideDungeon');
+		wall.create(590, 55, 'shortStraightDungeon');
+		wall.create(590, 255, 'shortStraightDungeon');
+		wall.create(340, 290, 'shortWideDungeon');
+		wall.create(540, 290, 'shortWideDungeon');
+		wall.create(640, 290, 'shortWideDungeon');
+		wall.create(840, 290, 'shortWideDungeon');
+
+		wall.create(290, 340, 'shortStraightDungeon');
+		wall.create(290, 555, 'shortStraightDungeon');
+		wall.create(40, 590, 'shortWideDungeon');
+		wall.create(240, 590, 'shortWideDungeon');
+		wall.create(590, 455, 'longStraightDungeon');
+		wall.create(455, 590, 'longWideDungeon');
+		wall.create(640, 590, 'shortWideDungeon');
+		wall.create(840, 590, 'shortWideDungeon');
+
+		wall.create(290, 640, 'shortStraightDungeon');
+		wall.create(290, 840, 'shortStraightDungeon');
+		wall.create(590, 755, 'longStraightDungeon');
+	}
+	if(type == 9)
+	{
+		wall.create(290, 155, 'longStraightDungeon');
+		wall.create(40, 290, 'shortWideDungeon');
+		wall.create(240, 290, 'shortWideDungeon');
+		wall.create(590, 155, 'longStraightDungeon');
+		wall.create(340, 290, 'shortWideDungeon');
+		wall.create(540, 290, 'shortWideDungeon');
+
+		wall.create(640, 290, 'shortWideDungeon');
+		wall.create(840, 290, 'shortWideDungeon');
+
+		wall.create(290, 340, 'shortStraightDungeon');
+		wall.create(290, 555, 'shortStraightDungeon');
+		wall.create(40, 590, 'shortWideDungeon');
+		wall.create(240, 590, 'shortWideDungeon');
+
+		wall.create(590, 340, 'shortStraightDungeon');
+		wall.create(590, 555, 'shortStraightDungeon');
+		wall.create(340, 590, 'shortWideDungeon');
+		wall.create(540, 590, 'shortWideDungeon');
+
+		wall.create(640, 590, 'shortWideDungeon');
+		wall.create(840, 590, 'shortWideDungeon');
+
+		wall.create(290, 755, 'longStraightDungeon');
+		wall.create(590, 755, 'longStraightDungeon');
 	}
 }
 
