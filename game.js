@@ -45,7 +45,10 @@ var lvlUPexp=100;
 var lvlUPexpText
 var mHood;
 var wall;
-
+//// test
+var im;
+var dd;
+var end;
 
 
 var game = new Phaser.Game(config);
@@ -68,6 +71,7 @@ var lvl_UP_button;
 function preload ()
 {
     loadAssets(this);
+	
 
 }
 
@@ -135,6 +139,8 @@ function itemButtonCreator(scene){
 function create ()
 {
 	///карта и окружение
+
+	
 	var img = this.add.image(600, 450, 'background');
 	const map = this.make.tilemap({key: 'map'})
 	const tileset = map.addTilesetImage('tileset_dungeon', 'tiles', 32, 32, 0, 0);
@@ -242,6 +248,10 @@ function create ()
 	
 	this.physics.add.overlap(player, items, ItemPickup, null, this);
 	this.physics.add.overlap(platforms, stars, Star_hit_the_ground, null, this);
+	//test
+	im = this.physics.add.sprite(400, 400, 'hell_door');
+	dd = this.add.image(400, 600, 'dungeon_door');
+	end = this.physics.add.sprite(600, 400, 'end_game');
 }
 
 function update ()
@@ -256,6 +266,10 @@ function update ()
 		child.anims.play(child.data.list.animation,true);
 
 	});
+	//test 
+	im.anims.play('hell-door-pulse',true);
+	end.anims.play('end-game-pulse',true);
+	
 
 }
 //////////////

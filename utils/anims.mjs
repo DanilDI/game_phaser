@@ -2,7 +2,7 @@ export default function createAnims(focus){
     //main character 
     focus.anims.create({
         key: 'left',
-        frames: focus.anims.generateFrameNumbers('run_left', { start: 0, end: 9 }),
+        frames: focus.anims.generateFrameNumbers('run_left', { start: 0, end: 7 }),
         frameRate: 10,
         repeat: -1
     });
@@ -16,7 +16,7 @@ export default function createAnims(focus){
     
     focus.anims.create({
         key: 'right',
-        frames: focus.anims.generateFrameNumbers('run_right', { start: 0, end: 9 }),
+        frames: focus.anims.generateFrameNumbers('run_right', { start: 0, end: 7 }),
         frameRate: 10,
         repeat: -1
     });
@@ -127,6 +127,21 @@ export default function createAnims(focus){
         frameRate: 5,
         repeat: 1
     });
+    //stage end
+    focus.anims.create({
+        key: 'hell-door-pulse',
+        frames: focus.anims.generateFrameNumbers('hell_door', { start: 0, end: 3 }),
+        frameRate: 3,
+        repeat: 1
+    });
+
+    focus.anims.create({
+        key: 'end-game-pulse',
+        frames: focus.anims.generateFrameNumbers('end_game', { start: 0, end: 4 }),
+        frameRate: 5,
+        repeat: 1
+    });
+
 
 
 }

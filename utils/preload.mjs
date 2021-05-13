@@ -16,9 +16,9 @@ export default function loadAssets(focus)
 	focus.load.image('star1', 'assets/starD.png');
 	focus.load.image('star2', 'assets/starB.png');
 
-	focus.load.spritesheet('run_right', 'assets/main_char_anims/run.png', { frameWidth: 184, frameHeight: 137 });
-	focus.load.spritesheet('idle', 'assets/main_char_anims/idle.png', { frameWidth: 184, frameHeight: 137 });
-	focus.load.spritesheet('run_left', 'assets/main_char_anims/run_left.png', { frameWidth: 184, frameHeight: 137 });
+	focus.load.spritesheet('run_right', 'assets/main_char_anims/run.png', { frameWidth: 184, frameHeight: 85 });
+	focus.load.spritesheet('idle', 'assets/main_char_anims/idle.png', { frameWidth: 184, frameHeight: 85 });
+	focus.load.spritesheet('run_left', 'assets/main_char_anims/run_left.png', { frameWidth: 184, frameHeight: 85 });
 	//hell
 	focus.load.spritesheet('demon', 'assets/hell_anims/demon-idle.png', { frameWidth: 160, frameHeight: 144 });
 	focus.load.spritesheet('ghost', 'assets/hell_anims/ghost-idle.png', { frameWidth: 64, frameHeight: 80 });
@@ -69,6 +69,12 @@ export default function loadAssets(focus)
 	focus.load.image('dmg_boost_button', 'assets/buttons/dmg_boost_button.png');
 	focus.load.image('invincible_shield_button', 'assets/buttons/invincible_shield_button.png');
 	focus.load.image('blade_mail_button', 'assets/buttons/blade_mail_button.png');
+
+
+	//stage end
+	focus.load.spritesheet('hell_door','assets/doors/hell-door.png', { frameWidth: 128, frameHeight: 128 });
+	focus.load.image('dungeon_door','assets/doors/dungeon-door.png');
+	focus.load.spritesheet('end_game','assets/doors/diamond-pulse.png', { frameWidth: 107, frameHeight: 91 });
 
 
 }
