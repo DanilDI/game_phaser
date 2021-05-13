@@ -135,10 +135,22 @@ function itemButtonCreator(scene){
 function create ()
 {
 	///карта и окружение
-	var img = this.add.image(600, 450, 'background');
-	const map = this.make.tilemap({key: 'map'})
-	const tileset = map.addTilesetImage('tileset_dungeon', 'tiles', 32, 32, 0, 0);
-	const layer1 = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
+	// var img = this.add.image(600, 450, 'background_dungeon');
+	// let map = this.make.tilemap({key: 'map_dungeon'})
+	// let tileset = map.addTilesetImage('Dungeon tileset', 'tiles_dungeon', 16, 16, 0, 0);
+	// let layer1 = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
+
+	// var img = this.add.image(600, 450, 'background_forest');
+	// let map = this.make.tilemap({key: 'map_forest'})
+	// let tileset = map.addTilesetImage('dark_forest', 'tiles_forest', 32, 32, 0, 0);
+	// let layer1 = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
+
+	var img = this.add.image(600, 450, 'background_hell');
+	let map = this.make.tilemap({key: 'map_hell'})
+	let tileset = map.addTilesetImage('tiles_tiny_sample_2', 'tiles_hell', 32, 32, 0, 0);
+	let layer1 = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
+
+
 
 
 	//худ и платформа для звёзд

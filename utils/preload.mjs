@@ -1,14 +1,24 @@
 export default function loadAssets(focus)
 {
-	focus.load.image('tiles', 'assets/map/tileset_dungeon.png');
-	focus.load.tilemapTiledJSON('map', 'assets/map/map1.json');
+	focus.load.image('background_dungeon', 'assets/map/dungeon_background.png');
+	focus.load.image('tiles_dungeon', 'assets/map/Dungeon tileset.png');
+	focus.load.tilemapTiledJSON('map_dungeon', 'assets/map/map2.json');
+
+	focus.load.image('background_forest', 'assets/map/forest_background.png');
+	focus.load.image('tiles_forest', 'assets/map/dark_forest.png');
+	focus.load.tilemapTiledJSON('map_forest', 'assets/map/map3.json');
+
+	focus.load.image('background_hell', 'assets/map/hell_background.png');
+	focus.load.image('tiles_hell', 'assets/map/tiles_tiny_sample_2.png');
+	focus.load.tilemapTiledJSON('map_hell', 'assets/map/map4.json');
+
 	focus.load.image('longStraight', 'assets/map/long_wall_straight.png');
 	focus.load.image('longWide', 'assets/map/long_wall_wide.png');
 	focus.load.image('shortWide', 'assets/map/short_wall_wide.png');
 	focus.load.image('shortStraight', 'assets/map/short_wall_straight.png');
 
 
-	focus.load.image('background', 'assets/temporary_background.png');
+
 	focus.load.image('hood','assets/hood.png')
 	focus.load.image('ground', 'assets/platform.png');
 
