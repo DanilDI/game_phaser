@@ -420,13 +420,13 @@ function GainEXP(exp){
 
 function createlvlUPbuttun(){
 	lvlUP=1;
-	lvl_UP_button.create(1050, 500, 's_heal_button').setData({type: 1}).setInteractive();
-	lvl_UP_button.create(1050, 600, 'l_heal_button').setData({type: 2}).setInteractive();
-	lvl_UP_button.create(1050, 700, 'dmg_boost_button').setData({type: 3}).setInteractive();
-
+	lvl_UP_button.create(1050, 500, 's_heal_button').setData({type: 1}).setInteractive().anims.play('hp-lvl-up',true);
+	lvl_UP_button.create(1050, 600, 'armour_lvl_up').setData({type: 2}).setInteractive().anims.play('armour-lvl-up',true);
+	lvl_UP_button.create(1050, 700, 'dmg_lvl_up').setData({type: 3}).setInteractive().anims.play('lvl-up-dmg',true);
+	
 
 	lvl_UP_button.children.iterate(function (child) {
-
+		
 
 		child.on('pointerdown',function(){
 			var type=child.data.list.type;

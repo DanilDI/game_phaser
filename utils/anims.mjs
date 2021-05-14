@@ -142,6 +142,26 @@ export default function createAnims(focus){
         repeat: 1
     });
 
+    focus.anims.create({
+        key: 'lvl-up-dmg',
+        frames: focus.anims.generateFrameNumbers('dmg_lvl_up', { start: 0, end: 2 }),
+        frameRate: 5,
+        repeat: 1
+    });
+
+    focus.anims.create({
+        key: 'armour-lvl-up',
+        frames: focus.anims.generateFrameNumbers('armour_lvl_up', { start: 0, end: 2 }),
+        frameRate: 5,
+        repeat: 1
+    });
+
+    focus.anims.create({
+        key: 'hp-lvl-up',
+        frames: focus.anims.generateFrameNumbers('hp_lvl_up', { start: 0, end: 2 }),
+        frameRate: 5,
+        repeat: 1
+    });
 
 
 }

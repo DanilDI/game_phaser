@@ -97,6 +97,11 @@ export default function loadAssets(focus)
 	focus.load.image('invincible_shield_button', 'assets/buttons/invincible_shield_button.png');
 	focus.load.image('blade_mail_button', 'assets/buttons/blade_mail_button.png');
 
+	focus.load.spritesheet('dmg_lvl_up', 'assets/buttons/dmg-lvl-up.png', { frameWidth: 90, frameHeight: 45 });
+	focus.load.spritesheet('armour_lvl_up', 'assets/buttons/armour-lvl-up.png', { frameWidth: 90, frameHeight: 45 });
+	focus.load.spritesheet('hp_lvl_up', 'assets/buttons/hp-lvl-up.png', { frameWidth: 90, frameHeight: 45 });
+
+
 
 	//stage end
 	focus.load.spritesheet('hell_door','assets/doors/hell-door.png', { frameWidth: 128, frameHeight: 128 });
