@@ -30,6 +30,8 @@ var platforms;
 var battle=0;
 var lose=0;
 var lvlUP=0;
+
+
 var player;
 var EnemyHPText;
 var PlayerHPText;
@@ -43,6 +45,8 @@ var player_exp=0;
 var expText
 var lvlUPexp=100;
 var lvlUPexpText
+
+
 var mHood;
 var wall;
 //// test
@@ -51,6 +55,8 @@ var dd;
 var end;
 
 var stage_ender;
+
+var stages =[0,0,0]
 
 var game = new Phaser.Game(config);
 
@@ -155,6 +161,21 @@ function create ()
 	platforms = this.physics.add.staticGroup();
 	platforms.create(1050, 881, 'ground').setScale(0.71).refreshBody();
 
+
+
+
+
+	//игрок
+	player = this.physics.add.sprite(100, 500, 'dude');
+	player.setData({hp_flask_small: 0, hp_flask_large: 0, dmg_boost: 0, invincible: 0, parry_shield: 0, dmg_boost_active: false,invincible_active: 0, parry_shield_active: false})
+	player.setBounce(0.2);
+	player.setSize(50,70,true);
+	player.setCollideWorldBounds(true);
+
+	//создание анимаций
+	createAnims(this);
+
+
 	//текст
 	EnemyHPText = this.add.text(920, 10, 'Enemy HP:  0', { fontSize: '20px', fill: '#000' });
 	PlayerHPText = this.add.text(920, 44, 'Your HP:  100/100', { fontSize: '20px', fill: '#000' });
@@ -171,18 +192,6 @@ function create ()
 	dmg_boost_Text = this.add.text(1024, 150, '0|D', { fontSize: '26px', fill: '#000' });
 	parry_shield_Text = this.add.text(1084, 150, '0|D', { fontSize: '26px', fill: '#000' });
 	invincible_Text = this.add.text(1143, 150, '0|0', { fontSize: '26px', fill: '#000' });
-
-
-
-	//игрок
-	player = this.physics.add.sprite(100, 500, 'dude');
-	player.setData({hp_flask_small: 0, hp_flask_large: 0, dmg_boost: 0, invincible: 0, parry_shield: 0, dmg_boost_active: false,invincible_active: 0, parry_shield_active: false})
-	player.setBounce(0.2);
-	player.setSize(50,70,true);
-	player.setCollideWorldBounds(true);
-
-	//создание анимаций
-	createAnims(this);
 
 
 	//создание физической группы для звёзд
@@ -205,7 +214,7 @@ function create ()
 
 
 	itemButtonCreator(this);
-	create_stage(0,this);
+	startNewGame(this);
 	//коллайдеры и оверлапы
 	this.physics.add.collider(player, wall);
 	this.physics.add.collider(player, mHood);
@@ -226,10 +235,7 @@ function create ()
 function update ()
 {
 	movement(player,battle,lose,lvlUP,this);
-	if(lose==1){
-		PlayerHPText.setText('GAME OVER' );
 
-	}
 	enemy.children.iterate(function (child) {
 
 		child.anims.play(child.data.list.animation,true);
@@ -242,7 +248,7 @@ function update ()
 
 }
 //////////////
-function dropStar(music,enemyinfo,startype,keyA,keyD){
+function dropStar(music,enemyinfo,startype,keyA,keyD,scene){
 
 	if(battle==1&&enemyinfo.hp>0){
 		if(startype==0){
@@ -252,8 +258,8 @@ function dropStar(music,enemyinfo,startype,keyA,keyD){
 			star1.setInteractive();
 			star1.on('pointerdown',function(){
 				if(keyA.isDown||keyD.isDown) star1.disableBody(true, true);
-				if(keyD.isDown) GetDamage(enemyinfo.damage);
-				else if(keyA.isDown) makeDamage(damage,enemyinfo)
+				if(keyD.isDown) GetDamage(enemyinfo.damage,scene);
+				else if(keyA.isDown) makeDamage(damage,enemyinfo,scene)
 
 			});
 		}
@@ -267,8 +273,8 @@ function dropStar(music,enemyinfo,startype,keyA,keyD){
 
 			star1.on('pointerdown',function(){
 				if(keyA.isDown||keyD.isDown) star1.disableBody(true, true);
-				if(keyA.isDown) GetDamage(enemyinfo.damage);
-				if(keyD.isDown&&player.data.list.parry_shield_active==true) makeDamage(damage,enemyinfo);
+				if(keyA.isDown) GetDamage(enemyinfo.damage,scene);
+				if(keyD.isDown&&player.data.list.parry_shield_active==true) makeDamage(damage,enemyinfo,scene);
 			});
 		}
 
@@ -278,7 +284,7 @@ function dropStar(music,enemyinfo,startype,keyA,keyD){
 			star1.setVelocityY(enemyinfo.speed);
 			star1.setInteractive();
 			star1.on('pointerdown',function(){
-				GetDamage(enemyinfo.damage);
+				GetDamage(enemyinfo.damage,scene);
 				star1.disableBody(true, true);
 			});
 		}
@@ -296,7 +302,7 @@ function Battle(enemyinfo,music,scene,keyA,keyD){
 	battle=1;
 
 	for (let i = 0;i<enemyinfo.satrnumber ; i++) {
-		var timedEvent1 =scene.time.delayedCall(enemyinfo.pattern[i], dropStar,[music,enemyinfo,enemyinfo.attacks[i],keyA,keyD]);
+		var timedEvent1 =scene.time.delayedCall(enemyinfo.pattern[i], dropStar,[music,enemyinfo,enemyinfo.attacks[i],keyA,keyD,scene]);
 
 
 	}
@@ -364,13 +370,13 @@ function ItemPickup (player, items)
 function Star_hit_the_ground (platforms, star)
 {
 	if(star.data.list.type==1){
-		GetDamage(star.data.list.dmg);
+		GetDamage(star.data.list.dmg,this);
 
 	}
 	star.disableBody(true, true);
 }
 
-function GetDamage(dmg){
+function GetDamage(dmg,scene){
 	if(player.data.list.invincible_active>0){
 		player.data.list.invincible_active-=1;
 		invincible_Text.setText(player.data.list.invincible+'|'+player.data.list.invincible_active);
@@ -388,15 +394,15 @@ function GetDamage(dmg){
 
 		});
 		lose=1;
-
+		GameEnd(scene,'lose')
 	}
 }
-function makeDamage(dmg,enemyinfo){
+function makeDamage(dmg,enemyinfo,scene){
 	if(player.data.list.dmg_boost_active) dmg*=2
 	enemyinfo.hp-=dmg;
 	EnemyHPText.setText('Enemy HP:  ' + enemyinfo.hp)
 	if(enemyinfo.hp<=0){
-		GainEXP(enemyinfo.exp);
+		GainEXP(enemyinfo.exp,scene);
 		battle=0;
 		player.data.list.parry_shield_active=false;
 		player.data.list.dmg_boost_active=false;
@@ -410,16 +416,17 @@ function makeDamage(dmg,enemyinfo){
 
 	}
 }
-function GainEXP(exp){
+function GainEXP(exp,scene){
 	player_exp+=exp;
 	expText.setText('EXP:  '+player_exp);
 	if(player_exp>=lvlUPexp){
-		createlvlUPbuttun();
+		lvlUP=1;
+		scene.time.delayedCall(1000, createlvlUPbuttun);
+		
 	}
 }
 
 function createlvlUPbuttun(){
-	lvlUP=1;
 	lvl_UP_button.create(1050, 500, 's_heal_button').setData({type: 1}).setInteractive().anims.play('hp-lvl-up',true);
 	lvl_UP_button.create(1050, 600, 'armour_lvl_up').setData({type: 2}).setInteractive().anims.play('armour-lvl-up',true);
 	lvl_UP_button.create(1050, 700, 'dmg_lvl_up').setData({type: 3}).setInteractive().anims.play('lvl-up-dmg',true);
@@ -470,14 +477,36 @@ function stage_end(player, stage_ender){
 		child.disableBody(true, true);
 	});
 
-	create_stage(stage_ender.data.list.type,this)
+	if(stage_ender.data.list.type==3) GameEnd(this,'win');
+	else create_stage(stage_ender.data.list.type,this);
 	
 }
 
 function create_stage(stage,scene){
-	var walltype=7; //временно
-	//var walltype=Phaser.Math.Between(1, 5);
+	var walltype=100; //временно
+	//var walltype=stages[stage];
 	stage++;
+	//тестовая сйена
+	if(walltype==100){
+		if (stage==1) stage_ender.create(735, 435, '1_stage_end').setData({type: 1});
+		if (stage==2) stage_ender.create(735, 435, '2_stage_end').setData({type: 2});
+		if (stage==3) stage_ender.create(735, 435, '3_stage_end').setData({type: 3});
+		player.setPosition(450,430);
+
+		enemyCreator(stage,Phaser.Math.Between(1, 3),140,290,scene,enemy);
+		
+		itemCreator(Phaser.Math.Between(2, 4),840,820,scene,items);
+		enemyCreator(stage,Phaser.Math.Between(1, 3),286,450,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(1, 3),288,740,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(1, 3),733,286,scene,enemy);
+
+		enemyCreator(stage,Phaser.Math.Between(4, 5),290,150,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(4, 5),590,150,scene,enemy);
+		itemCreator(5,123,213,scene,items);
+		itemCreator(5,600,800,scene,items);
+		itemCreator(5,600,850,scene,items);
+		
+	}
 	if(stage==1){
 		var img = scene.add.image(600, 450, 'background_forest');
 		img.setDepth(-1);
@@ -721,4 +750,57 @@ function create_stage(stage,scene){
 		
 		
 	}
+}
+
+
+function startNewGame(scene){
+	
+	EnemyHPText.setText('Enemy HP:  0');
+	PlayerHPText.setText('Your HP:  100/100');
+	expText.setText('EXP:  0');
+	lvlUPexpText.setText('EXP to level UP:  100');
+
+	damageText.setText('dmg: 10');
+
+	armorText.setText('arm: 0');
+
+
+	hp_flask_small_Text.setText('0');
+	hp_flask_large_Text.setText('0');
+	dmg_boost_Text.setText('0|D');
+	parry_shield_Text.setText('0|D');
+	invincible_Text.setText('0|0');
+
+	player.setData({hp_flask_small: 0, hp_flask_large: 0, dmg_boost: 0, invincible: 0, parry_shield: 0, dmg_boost_active: false,invincible_active: 0, parry_shield_active: false})
+
+	battle=0;
+	lose=0;
+	lvlUP=0;
+	stageRand();
+	create_stage(0,scene);
+
+}
+
+function GameEnd(scene,status){
+	lose=1
+	if(status=='win') var Text=scene.add.text(910, 400, 'You win! Wanna play again?', { fontSize: '18px', fill: '000' });
+	else var Text=scene.add.text(910, 400, 'You LOSE :(  Wanna try again?', { fontSize: '16px', fill: '000' });
+	
+	var newGameButton= scene.physics.add.sprite(1050, 500, 'star0');
+	newGameButton.setInteractive();
+	newGameButton.on('pointerdown',function(){
+		newGameButton.disableBody(true, true);
+		Text.setText('');
+		lose=0
+		startNewGame(scene);
+		
+	});
+}
+
+function stageRand(){
+	stage[0]=Phaser.Math.Between(1, 9)
+	stage[1]=Phaser.Math.Between(1, 9)
+	stage[2]=Phaser.Math.Between(1, 9)
+	while(stage[0]==stage[1]) stage[1]=Phaser.Math.Between(1, 9)
+	while(stage[1]==stage[2]||stage[0]==stage[2]) stage[2]=Phaser.Math.Between(1, 9)
 }
