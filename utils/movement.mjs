@@ -6,26 +6,26 @@ export default function movement(player,battle,lose,lvlUP,focus){
     if(battle==0&&lose==0&&lvlUP==0){
         if (keyA.isDown)
         {
-          player.setVelocityX(-160);
+          player.setVelocityX(-130);
           player.anims.play('left', true);
         
         }
         else if (keyD.isDown)
         {
-            player.setVelocityX(160);
+            player.setVelocityX(130);
             player.anims.play('right', true);
         
         }
         else if (keyS.isDown)
         {
-            player.setVelocityY(160);
+            player.setVelocityY(130);
             player.anims.play('left', true);
     
         
         }
         else if (keyW.isDown)
         {
-            player.setVelocityY(-160);
+            player.setVelocityY(-130);
             player.anims.play('right', true);
         
         

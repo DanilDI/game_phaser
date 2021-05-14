@@ -17,7 +17,24 @@ export default function loadAssets(focus)
 	focus.load.image('shortWide', 'assets/map/short_wall_wide.png');
 	focus.load.image('shortStraight', 'assets/map/short_wall_straight.png');
 
+	focus.load.image('longStraightForest', 'assets/map/long_wall_straight_forest.png');
+	focus.load.image('longWideForest', 'assets/map/long_wall_wide_forest.png');
+	focus.load.image('shortWideForest', 'assets/map/short_wall_wide_forest.png');
+	focus.load.image('shortStraightForest', 'assets/map/short_wall_straight_forest.png');
 
+	focus.load.image('longStraightDungeon', 'assets/map/long_wall_straight_dungeon.png');
+	focus.load.image('longWideDungeon', 'assets/map/long_wall_wide_dungeon.png');
+	focus.load.image('shortWideDungeon', 'assets/map/short_wall_wide_dungeon.png');
+	focus.load.image('shortStraightDungeon', 'assets/map/short_wall_straight_dungeon.png');
+
+	focus.load.image('borderLongForest', 'assets/map/border_long_forest.png');
+	focus.load.image('borderWideForest', 'assets/map/border_wide_forest.png');
+
+	focus.load.image('borderLongDungeon', 'assets/map/border_long_dungeon.png');
+	focus.load.image('borderWideDungeon', 'assets/map/border_wide_dungeon.png');
+
+	focus.load.image('borderLongHell', 'assets/map/border_long_hell.png');
+	focus.load.image('borderWideHell', 'assets/map/border_wide_hell.png');
 
 	focus.load.image('hood','assets/hood.png')
 	focus.load.image('ground', 'assets/platform.png');
