@@ -773,6 +773,18 @@ function startNewGame(scene){
 
 	player.setData({hp_flask_small: 0, hp_flask_large: 0, dmg_boost: 0, invincible: 0, parry_shield: 0, dmg_boost_active: false,invincible_active: 0, parry_shield_active: false})
 
+
+
+	playerHP=100;
+	playerMAXHP=100;
+	damage=10;
+
+	armour=0;
+
+	player_exp=0;
+
+	lvlUPexp=100;
+
 	battle=0;
 	lose=0;
 	lvlUP=0;
@@ -798,9 +810,9 @@ function GameEnd(scene,status){
 }
 
 function stageRand(){
-	stage[0]=Phaser.Math.Between(1, 9)
-	stage[1]=Phaser.Math.Between(1, 9)
-	stage[2]=Phaser.Math.Between(1, 9)
-	while(stage[0]==stage[1]) stage[1]=Phaser.Math.Between(1, 9)
-	while(stage[1]==stage[2]||stage[0]==stage[2]) stage[2]=Phaser.Math.Between(1, 9)
+	stages[0]=Phaser.Math.Between(1, 9)
+	stages[1]=Phaser.Math.Between(1, 9)
+	stages[2]=Phaser.Math.Between(1, 9)
+	while(stages[0]==stages[1]) stages[1]=Phaser.Math.Between(1, 9)
+	while(stages[1]==stages[2]||stages[0]==stages[2]) stages[2]=Phaser.Math.Between(1, 9)
 }
