@@ -73,7 +73,7 @@ export default function loadAssets(focus)
 	
 	//forest
 	focus.load.spritesheet('mushroom', 'assets/forest_anims/mushroom-idle.png', { frameWidth: 150, frameHeight: 150 });
-	focus.load.spritesheet('huntress', 'assets/forest_anims/huntress-idle.png', { frameWidth: 150, frameHeight: 100 });
+	focus.load.spritesheet('huntress', 'assets/forest_anims/huntress-idle.png', { frameWidth: 150, frameHeight: 64 });
 	focus.load.spritesheet('cyclop', 'assets/forest_anims/cyclop-idle.png', { frameWidth: 64, frameHeight: 64 });
 	focus.load.spritesheet('worm', 'assets/forest_anims/worm-idle.png', { frameWidth: 64, frameHeight: 64 });
 	focus.load.spritesheet('tree', 'assets/forest_anims/tree-idle.png', { frameWidth: 44, frameHeight: 45 });

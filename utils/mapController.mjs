@@ -4,19 +4,19 @@ export function enemyCreator(lvl,type,x,y,scene,enemy){
 	//лес
 	if (lvl==1){
 		if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'worm').setData({damage: 8,exp: 20,animation:'worm-idle', hp: 70, music: '120_ADNNDA', speed:370, pattern: [9,255,510,755,1105,1255],satrnumber: 6,pause:1700 ,attacks: [0,1,2,2,1,0]});
-		if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'huntress').setData({damage: 10,exp: 20,animation:'huntress-idle', hp: 70, music: '120_AANNANNANDD', speed:360, pattern: [3,10,250,370,495,628,870,990,1125,1250,1385],satrnumber: 11,pause:1800 ,attacks: [0,0,2,2,0,2,2,0,2,1,1]});
+		if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'huntress').setData({damage: 10,exp: 20,animation:'huntress-idle', hp: 70, music: '120_AANNANNANDD', speed:360, pattern: [3,10,250,370,495,628,870,990,1125,1250,1385],satrnumber: 11,pause:1800 ,attacks: [0,0,2,2,0,2,2,0,2,1,1]}).setSize(50, 64, true);
 		if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'tree').setData({damage: 5,exp: 20,animation:'tree-idle', hp: 100, music: '120_AAAANNDDDD', speed:340, pattern: [0,250,500,750,1000,1250,1500,1625,1750,1825],satrnumber: 10,pause:2000 ,attacks: [0,0,0,0,2,2,1,1,1,1]});
-		if(type==4) var concreteEnemy= scene.physics.add.sprite(x, y, 'mushroom').setData({damage: 8,exp: 30,animation:'mushroom-idle', hp: 70, music: '120_AADDAANDDD', speed:280, pattern: [10,147,278,400,510,635,760,890,1010,1150],satrnumber: 10,pause:1500 ,attacks: [0,0,1,1,0,0,2,1,1,1]});
-		if(type==5) var concreteEnemy= scene.physics.add.sprite(x, y, 'cyclop').setData({damage: 12,exp: 30,animation:'cyclop-idle', hp: 70, music: '90_ANDDDNNDAD', speed:250, pattern: [3,180,515,680,860,1025,1185,1350,1515,1690],satrnumber: 10,pause:2100 ,attacks: [0,2,1,1,1,2,2,1,0,1]});
+		if(type==4) var concreteEnemy= scene.physics.add.sprite(x, y, 'mushroom').setData({damage: 8,exp: 30,animation:'mushroom-idle', hp: 70, music: '120_AADDAANDDD', speed:280, pattern: [10,147,278,400,510,635,760,890,1010,1150],satrnumber: 10,pause:1500 ,attacks: [0,0,1,1,0,0,2,1,1,1]}).setSize(50, 50, true);
+		if(type==5) var concreteEnemy= scene.physics.add.sprite(x, y, 'cyclop').setData({damage: 12,exp: 30,animation:'cyclop-idle', hp: 70, music: '90_ANDDDNNDAD', speed:250, pattern: [3,180,515,680,860,1025,1185,1350,1515,1690],satrnumber: 10,pause:2100 ,attacks: [0,2,1,1,1,2,2,1,0,1]}).setSize(64, 60, true);
 	}	
 
 	//подземелье
 	if (lvl==2){
-		if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'eye').setData({damage: 12,exp: 30,animation:'eye-idle', hp: 40, music: '180_NNDDAND', speed:370, pattern: [0,165,330,510,665,830,990],satrnumber: 7,pause:1300 ,attacks: [2,2,1,1,0,2,1]});
-		if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'bat').setData({damage: 10,exp: 30,animation:'bat-idle', hp: 50, music: '180_ANDDDAAN', speed:320, pattern: [3,170,335,515,680,840,1005,1170],satrnumber: 11,pause:1500 ,attacks: [0,2,1,1,1,0,0,2]});
-		if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'goblin').setData({damage: 14,exp: 30,animation:'goblin-idle', hp: 70, music: '120_ADNDNAD', speed:380, pattern: [10,260,515,765,890,1015,1140],satrnumber: 7,pause:1600 ,attacks: [0,1,2,1,2,0,1]});
+		if(type==1) var concreteEnemy= scene.physics.add.sprite(x, y, 'eye').setData({damage: 12,exp: 30,animation:'eye-idle', hp: 40, music: '180_NNDDAND', speed:370, pattern: [0,165,330,510,665,830,990],satrnumber: 7,pause:1300 ,attacks: [2,2,1,1,0,2,1]}).setSize(55, 55, true);
+		if(type==2) var concreteEnemy= scene.physics.add.sprite(x, y, 'bat').setData({damage: 10,exp: 30,animation:'bat-idle', hp: 50, music: '180_ANDDDAAN', speed:320, pattern: [3,170,335,515,680,840,1005,1170],satrnumber: 11,pause:1500 ,attacks: [0,2,1,1,1,0,0,2]}).setScale(1.5);
+		if(type==3) var concreteEnemy= scene.physics.add.sprite(x, y, 'goblin').setData({damage: 14,exp: 30,animation:'goblin-idle', hp: 70, music: '120_ADNDNAD', speed:380, pattern: [10,260,515,765,890,1015,1140],satrnumber: 7,pause:1600 ,attacks: [0,1,2,1,2,0,1]}).setSize(64, 64, true);
 		if(type==4) var concreteEnemy= scene.physics.add.sprite(x, y, 'zombie').setData({damage: 10,exp: 40,animation:'zombie-idle', hp: 70, music: '120_DADDAADDD', speed:280, pattern: [30,270,410,535,770,895,1040,1160,1280],satrnumber: 9,pause:1700 ,attacks: [1,0,1,1,0,0,1,1,1]});
-		if(type==5) var concreteEnemy= scene.physics.add.sprite(x, y, 'skeleton').setData({damage: 12,exp: 40,animation:'skeleton-idle', hp: 60, music: '90_DDADDNAN', speed:300, pattern: [22,190,340,510,685,845,1005,1175],satrnumber: 8,pause:1550 ,attacks: [1,1,0,1,1,2,0,2]});
+		if(type==5) var concreteEnemy= scene.physics.add.sprite(x, y, 'skeleton').setData({damage: 12,exp: 40,animation:'skeleton-idle', hp: 60, music: '90_DDADDNAN', speed:300, pattern: [22,190,340,510,685,845,1005,1175],satrnumber: 8,pause:1550 ,attacks: [1,1,0,1,1,2,0,2]}).setSize(64, 64, true);
 	}
 	//ад
 	if (lvl==3){
