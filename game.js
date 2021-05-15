@@ -470,7 +470,15 @@ function createlvlUPbuttun(){
 }
 
 function stage_end(player, stage_ender){
+	
 	stage_ender.disableBody(true, true);
+	if(stage_ender.data.list.type==3) GameEnd(this,'win');
+	else create_stage(stage_ender.data.list.type,this);
+	
+}
+
+function create_stage(stage,scene){
+	
 	enemy.children.iterate(function (child) {
 		child.disableBody(true, true);
 	});
@@ -480,13 +488,6 @@ function stage_end(player, stage_ender){
 	wall.children.iterate(function (child) {
 		child.disableBody(true, true);
 	});
-
-	if(stage_ender.data.list.type==3) GameEnd(this,'win');
-	else create_stage(stage_ender.data.list.type,this);
-	
-}
-
-function create_stage(stage,scene){
 	var walltype=stages[stage];
 	//walltype=100;//для тестов
 	stage++;
