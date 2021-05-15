@@ -130,14 +130,14 @@ export default function createAnims(focus){
     //stage end
     focus.anims.create({
         key: 'hell-door-pulse',
-        frames: focus.anims.generateFrameNumbers('hell_door', { start: 0, end: 3 }),
+        frames: focus.anims.generateFrameNumbers('2_stage_end', { start: 0, end: 3 }),
         frameRate: 3,
         repeat: 1
     });
 
     focus.anims.create({
         key: 'end-game-pulse',
-        frames: focus.anims.generateFrameNumbers('end_game', { start: 0, end: 4 }),
+        frames: focus.anims.generateFrameNumbers('3_stage_end', { start: 0, end: 4 }),
         frameRate: 5,
         repeat: 1
     });

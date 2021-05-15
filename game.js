@@ -49,10 +49,7 @@ var lvlUPexpText
 
 var mHood;
 var wall;
-//// test
-var im;
-var dd;
-var end;
+
 
 var stage_ender;
 
@@ -210,7 +207,7 @@ function create ()
 
 	//создание физической группы для конца уровня
 	stage_ender=this.physics.add.group();
-	//черновая отрисовкак противников
+
 
 
 	itemButtonCreator(this);
@@ -226,10 +223,7 @@ function create ()
 
 	this.physics.add.overlap(player, stage_ender, stage_end, null, this);
 	
-	//test
-	im = this.physics.add.sprite(400, 400, 'hell_door');
-	dd = this.add.image(400, 600, 'dungeon_door');
-	end = this.physics.add.sprite(600, 400, 'end_game');
+
 }
 
 function update ()
@@ -241,13 +235,22 @@ function update ()
 		child.anims.play(child.data.list.animation,true);
 
 	});
-	//test 
-	im.anims.play('hell-door-pulse',true);
-	end.anims.play('end-game-pulse',true);
 	
+	lvl_UP_button.children.iterate(function (child) {
+
+		child.anims.play(child.data.list.animation,true);
+
+	});
+
+	stage_ender.children.iterate(function (child) {
+		if(child.data.list.type==2) child.anims.play('hell-door-pulse',true);
+		if(child.data.list.type==3) child.anims.play('end-game-pulse',true);
+		
+
+	});
 
 }
-//////////////
+
 function dropStar(music,enemyinfo,startype,keyA,keyD,scene){
 
 	if(battle==1&&enemyinfo.hp>0){
@@ -427,9 +430,9 @@ function GainEXP(exp,scene){
 }
 
 function createlvlUPbuttun(){
-	lvl_UP_button.create(1050, 500, 's_heal_button').setData({type: 1}).setInteractive().anims.play('hp-lvl-up',true);
-	lvl_UP_button.create(1050, 600, 'armour_lvl_up').setData({type: 2}).setInteractive().anims.play('armour-lvl-up',true);
-	lvl_UP_button.create(1050, 700, 'dmg_lvl_up').setData({type: 3}).setInteractive().anims.play('lvl-up-dmg',true);
+	lvl_UP_button.create(1050, 500, 's_heal_button').setData({type: 1,animation: 'hp-lvl-up'}).setInteractive().anims.play('hp-lvl-up',true);
+	lvl_UP_button.create(1050, 600, 'armour_lvl_up').setData({type: 2,animation: 'armour-lvl-up'}).setInteractive().anims.play('armour-lvl-up',true);
+	lvl_UP_button.create(1050, 700, 'dmg_lvl_up').setData({type: 3,animation: 'lvl-up-dmg'}).setInteractive().anims.play('lvl-up-dmg',true);
 	
 
 	lvl_UP_button.children.iterate(function (child) {
@@ -443,15 +446,16 @@ function createlvlUPbuttun(){
 				PlayerHPText.setText('Your HP:  ' + playerHP+'/'+playerMAXHP);
 			}
 			if(type==2){
-				damage+=3;
-				damageText.setText('dmg: '+damage)
-			}
-			if(type==3){
 				armour+=2;
 				armorText.setText('arm: '+armour)
 			}
+			if(type==3){
+				damage+=3;
+				damageText.setText('dmg: '+damage)
+			}
+			
 			player_exp-=lvlUPexp;
-			lvlUPexp+=30;
+			lvlUPexp+=50;
 			expText.setText('EXP:  '+player_exp);
 			lvlUPexpText.setText('EXP to level UP:  '+lvlUPexp)
 			lvlUP=0;
@@ -483,10 +487,10 @@ function stage_end(player, stage_ender){
 }
 
 function create_stage(stage,scene){
-	var walltype=100; //временно
-	//var walltype=stages[stage];
+	var walltype=stages[stage];
+	//walltype=100;//для тестов
 	stage++;
-	//тестовая сйена
+	//тестовая сцена
 	if(walltype==100){
 		if (stage==1) stage_ender.create(735, 435, '1_stage_end').setData({type: 1});
 		if (stage==2) stage_ender.create(735, 435, '2_stage_end').setData({type: 2});
@@ -538,9 +542,9 @@ function create_stage(stage,scene){
 	}
 	
 	if(walltype==1){
-		if (stage==1) stage_ender.create(80, 80, '1_stage_end').setData({type: 1});
-		if (stage==2) stage_ender.create(80, 80, '2_stage_end').setData({type: 2});
-		if (stage==3) stage_ender.create(80, 80, '3_stage_end').setData({type: 3});
+		if (stage==1) stage_ender.create(150, 150, '1_stage_end').setData({type: 1});
+		if (stage==2) stage_ender.create(150, 150, '2_stage_end').setData({type: 2});
+		if (stage==3) stage_ender.create(150, 150, '3_stage_end').setData({type: 3});
 		player.setPosition(100,450);
 
 		enemyCreator(stage,Phaser.Math.Between(1, 3),286,450,scene,enemy);
@@ -553,19 +557,26 @@ function create_stage(stage,scene){
 		if(Phaser.Math.Between(1, 2)==1) enemyCreator(stage,Phaser.Math.Between(1, 5),730,730,scene,enemy);
 		else enemyCreator(stage,Phaser.Math.Between(1, 5),730,430,scene,enemy);
 
+		if(Phaser.Math.Between(1, 2)==1) enemyCreator(stage,Phaser.Math.Between(1, 5),750,600,scene,enemy);
+		else enemyCreator(stage,Phaser.Math.Between(1, 5),600,750,scene,enemy);
+
 		itemCreator(Phaser.Math.Between(3, 4),450,450,scene,items);
 		itemCreator(Phaser.Math.Between(2, 5),540,50,scene,items);
 
-		if(Phaser.Math.Between(1, 2)==1) itemCreator(2,800,800,scene,items)
+		if(Phaser.Math.Between(1, 2)==1){
+			itemCreator(2,800,800,scene,items)
+			itemCreator(Phaser.Math.Between(3, 4),843,86,scene,items);
+		}
 		else{
 			itemCreator(1,180,340,scene,items);
 			itemCreator(1,843,86,scene,items);
+			itemCreator(Phaser.Math.Between(3, 4),800,800,scene,items);
 		}
 	}
 	if(walltype==2){
-		if (stage==1) stage_ender.create(735, 435, '1_stage_end').setData({type: 1});
-		if (stage==2) stage_ender.create(735, 435, '2_stage_end').setData({type: 2});
-		if (stage==3) stage_ender.create(735, 435, '3_stage_end').setData({type: 3});
+		if (stage==1) stage_ender.create(750, 450, '1_stage_end').setData({type: 1});
+		if (stage==2) stage_ender.create(750, 450, '2_stage_end').setData({type: 2});
+		if (stage==3) stage_ender.create(750, 450, '3_stage_end').setData({type: 3});
 		player.setPosition(450,430);
 
 		enemyCreator(stage,Phaser.Math.Between(1, 3),140,290,scene,enemy);
@@ -615,9 +626,9 @@ function create_stage(stage,scene){
 		
 	}
 	if(walltype==4){
-		if (stage==1) stage_ender.create(120, 780, '1_stage_end').setData({type: 1});
-		if (stage==2) stage_ender.create(120, 780, '2_stage_end').setData({type: 2});
-		if (stage==3) stage_ender.create(120, 780, '3_stage_end').setData({type: 3});
+		if (stage==1) stage_ender.create(150, 750, '1_stage_end').setData({type: 1});
+		if (stage==2) stage_ender.create(150, 750, '2_stage_end').setData({type: 2});
+		if (stage==3) stage_ender.create(150, 750, '3_stage_end').setData({type: 3});
 		player.setPosition(780,120);
 
 		enemyCreator(stage,Phaser.Math.Between(1, 3),740,590,scene,enemy);
@@ -746,6 +757,70 @@ function create_stage(stage,scene){
 		itemCreator(2,750,150,scene,items);
 		itemCreator(Phaser.Math.Between(3, 5),750,450,scene,items);
 		
+
+		
+		
+	}
+	if(walltype==8){
+		if (stage==1) stage_ender.create(450, 750, '1_stage_end').setData({type: 1});
+		if (stage==2) stage_ender.create(450, 750, '2_stage_end').setData({type: 2});
+		if (stage==3) stage_ender.create(450, 750, '3_stage_end').setData({type: 3});
+		player.setPosition(750,750);
+
+		enemyCreator(stage,Phaser.Math.Between(1, 3),750,600,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(1, 3),450,150,scene,enemy);
+		
+		
+		enemyCreator(stage,Phaser.Math.Between(4, 5),150,300,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(4, 5),300,750,scene,enemy);
+		
+		
+
+		enemyCreator(stage,Phaser.Math.Between(1, 5),750,300,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(1, 5),150,600,scene,enemy);
+
+		if(Phaser.Math.Between(1, 2)==1) enemyCreator(stage,Phaser.Math.Between(1, 5),450,300,scene,enemy);
+		else enemyCreator(stage,Phaser.Math.Between(1, 5),300,450,scene,enemy);
+
+		itemCreator(1,450,450,scene,items);
+		
+		
+		itemCreator(Phaser.Math.Between(3, 5),150,150,scene,items);
+		itemCreator(Phaser.Math.Between(2, 4),150,750,scene,items);
+		itemCreator(Phaser.Math.Between(3, 4),750,450,scene,items);
+		
+
+		
+		
+	}
+	if(walltype==9){
+		if (stage==1) stage_ender.create(750, 750, '1_stage_end').setData({type: 1});
+		if (stage==2) stage_ender.create(750, 750, '2_stage_end').setData({type: 2});
+		if (stage==3) stage_ender.create(750, 750, '3_stage_end').setData({type: 3});
+		player.setPosition(150,150);
+
+		enemyCreator(stage,Phaser.Math.Between(1, 3),150,600,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(1, 3),300,450,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(1, 3),750,300,scene,enemy);
+		
+		enemyCreator(stage,Phaser.Math.Between(4, 5),150,300,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(4, 5),450,600,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(4, 5),600,450,scene,enemy);
+		
+
+		enemyCreator(stage,Phaser.Math.Between(1, 5),450,300,scene,enemy);
+		enemyCreator(stage,Phaser.Math.Between(1, 5),750,600,scene,enemy);
+
+		if(Phaser.Math.Between(1, 2)==1) enemyCreator(stage,Phaser.Math.Between(1, 5),150,750,scene,enemy);
+		else enemyCreator(stage,Phaser.Math.Between(1, 5),750,150,scene,enemy);
+
+		itemCreator(1,240,850,scene,items);
+		
+		
+		itemCreator(Phaser.Math.Between(1, 4),450,150,scene,items);
+		itemCreator(Phaser.Math.Between(2, 5),450,750,scene,items);
+		itemCreator(Phaser.Math.Between(3, 4),850,50,scene,items);
+		itemCreator(Phaser.Math.Between(3, 4),850,550,scene,items);
 
 		
 		

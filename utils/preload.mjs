@@ -104,15 +104,12 @@ export default function loadAssets(focus)
 
 
 	//stage end
-	focus.load.spritesheet('hell_door','assets/doors/hell-door.png', { frameWidth: 128, frameHeight: 128 });
-	focus.load.image('dungeon_door','assets/doors/dungeon-door.png');
-	focus.load.spritesheet('end_game','assets/doors/diamond-pulse.png', { frameWidth: 107, frameHeight: 91 });
+	focus.load.image('1_stage_end','assets/doors/dungeon-door.png');
+	focus.load.spritesheet('2_stage_end','assets/doors/hell-door.png', { frameWidth: 128, frameHeight: 128 });
+	focus.load.spritesheet('3_stage_end','assets/doors/diamond-pulse.png', { frameWidth: 54, frameHeight: 46 });
 
 
 
-	//stage end
-	focus.load.image('1_stage_end', 'assets/1.png');
-	focus.load.image('2_stage_end', 'assets/2.png');
-	focus.load.image('3_stage_end', 'assets/3.png');
+	
 
 }
