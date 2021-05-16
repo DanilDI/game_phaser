@@ -478,7 +478,9 @@ function stage_end(player, stage_ender){
 }
 
 function create_stage(stage,scene){
-	
+	stage_ender.children.iterate(function (child) {
+		child.disableBody(true, true);
+	});
 	enemy.children.iterate(function (child) {
 		child.disableBody(true, true);
 	});
@@ -874,7 +876,7 @@ function GameEnd(scene,status){
 	if(status=='win') var Text=scene.add.text(910, 400, 'You win! Wanna play again?', { fontSize: '18px', fill: '000' });
 	else var Text=scene.add.text(910, 400, 'You LOSE :(  Wanna try again?', { fontSize: '16px', fill: '000' });
 	
-	var newGameButton= scene.physics.add.sprite(1050, 500, 'retry');
+	var newGameButton= scene.physics.add.sprite(1050, 500, 'retry').setData({test: Phaser.Math.Between(1,100000)});
 	newGameButton.setInteractive();
 	newGameButton.on('pointerdown',function(){
 		newGameButton.disableBody(true, true);
