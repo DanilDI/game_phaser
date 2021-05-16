@@ -96,6 +96,7 @@ export default function loadAssets(focus)
 	focus.load.image('dmg_boost_button', 'assets/buttons/dmg_boost_button.png');
 	focus.load.image('invincible_shield_button', 'assets/buttons/invincible_shield_button.png');
 	focus.load.image('blade_mail_button', 'assets/buttons/blade_mail_button.png');
+	focus.load.image('retry', 'assets/buttons/retry.png');
 
 	focus.load.spritesheet('dmg_lvl_up', 'assets/buttons/dmg-lvl-up.png', { frameWidth: 90, frameHeight: 45 });
 	focus.load.spritesheet('armour_lvl_up', 'assets/buttons/armour-lvl-up.png', { frameWidth: 90, frameHeight: 45 });

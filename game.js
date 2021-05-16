@@ -255,7 +255,7 @@ function dropStar(music,enemyinfo,startype,keyA,keyD,scene){
 
 	if(battle==1&&enemyinfo.hp>0){
 		if(startype==0){
-			var star1=stars.create(Phaser.Math.Between(920, 1180), 258, 'star0');
+			var star1=stars.create(Phaser.Math.Between(953, 1147), 258, 'star0');
 			star1.setData({ type: 0});
 			star1.setVelocityY(enemyinfo.speed);
 			star1.setInteractive();
@@ -268,7 +268,7 @@ function dropStar(music,enemyinfo,startype,keyA,keyD,scene){
 		}
 
 		if(startype==1){
-			var star1=stars.create(Phaser.Math.Between(920, 1180), 258, 'star1');
+			var star1=stars.create(Phaser.Math.Between(953, 1147), 258, 'star1');
 			star1.setData({ type: 1,dmg:enemyinfo.damage});
 			star1.setVelocityY(enemyinfo.speed);
 			star1.setInteractive();
@@ -282,7 +282,7 @@ function dropStar(music,enemyinfo,startype,keyA,keyD,scene){
 		}
 
 		if(startype==2){
-			var star1=stars.create(Phaser.Math.Between(920, 1180), 258, 'star2');
+			var star1=stars.create(Phaser.Math.Between(953, 1147), 258, 'star2');
 			star1.setData({ type: 2});
 			star1.setVelocityY(enemyinfo.speed);
 			star1.setInteractive();
@@ -336,7 +336,7 @@ function BattleStart (player, enemy)
 
 	enemy.disableBody(true, true);
 }
-////////////////
+
 function ItemPickup (player, items)
 {
 
@@ -874,7 +874,7 @@ function GameEnd(scene,status){
 	if(status=='win') var Text=scene.add.text(910, 400, 'You win! Wanna play again?', { fontSize: '18px', fill: '000' });
 	else var Text=scene.add.text(910, 400, 'You LOSE :(  Wanna try again?', { fontSize: '16px', fill: '000' });
 	
-	var newGameButton= scene.physics.add.sprite(1050, 500, 'star0');
+	var newGameButton= scene.physics.add.sprite(1050, 500, 'retry');
 	newGameButton.setInteractive();
 	newGameButton.on('pointerdown',function(){
 		newGameButton.disableBody(true, true);
