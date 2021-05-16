@@ -335,6 +335,7 @@ function BattleStart (player, enemy)
 
 
 	enemy.disableBody(true, true);
+	
 }
 
 function ItemPickup (player, items)
@@ -411,11 +412,7 @@ function makeDamage(dmg,enemyinfo,scene){
 		player.data.list.dmg_boost_active=false;
 		parry_shield_Text.setText(player.data.list.parry_shield+'|D');
 		dmg_boost_Text.setText(player.data.list.dmg_boost+'|D');
-		stars.children.iterate(function (child) {
-
-			child.disableBody(true, true);
-
-		});
+		stars.clear(true,true);
 
 	}
 }
@@ -480,16 +477,27 @@ function stage_end(player, stage_ender){
 function create_stage(stage,scene){
 	stage_ender.children.iterate(function (child) {
 		child.disableBody(true, true);
+		
 	});
 	enemy.children.iterate(function (child) {
+		
 		child.disableBody(true, true);
+		
 	});
 	items.children.iterate(function (child) {
+		
 		child.disableBody(true, true);
+		
 	});
 	wall.children.iterate(function (child) {
 		child.disableBody(true, true);
+		
 	});
+	items.clear( true, true);
+	stars.clear( true, true);
+	enemy.clear( true, true);
+	stage_ender.clear( true, true);
+
 	var walltype=stages[stage];
 	//walltype=100;//для тестов
 	stage++;
@@ -883,8 +891,9 @@ function GameEnd(scene,status){
 		Text.setText('');
 		lose=0
 		startNewGame(scene);
-		
+		newGameButton.destroy();
 	});
+	
 }
 
 function stageRand(){
